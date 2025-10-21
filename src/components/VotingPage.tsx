@@ -211,22 +211,37 @@ export default function VotingPage() {
 
       if (response.ok) {
         // Store vote details for sharing
-        const candidate = candidates.find(c => c.candidate_id === candidateId)
         const constituency = constituencies.find(c => c.id === selectedConstituency)
         const district = districts.find(d => d.id === selectedDistrict)
         
-        if (candidate) {
+        if (candidateId === -1) {
+          // NOTA vote
           const voteData = {
-            candidate_name: candidate.name_hindi,
-            candidate_name_english: candidate.name_english,
-            party_abbreviation: candidate.party?.abbreviation || 'IND',
-            party_name: candidate.party?.name_hindi || 'निर्दलीय',
-            party_symbol: candidate.party?.symbol_url || '',
+            candidate_name: 'NOTA - उपरोक्त में से कोई नहीं',
+            candidate_name_english: 'None of the Above',
+            party_abbreviation: 'NOTA',
+            party_name: 'NOTA',
+            party_symbol: '',
             constituency_name: constituency?.name_hindi || '',
             district_name: district?.name_hindi || '',
             voted_at: new Date().toISOString()
           }
           localStorage.setItem('lastVote', JSON.stringify(voteData))
+        } else {
+          const candidate = candidates.find(c => c.candidate_id === candidateId)
+          if (candidate) {
+            const voteData = {
+              candidate_name: candidate.name_hindi,
+              candidate_name_english: candidate.name_english,
+              party_abbreviation: candidate.party?.abbreviation || 'IND',
+              party_name: candidate.party?.name_hindi || 'निर्दलीय',
+              party_symbol: candidate.party?.symbol_url || '',
+              constituency_name: constituency?.name_hindi || '',
+              district_name: district?.name_hindi || '',
+              voted_at: new Date().toISOString()
+            }
+            localStorage.setItem('lastVote', JSON.stringify(voteData))
+          }
         }
         
         // Only set hasVoted flag if duplicate prevention is enabled
@@ -634,6 +649,108 @@ export default function VotingPage() {
                   )}
                 </div>
               ))}
+              
+              {/* NOTA Option */}
+              <div>
+                <div className="grid grid-cols-[1fr_auto] items-stretch bg-transparent border-2 border-red-500 rounded-lg h-auto min-h-[60px] sm:min-h-[64px] md:min-h-[68px] px-3 sm:px-3 md:px-4 py-2 transition-all gap-4">
+                  {/* Left Column: NOTA Info */}
+                  <div className="flex items-center gap-3 bg-red-50 rounded-lg px-3 py-2 flex-1 min-w-0 border border-red-200">
+                    {/* NOTA Icon */}
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg overflow-hidden flex justify-center items-center bg-white border-2 border-red-500 flex-shrink-0 shadow-sm">
+                      <span className="text-xl font-bold text-red-600">✗</span>
+                    </div>
+                    {/* NOTA Text */}
+                    <div className="flex flex-col justify-center min-w-0 flex-1 gap-0.5">
+                      <div className="text-base sm:text-base md:text-lg font-bold text-red-700 hindi-text leading-tight break-words">
+                        NOTA - उपरोक्त में से कोई नहीं
+                      </div>
+                      <div className="text-xs sm:text-sm md:text-sm text-red-600 font-medium italic leading-tight">
+                        None of the Above
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Right Column: LED + Button */}
+                  <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+                    {/* LED Indicator */}
+                    <div
+                      className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full transition-all flex-shrink-0 flex items-center justify-center ${
+                        selectedCandidate === -1
+                          ? 'bg-red-600 shadow-[0_0_10px_red]'
+                          : 'bg-gray-300 shadow-[0_0_2px_rgba(0,0,0,0.2)]'
+                      }`}
+                    >
+                      {selectedCandidate === -1 && (
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          fill="currentColor" 
+                          className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
+                          style={{
+                            color: '#991b1b',
+                            filter: 'brightness(0.85) drop-shadow(0px 1px 1px rgba(0,0,0,0.5))',
+                          }}
+                        >
+                          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                      )}
+                    </div>
+                    
+                    {/* Blue Button */}
+                    <button
+                      onClick={() => {
+                        handleCandidateSelectAndSubmit(-1);
+                      }}
+                      disabled={loading}
+                      className={`w-20 h-9 sm:w-24 sm:h-10 md:w-28 md:h-11 bg-[#0b3776] rounded-2xl cursor-pointer flex items-center justify-center text-white text-xs sm:text-sm md:text-base font-bold leading-[1] flex-shrink-0 py-0 select-none ${
+                        loading ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      style={{
+                        transition: 'all 0.1s ease-out',
+                        transform: 'translateZ(0)',
+                        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+                      }}
+                      onMouseDown={(e) => {
+                        if (!loading) {
+                          e.currentTarget.style.transform = 'translateY(3px) scale(0.98)';
+                          e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.3), inset 0 2px 4px rgba(0,0,0,0.4)';
+                          e.currentTarget.style.backgroundColor = '#092d5f';
+                        }
+                      }}
+                      onMouseUp={(e) => {
+                        if (!loading) {
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)';
+                          e.currentTarget.style.backgroundColor = '#0b3776';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!loading) {
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)';
+                          e.currentTarget.style.backgroundColor = '#0b3776';
+                        }
+                      }}
+                    >
+                      {loading && selectedCandidate === -1 ? (
+                        <div className="w-2.5 h-2.5 sm:w-2.5 sm:h-2.5 mx-auto border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <span className="hindi-text block" style={{ lineHeight: '1', paddingTop: '1px' }}>वोट दें</span>
+                      )}
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Error Message for NOTA */}
+                {error && selectedCandidate === -1 && (
+                  <div className="mt-2 bg-red-50/40 border-l-2 border-red-300 rounded-r px-2.5 py-1.5">
+                    <p className="text-red-600 text-xs font-normal hindi-text">
+                      {error}
+                    </p>
+                  </div>
+                )}
+              </div>
+
               {/* Footer Bar - Voting Instruction */}
               <div className="h-auto min-h-[24px] sm:min-h-[24px] md:min-h-[28px] bg-gradient-to-r from-slate-600 to-slate-700 rounded flex items-center justify-center px-3 py-1.5">
                 <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold text-center hindi-text leading-tight">

@@ -54,12 +54,15 @@ router.post('/', async (req, res) => {
     const { constituency_id, candidate_id } = req.body;
     
     // Validation
-    if (!constituency_id || !candidate_id) {
+    if (!constituency_id || candidate_id === undefined || candidate_id === null) {
       return res.status(400).json({ 
         error: 'कृपया सभी आवश्यक फ़ील्ड भरें',
         message: 'Constituency and candidate are required' 
       });
     }
+    
+    // Allow NOTA vote (candidate_id = -1)
+    const isNota = candidate_id === -1;
 
     // Check if duplicate vote prevention is enabled
     const duplicatePreventionEnabled = await getSystemSetting('duplicate_vote_prevention');
@@ -101,18 +104,20 @@ router.post('/', async (req, res) => {
       }
     }
 
-    // Verify candidate belongs to constituency
-    const [candidateCheck] = await connection.query(
-      'SELECT id FROM Candidates WHERE id = ? AND constituency_id = ?',
-      [candidate_id, constituency_id]
-    );
+    // Verify candidate belongs to constituency (skip for NOTA)
+    if (!isNota) {
+      const [candidateCheck] = await connection.query(
+        'SELECT id FROM Candidates WHERE id = ? AND constituency_id = ?',
+        [candidate_id, constituency_id]
+      );
 
-    if (candidateCheck.length === 0) {
-      await connection.rollback();
-      return res.status(400).json({ 
-        error: 'अमान्य उम्मीदवार चयन',
-        message: 'Invalid candidate selection for this constituency' 
-      });
+      if (candidateCheck.length === 0) {
+        await connection.rollback();
+        return res.status(400).json({ 
+          error: 'अमान्य उम्मीदवार चयन',
+          message: 'Invalid candidate selection for this constituency' 
+        });
+      }
     }
 
     // Always store fingerprint and IP for security/audit purposes
