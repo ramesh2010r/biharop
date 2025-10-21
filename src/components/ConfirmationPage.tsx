@@ -128,10 +128,10 @@ export default function ConfirmationPage() {
         ctx.font = '28px Arial, sans-serif'
         ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 355)
         
-        // Constituency in yellow
+        // Constituency in yellow - positioned lower
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 400)
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 420)
       } else {
         // For regular candidate - three lines in blue box
         // Line 1: Candidate name (white)
@@ -144,10 +144,10 @@ export default function ConfirmationPage() {
         ctx.font = '26px Arial, sans-serif'
         ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 345)
         
-        // Line 3: Constituency and District (yellow)
+        // Line 3: Constituency and District (yellow) - positioned lower
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 390)
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 420)
       }
 
       // Download the image
