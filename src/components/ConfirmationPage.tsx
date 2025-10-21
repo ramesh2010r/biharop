@@ -108,8 +108,9 @@ export default function ConfirmationPage() {
       ctx.drawImage(templateImg, 0, 0, canvas.width, canvas.height)
 
       // Now overlay the dynamic text on specific positions
-      // Blue box area is approximately Y=150 to Y=315 in the template
-      // Line positions adjusted to match the template's text placement area
+      // Based on template measurements: 1080x1080px
+      // Blue box: top=211.19px, height=329.01px (bottom ~540px)
+      // Text line visible at ~282px from top
       
       const isNota = voteData.candidate_name === 'NOTA' || voteData.candidate_name === 'उपरोक्त में से कोई नहीं'
       
@@ -118,31 +119,34 @@ export default function ConfirmationPage() {
       ctx.textBaseline = 'middle'
       
       if (isNota) {
-        // For NOTA - centered in the blue box area
-        // Blue box appears to be Y=155 to Y=315 (160px height)
+        // For NOTA - three lines centered in blue box
+        // Blue box center is around Y=375 (211 + 329/2)
         ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 46px Arial, sans-serif'
-        ctx.fillText('NOTA', canvas.width / 2, 210)
+        ctx.font = 'bold 48px Arial, sans-serif'
+        ctx.fillText('NOTA', canvas.width / 2, 300)
         
-        ctx.font = '26px Arial, sans-serif'
-        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 250)
+        ctx.font = '28px Arial, sans-serif'
+        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 355)
         
-        // Constituency in yellow below
+        // Constituency in yellow
         ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 24px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 285)
+        ctx.font = 'bold 26px Arial, sans-serif'
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 400)
       } else {
-        // For regular candidate - match template line positions
-        // Line 1: ~Y=175, Line 2: ~Y=205, Line 3 (yellow): ~Y=235
+        // For regular candidate - three lines in blue box
+        // Spacing: start at ~280px, 50px apart
         ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 38px Arial, sans-serif'
-        ctx.fillText(voteData.candidate_name, canvas.width / 2, 200)
+        ctx.font = 'bold 42px Arial, sans-serif'
+        ctx.fillText(voteData.candidate_name, canvas.width / 2, 290)
         
         // Party name (white, smaller)
-        ctx.font = '24px Arial, sans-serif'
-        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 235)
+        ctx.font = '26px Arial, sans-serif'
+        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 345)
         
-        // Constituency and District (yellow) - on the yellow line
+        // Constituency and District (yellow)
+        ctx.fillStyle = '#FFD700'
+        ctx.font = 'bold 26px Arial, sans-serif'
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 390)
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 24px Arial, sans-serif'
         ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 270)
