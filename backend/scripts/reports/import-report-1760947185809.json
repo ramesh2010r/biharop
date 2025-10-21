@@ -1,0 +1,594 @@
+{
+  "startedAt": "2025-10-20T07:59:45.606Z",
+  "syncMode": true,
+  "perParty": {
+    "AAP": {
+      "file": "Candidate List - AAP (59) (1).csv",
+      "code": "AAP",
+      "total": 59,
+      "inserted": 59,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "CPIM": {
+      "file": "Candidate List - CPI(ML) (18).csv",
+      "code": "CPIM",
+      "total": 18,
+      "inserted": 18,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "JJD": {
+      "file": "Candidate List - JJD (22).csv",
+      "code": "JJD",
+      "total": 21,
+      "inserted": 21,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "INC": {
+      "file": "Candidate List - INC (48).csv",
+      "code": "INC",
+      "total": 48,
+      "inserted": 48,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "RJD": {
+      "file": "Candidate List - RJD (37).csv",
+      "code": "RJD",
+      "total": 37,
+      "inserted": 37,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "JAN_SURAJ": {
+      "file": "Candidate List - Jan Suraj (116).csv",
+      "code": "JAN_SURAJ",
+      "total": 116,
+      "inserted": 116,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": [
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "कमलेश पासवान (सामान्य सीट से SC उम्मीदवार)",
+          "candidateEnglish": "",
+          "constituency": "हरनौत"
+        }
+      ]
+    },
+    "HAMS": {
+      "file": "Candidate List - HAM(S)(6).csv",
+      "code": "HAMS",
+      "total": 6,
+      "inserted": 6,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": [
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती दीपा कुमारी (Smt. Deepa Kumari)",
+          "candidateEnglish": "",
+          "constituency": "इमामगंज (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अनिल कुमार (Shri Anil Kumar)",
+          "candidateEnglish": "",
+          "constituency": "टिकारी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती ज्योति देवी (Smt. Jyoti Devi)",
+          "candidateEnglish": "",
+          "constituency": "बाराचट्टी (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री रोमित कुमार (Shri Romit Kumar)",
+          "candidateEnglish": "",
+          "constituency": "अतरी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री प्रफुल्ल कुमार मांझी (Shri Prafull Kumar Manjhi)",
+          "candidateEnglish": "",
+          "constituency": "सिकंदरा (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री ललन राम (Shri Lalan Ram)",
+          "candidateEnglish": "",
+          "constituency": "कुटुंबा"
+        }
+      ]
+    },
+    "RLM": {
+      "file": "Candidate List - RLM(6).csv",
+      "code": "RLM",
+      "total": 6,
+      "inserted": 6,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "LJPRV": {
+      "file": "Candidate List - LJP(29).csv",
+      "code": "LJPRV",
+      "total": 29,
+      "inserted": 29,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "JDU": {
+      "file": "Candidate List - JDU (101).csv",
+      "code": "JDU",
+      "total": 101,
+      "inserted": 101,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": []
+    },
+    "BJP": {
+      "file": "Candidate List - BJP (101) (2).csv",
+      "code": "BJP",
+      "total": 101,
+      "inserted": 101,
+      "updated": 0,
+      "skipped": 0,
+      "unmatched": [],
+      "spellingIssues": [
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती रेणु देवी (Smt. Renu Devi)",
+          "candidateEnglish": "",
+          "constituency": "बेतिया"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री प्रमोद कुमार सिन्हा (Shri Pramod Kumar Sinha)",
+          "candidateEnglish": "",
+          "constituency": "रक्सौल"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री श्यामबाबू प्रसाद यादव (Shri Shyambabu Prasad Yadav)",
+          "candidateEnglish": "",
+          "constituency": "पिपरा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री राणा रणधीर सिंह (Shri Rana Randhir Singh)",
+          "candidateEnglish": "",
+          "constituency": "मधुबन"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री प्रमोद कुमार (Shri Pramod Kumar)",
+          "candidateEnglish": "",
+          "constituency": "मोतिहारी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री पवन जायसवाल (Shri Pawan Jaiswal)",
+          "candidateEnglish": "",
+          "constituency": "ढाका"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री बैद्यनाथ प्रसाद (Shri Baidyanath Prasad)",
+          "candidateEnglish": "",
+          "constituency": "रीगा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अनिल कुमार राम (Shri Anil Kumar Ram)",
+          "candidateEnglish": "",
+          "constituency": "बथनाहा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती गायत्री देवी (Smt. Gayatri Devi)",
+          "candidateEnglish": "",
+          "constituency": "परिहार"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सुनील कुमार पिंटू (Shri Sunil Kumar Pintu)",
+          "candidateEnglish": "",
+          "constituency": "सीतामढ़ी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विनोद नारायण झा (Shri Vinod Narayan Jha)",
+          "candidateEnglish": "",
+          "constituency": "बेनीपट्टी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अरुण शंकर प्रसाद (Shri Arun Shankar Prasad)",
+          "candidateEnglish": "",
+          "constituency": "खजौली"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री हरिभूषण ठाकुर बचौल (Shri Haribhushan Thakur Bachaul)",
+          "candidateEnglish": "",
+          "constituency": "बिस्फी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सुजीत पासवान (Shri Sujeet Paswan)",
+          "candidateEnglish": "",
+          "constituency": "राजनगर (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री नीतीश मिश्रा (Shri Nitish Mishra)",
+          "candidateEnglish": "",
+          "constituency": "झंझारपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री नीरज कुमार सिंह बबलू (Shri Neeraj Kumar Singh Bablu)",
+          "candidateEnglish": "",
+          "constituency": "छातापुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती देवंती यादव (Smt. Devanti Yadav)",
+          "candidateEnglish": "",
+          "constituency": "नरपतगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विद्या सागर केसरी (Shri Vidya Sagar Keshri)",
+          "candidateEnglish": "",
+          "constituency": "फारबिसगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विजय कुमार मंडल (Shri Vijay Kumar Mandal)",
+          "candidateEnglish": "",
+          "constituency": "सिकटी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती स्वीटी सिंह (Smt. Sweety Singh)",
+          "candidateEnglish": "",
+          "constituency": "किशनगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री कृष्ण कुमार ऋषि (Shri Krishna Kumar Rishi)",
+          "candidateEnglish": "",
+          "constituency": "बनमनखी (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विजय कुमार खेमका (Shri Vijay Kumar Khemka)",
+          "candidateEnglish": "",
+          "constituency": "पूर्णिया"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री तारकिशोर प्रसाद (Shri Tarkishore Prasad)",
+          "candidateEnglish": "",
+          "constituency": "कटिहार"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती निशा सिंह (Smt. Nisha Singh)",
+          "candidateEnglish": "",
+          "constituency": "प्राणपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती कविता देवी (Smt. Kavita Devi)",
+          "candidateEnglish": "",
+          "constituency": "कोढ़ा (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री आलोक रंजन झा (Shri Alok Ranjan Jha)",
+          "candidateEnglish": "",
+          "constituency": "सहरसा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सुजीत कुमार सिंह (Shri Sujit Kumar Singh)",
+          "candidateEnglish": "",
+          "constituency": "गौरा बौराम"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री संजय सरावगी (Shri Sanjay Saraogi)",
+          "candidateEnglish": "",
+          "constituency": "दरभंगा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री मुरारी मोहन झा (Shri Murari Mohan Jha)",
+          "candidateEnglish": "",
+          "constituency": "केवटी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री जिबेश कुमार मिश्रा (Shri Jibesh Kumar Mishra)",
+          "candidateEnglish": "",
+          "constituency": "जाले"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती रमा निषाद (Smt. Rama Nishad)",
+          "candidateEnglish": "",
+          "constituency": "औराई"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री केदार प्रसाद गुप्ता (Shri Kedar Prasad Gupta)",
+          "candidateEnglish": "",
+          "constituency": "कुढ़नी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अरुण कुमार सिंह (Shri Arun Kumar Singh)",
+          "candidateEnglish": "",
+          "constituency": "बरुराज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री राजू कुमार सिंह (Shri Raju Kumar Singh)",
+          "candidateEnglish": "",
+          "constituency": "साहेबगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री मिथिलेश तिवारी (Shri Mithilesh Tiwari)",
+          "candidateEnglish": "",
+          "constituency": "बैकुंठपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री मंगल पांडेय (Shri Mangal Pandey)",
+          "candidateEnglish": "",
+          "constituency": "सीवान"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री कर्णजीत सिंह (Shri Karnjeet Singh)",
+          "candidateEnglish": "",
+          "constituency": "दरौंदा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री देवेश कांत सिंह (Shri Devesh Kant Singh)",
+          "candidateEnglish": "",
+          "constituency": "गोरियाकोठी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री जनक सिंह (Shri Janak Singh)",
+          "candidateEnglish": "",
+          "constituency": "तरैया"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री कृष्ण कुमार मंटू (Shri Krishan Kumar Mantoo)",
+          "candidateEnglish": "",
+          "constituency": "अमनौर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अवधेश सिंह (Shri Awadhesh Singh)",
+          "candidateEnglish": "",
+          "constituency": "हाजीपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री संजय कुमार सिंह (Shri Sanjay Kumar Singh)",
+          "candidateEnglish": "",
+          "constituency": "लालगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री लखेंद्र कुमार रौशन (Shri Lakhendra Kumar Raushan)",
+          "candidateEnglish": "",
+          "constituency": "पातेपुर (अजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री राजेश कुमार सिंह (Shri Rajesh Kumar Singh)",
+          "candidateEnglish": "",
+          "constituency": "मोहिउद्दीननगर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सुरेंद्र मेहता (Shri Surendra Mehta)",
+          "candidateEnglish": "",
+          "constituency": "बछवाड़ा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री रजनीश कुमार (Shri Rajnish Kumar)",
+          "candidateEnglish": "",
+          "constituency": "तेघड़ा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री कुंदन कुमार (Shri Kundan Kumar)",
+          "candidateEnglish": "",
+          "constituency": "बेगूसराय"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री रोहित पांडेय (Shri Rohit Pandey)",
+          "candidateEnglish": "",
+          "constituency": "भागलपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री राम नारायण मंडल (Shri Ram Mandal)",
+          "candidateEnglish": "",
+          "constituency": "बाँका"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री पूरण लाल टुडू (Shri Puran Lal Tudu)",
+          "candidateEnglish": "",
+          "constituency": "कटोरिया (अजजा)"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सम्राट चौधरी (Shri Samrat Chaudhary)",
+          "candidateEnglish": "",
+          "constituency": "तारापुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री कुमार प्रणय (Shri Kumar Pranay)",
+          "candidateEnglish": "",
+          "constituency": "मुंगेर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विजय कुमार सिन्हा (Shri Vijay Kumar Sinha)",
+          "candidateEnglish": "",
+          "constituency": "लखीसराय"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "डॉ सुनील कुमार (Dr. Sunil Kumar)",
+          "candidateEnglish": "",
+          "constituency": "बिहारशरीफ"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री संजीव चौरसिया (Shri Sanjiv Chaurasia)",
+          "candidateEnglish": "",
+          "constituency": "दीघा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री नितिन नबीन (Shri Nitin Nabin)",
+          "candidateEnglish": "",
+          "constituency": "बाँकीपुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री संजय गुप्ता (Shri Sanjay Gupta)",
+          "candidateEnglish": "",
+          "constituency": "कुम्हरार"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री रत्नेश कुशवाहा (Shri Ratnesh Kushwaha)",
+          "candidateEnglish": "",
+          "constituency": "पटना साहिब"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री रामकृपाल यादव (Shri Ramkripal Yadav)",
+          "candidateEnglish": "",
+          "constituency": "दानापुर"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री सिद्धार्थ सौरव (Shri Siddharth Saurav)",
+          "candidateEnglish": "",
+          "constituency": "बिक्रम"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री राघवेंद्र प्रताप सिंह (Shri Raghvendra Pratap Singh)",
+          "candidateEnglish": "",
+          "constituency": "बरहरा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री संजय सिंह \"टाइगर\" (Shri Sanjay Singh \"Tiger\")",
+          "candidateEnglish": "",
+          "constituency": "आरा"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री विशाल प्रशांत (Shri Vishal Prashant)",
+          "candidateEnglish": "",
+          "constituency": "तरारी"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री मनोज शर्मा (Shri Manoj Sharma)",
+          "candidateEnglish": "",
+          "constituency": "अरवल"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री त्रिविक्रम सिंह (Shri Trivikram Singh)",
+          "candidateEnglish": "",
+          "constituency": "औरंगाबाद"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री उपेंद्र दांगी (Shri Upendra Dangi)",
+          "candidateEnglish": "",
+          "constituency": "गुरुआ"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "डॉ प्रेम कुमार (Dr. Prem Kumar)",
+          "candidateEnglish": "",
+          "constituency": "गया टाउन"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री बीरेंद्र सिंह (Shri Birendra Singh)",
+          "candidateEnglish": "",
+          "constituency": "वज़ीरगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्री अनिल सिंह (Shri Anil Singh)",
+          "candidateEnglish": "",
+          "constituency": "हिसुआ"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "श्रीमती अरुणा देवी (Smt. Aruna Devi)",
+          "candidateEnglish": "",
+          "constituency": "वारिसलीगंज"
+        },
+        {
+          "type": "latin-in-hindi",
+          "candidateHindi": "सुश्री श्रेयसी सिंह (Sushri Shreyasi Singh)",
+          "candidateEnglish": "",
+          "constituency": "जमुई"
+        }
+      ]
+    }
+  },
+  "unmatched": [],
+  "totals": {
+    "rows": 542,
+    "inserted": 542,
+    "updated": 0,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,1113 @@
+[
+  {
+    "constituency_name": "बेतिया (Bettiah)",
+    "seat_no": 1,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती रेणु देवी (Smt. Renu Devi)",
+        "name_english": "श्रीमती रेणु देवी (Smt. Renu Devi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "रक्सौल (Raxaul)",
+    "seat_no": 2,
+    "candidates": [
+      {
+        "name_hindi": "श्री प्रमोद कुमार सिन्हा (Shri Pramod Kumar Sinha)",
+        "name_english": "श्री प्रमोद कुमार सिन्हा (Shri Pramod Kumar Sinha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "पिपरा (Pipra)",
+    "seat_no": 3,
+    "candidates": [
+      {
+        "name_hindi": "श्री श्यामबाबू प्रसाद यादव (Shri Shyambabu Prasad Yadav)",
+        "name_english": "श्री श्यामबाबू प्रसाद यादव (Shri Shyambabu Prasad Yadav)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मधुबन (Madhuban)",
+    "seat_no": 4,
+    "candidates": [
+      {
+        "name_hindi": "श्री राणा रणधीर सिंह (Shri Rana Randhir Singh)",
+        "name_english": "श्री राणा रणधीर सिंह (Shri Rana Randhir Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मोतिहारी (Motihari)",
+    "seat_no": 5,
+    "candidates": [
+      {
+        "name_hindi": "श्री प्रमोद कुमार (Shri Pramod Kumar)",
+        "name_english": "श्री प्रमोद कुमार (Shri Pramod Kumar)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "ढाका (Dhaka)",
+    "seat_no": 6,
+    "candidates": [
+      {
+        "name_hindi": "श्री पवन जायसवाल (Shri Pawan Jaiswal)",
+        "name_english": "श्री पवन जायसवाल (Shri Pawan Jaiswal)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "रीगा (Riga)",
+    "seat_no": 7,
+    "candidates": [
+      {
+        "name_hindi": "श्री बैद्यनाथ प्रसाद (Shri Baidyanath Prasad)",
+        "name_english": "श्री बैद्यनाथ प्रसाद (Shri Baidyanath Prasad)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बथनाहा (अजा) (Bathnaha (SC))",
+    "seat_no": 8,
+    "candidates": [
+      {
+        "name_hindi": "श्री अनिल कुमार राम (Shri Anil Kumar Ram)",
+        "name_english": "श्री अनिल कुमार राम (Shri Anil Kumar Ram)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "परिहार (Parihar)",
+    "seat_no": 9,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती गायत्री देवी (Smt. Gayatri Devi)",
+        "name_english": "श्रीमती गायत्री देवी (Smt. Gayatri Devi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "सीतामढ़ी (Sitamarhi)",
+    "seat_no": 10,
+    "candidates": [
+      {
+        "name_hindi": "श्री सुनील कुमार पिंटू (Shri Sunil Kumar Pintu)",
+        "name_english": "श्री सुनील कुमार पिंटू (Shri Sunil Kumar Pintu)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बेनीपट्टी (Benipatti)",
+    "seat_no": 11,
+    "candidates": [
+      {
+        "name_hindi": "श्री विनोद नारायण झा (Shri Vinod Narayan Jha)",
+        "name_english": "श्री विनोद नारायण झा (Shri Vinod Narayan Jha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "खजौली (Khajauli)",
+    "seat_no": 12,
+    "candidates": [
+      {
+        "name_hindi": "श्री अरुण शंकर प्रसाद (Shri Arun Shankar Prasad)",
+        "name_english": "श्री अरुण शंकर प्रसाद (Shri Arun Shankar Prasad)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बिस्फी (Bisfi)",
+    "seat_no": 13,
+    "candidates": [
+      {
+        "name_hindi": "श्री हरिभूषण ठाकुर बचौल (Shri Haribhushan Thakur Bachaul)",
+        "name_english": "श्री हरिभूषण ठाकुर बचौल (Shri Haribhushan Thakur Bachaul)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "राजनगर (अजा) (Rajnagar (SC))",
+    "seat_no": 14,
+    "candidates": [
+      {
+        "name_hindi": "श्री सुजीत पासवान (Shri Sujeet Paswan)",
+        "name_english": "श्री सुजीत पासवान (Shri Sujeet Paswan)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "झंझारपुर (Jhanjharpur)",
+    "seat_no": 15,
+    "candidates": [
+      {
+        "name_hindi": "श्री नीतीश मिश्रा (Shri Nitish Mishra)",
+        "name_english": "श्री नीतीश मिश्रा (Shri Nitish Mishra)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "छातापुर (Chhatapur)",
+    "seat_no": 16,
+    "candidates": [
+      {
+        "name_hindi": "श्री नीरज कुमार सिंह बबलू (Shri Neeraj Kumar Singh Bablu)",
+        "name_english": "श्री नीरज कुमार सिंह बबलू (Shri Neeraj Kumar Singh Bablu)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "नरपतगंज (Narpatganj)",
+    "seat_no": 17,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती देवंती यादव (Smt. Devanti Yadav)",
+        "name_english": "श्रीमती देवंती यादव (Smt. Devanti Yadav)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "फारबिसगंज (Forbesganj)",
+    "seat_no": 18,
+    "candidates": [
+      {
+        "name_hindi": "श्री विद्या सागर केसरी (Shri Vidya Sagar Keshri)",
+        "name_english": "श्री विद्या सागर केसरी (Shri Vidya Sagar Keshri)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "सिकटी (Sikti)",
+    "seat_no": 19,
+    "candidates": [
+      {
+        "name_hindi": "श्री विजय कुमार मंडल (Shri Vijay Kumar Mandal)",
+        "name_english": "श्री विजय कुमार मंडल (Shri Vijay Kumar Mandal)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "किशनगंज (Kishanganj)",
+    "seat_no": 20,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती स्वीटी सिंह (Smt. Sweety Singh)",
+        "name_english": "श्रीमती स्वीटी सिंह (Smt. Sweety Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बनमनखी (अजा) (Banmankhi (SC))",
+    "seat_no": 21,
+    "candidates": [
+      {
+        "name_hindi": "श्री कृष्ण कुमार ऋषि (Shri Krishna Kumar Rishi)",
+        "name_english": "श्री कृष्ण कुमार ऋषि (Shri Krishna Kumar Rishi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "पूर्णिया (Purnia)",
+    "seat_no": 22,
+    "candidates": [
+      {
+        "name_hindi": "श्री विजय कुमार खेमका (Shri Vijay Kumar Khemka)",
+        "name_english": "श्री विजय कुमार खेमका (Shri Vijay Kumar Khemka)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कटिहार (Katihar)",
+    "seat_no": 23,
+    "candidates": [
+      {
+        "name_hindi": "श्री तारकिशोर प्रसाद (Shri Tarkishore Prasad)",
+        "name_english": "श्री तारकिशोर प्रसाद (Shri Tarkishore Prasad)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "प्राणपुर (Pranpur)",
+    "seat_no": 24,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती निशा सिंह (Smt. Nisha Singh)",
+        "name_english": "श्रीमती निशा सिंह (Smt. Nisha Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कोढ़ा (अजा) (Korha (SC))",
+    "seat_no": 25,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती कविता देवी (Smt. Kavita Devi)",
+        "name_english": "श्रीमती कविता देवी (Smt. Kavita Devi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "सहरसा (Saharsa)",
+    "seat_no": 26,
+    "candidates": [
+      {
+        "name_hindi": "श्री आलोक रंजन झा (Shri Alok Ranjan Jha)",
+        "name_english": "श्री आलोक रंजन झा (Shri Alok Ranjan Jha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गौरा-बौराम (Gaura Bauram)",
+    "seat_no": 27,
+    "candidates": [
+      {
+        "name_hindi": "श्री सुजीत कुमार सिंह (Shri Sujit Kumar Singh)",
+        "name_english": "श्री सुजीत कुमार सिंह (Shri Sujit Kumar Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "दरभंगा (Darbhanga)",
+    "seat_no": 28,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजय सरावगी (Shri Sanjay Saraogi)",
+        "name_english": "श्री संजय सरावगी (Shri Sanjay Saraogi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "केवटी (Keoti)",
+    "seat_no": 29,
+    "candidates": [
+      {
+        "name_hindi": "श्री मुरारी मोहन झा (Shri Murari Mohan Jha)",
+        "name_english": "श्री मुरारी मोहन झा (Shri Murari Mohan Jha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "जाले (Jale)",
+    "seat_no": 30,
+    "candidates": [
+      {
+        "name_hindi": "श्री जिबेश कुमार मिश्रा (Shri Jibesh Kumar Mishra)",
+        "name_english": "श्री जिबेश कुमार मिश्रा (Shri Jibesh Kumar Mishra)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "औराई (Aurai)",
+    "seat_no": 31,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती रमा निषाद (Smt. Rama Nishad)",
+        "name_english": "श्रीमती रमा निषाद (Smt. Rama Nishad)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कुढ़नी (Kurhani)",
+    "seat_no": 32,
+    "candidates": [
+      {
+        "name_hindi": "श्री केदार प्रसाद गुप्ता (Shri Kedar Prasad Gupta)",
+        "name_english": "श्री केदार प्रसाद गुप्ता (Shri Kedar Prasad Gupta)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बरुराज (Baruraj)",
+    "seat_no": 33,
+    "candidates": [
+      {
+        "name_hindi": "श्री अरुण कुमार सिंह (Shri Arun Kumar Singh)",
+        "name_english": "श्री अरुण कुमार सिंह (Shri Arun Kumar Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "साहेबगंज (Sahebganj)",
+    "seat_no": 34,
+    "candidates": [
+      {
+        "name_hindi": "श्री राजू कुमार सिंह (Shri Raju Kumar Singh)",
+        "name_english": "श्री राजू कुमार सिंह (Shri Raju Kumar Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बैकुण्ठपुर (Baikunthpur)",
+    "seat_no": 35,
+    "candidates": [
+      {
+        "name_hindi": "श्री मिथिलेश तिवारी (Shri Mithilesh Tiwari)",
+        "name_english": "श्री मिथिलेश तिवारी (Shri Mithilesh Tiwari)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "सिवान (Siwan)",
+    "seat_no": 36,
+    "candidates": [
+      {
+        "name_hindi": "श्री मंगल पांडेय (Shri Mangal Pandey)",
+        "name_english": "श्री मंगल पांडेय (Shri Mangal Pandey)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "दरौंदा (Daraundha)",
+    "seat_no": 37,
+    "candidates": [
+      {
+        "name_hindi": "श्री कर्णजीत सिंह (Shri Karnjeet Singh)",
+        "name_english": "श्री कर्णजीत सिंह (Shri Karnjeet Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गोरेयाकोठी (Goriyakothi)",
+    "seat_no": 38,
+    "candidates": [
+      {
+        "name_hindi": "श्री देवेश कांत सिंह (Shri Devesh Kant Singh)",
+        "name_english": "श्री देवेश कांत सिंह (Shri Devesh Kant Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "तरैया (Taraiya)",
+    "seat_no": 39,
+    "candidates": [
+      {
+        "name_hindi": "श्री जनक सिंह (Shri Janak Singh)",
+        "name_english": "श्री जनक सिंह (Shri Janak Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "अमनौर (Amnour)",
+    "seat_no": 40,
+    "candidates": [
+      {
+        "name_hindi": "श्री कृष्ण कुमार मंटू (Shri Krishan Kumar Mantoo)",
+        "name_english": "श्री कृष्ण कुमार मंटू (Shri Krishan Kumar Mantoo)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "हाजीपुर (Hajipur)",
+    "seat_no": 41,
+    "candidates": [
+      {
+        "name_hindi": "श्री अवधेश सिंह (Shri Awadhesh Singh)",
+        "name_english": "श्री अवधेश सिंह (Shri Awadhesh Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "लालगंज (Lalganj)",
+    "seat_no": 42,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजय कुमार सिंह (Shri Sanjay Kumar Singh)",
+        "name_english": "श्री संजय कुमार सिंह (Shri Sanjay Kumar Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "पातेपुर (अजा) (Patepur (SC))",
+    "seat_no": 43,
+    "candidates": [
+      {
+        "name_hindi": "श्री लखेंद्र कुमार रौशन (Shri Lakhendra Kumar Raushan)",
+        "name_english": "श्री लखेंद्र कुमार रौशन (Shri Lakhendra Kumar Raushan)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मोहिउद्दीननगर (Mohiuddinnagar)",
+    "seat_no": 44,
+    "candidates": [
+      {
+        "name_hindi": "श्री राजेश कुमार सिंह (Shri Rajesh Kumar Singh)",
+        "name_english": "श्री राजेश कुमार सिंह (Shri Rajesh Kumar Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बछवारा (Bachhwara)",
+    "seat_no": 45,
+    "candidates": [
+      {
+        "name_hindi": "श्री सुरेंद्र मेहता (Shri Surendra Mehta)",
+        "name_english": "श्री सुरेंद्र मेहता (Shri Surendra Mehta)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "तेघरा (Teghra)",
+    "seat_no": 46,
+    "candidates": [
+      {
+        "name_hindi": "श्री रजनीश कुमार (Shri Rajnish Kumar)",
+        "name_english": "श्री रजनीश कुमार (Shri Rajnish Kumar)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बेगूसराय (Begusarai)",
+    "seat_no": 47,
+    "candidates": [
+      {
+        "name_hindi": "श्री कुंदन कुमार (Shri Kundan Kumar)",
+        "name_english": "श्री कुंदन कुमार (Shri Kundan Kumar)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "भागलपुर (Bhagalpur)",
+    "seat_no": 48,
+    "candidates": [
+      {
+        "name_hindi": "श्री रोहित पांडेय (Shri Rohit Pandey)",
+        "name_english": "श्री रोहित पांडेय (Shri Rohit Pandey)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बांका (Banka)",
+    "seat_no": 49,
+    "candidates": [
+      {
+        "name_hindi": "श्री राम नारायण मंडल (Shri Ram Mandal)",
+        "name_english": "श्री राम नारायण मंडल (Shri Ram Mandal)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कटोरिया (अजजा) (Katoria (ST))",
+    "seat_no": 50,
+    "candidates": [
+      {
+        "name_hindi": "श्री पूरण लाल टुडू (Shri Puran Lal Tudu)",
+        "name_english": "श्री पूरण लाल टुडू (Shri Puran Lal Tudu)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "तारापुर (Tarapur)",
+    "seat_no": 51,
+    "candidates": [
+      {
+        "name_hindi": "श्री सम्राट चौधरी (Shri Samrat Chaudhary)",
+        "name_english": "श्री सम्राट चौधरी (Shri Samrat Chaudhary)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मुंगेर (Munger)",
+    "seat_no": 52,
+    "candidates": [
+      {
+        "name_hindi": "श्री कुमार प्रणय (Shri Kumar Pranay)",
+        "name_english": "श्री कुमार प्रणय (Shri Kumar Pranay)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "लखीसराय (Lakhisarai)",
+    "seat_no": 53,
+    "candidates": [
+      {
+        "name_hindi": "श्री विजय कुमार सिन्हा (Shri Vijay Kumar Sinha)",
+        "name_english": "श्री विजय कुमार सिन्हा (Shri Vijay Kumar Sinha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बिहारशरीफ (Biharsharif)",
+    "seat_no": 54,
+    "candidates": [
+      {
+        "name_hindi": "डॉ सुनील कुमार (Dr. Sunil Kumar)",
+        "name_english": "डॉ सुनील कुमार (Dr. Sunil Kumar)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "दीघा (Digha)",
+    "seat_no": 55,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजीव चौरसिया (Shri Sanjiv Chaurasia)",
+        "name_english": "श्री संजीव चौरसिया (Shri Sanjiv Chaurasia)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बांकीपुर (Bankipur)",
+    "seat_no": 56,
+    "candidates": [
+      {
+        "name_hindi": "श्री नितिन नबीन (Shri Nitin Nabin)",
+        "name_english": "श्री नितिन नबीन (Shri Nitin Nabin)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कुम्हरार (Kumhrar)",
+    "seat_no": 57,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजय गुप्ता (Shri Sanjay Gupta)",
+        "name_english": "श्री संजय गुप्ता (Shri Sanjay Gupta)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "पटना साहिब (Patna Sahib)",
+    "seat_no": 58,
+    "candidates": [
+      {
+        "name_hindi": "श्री रत्नेश कुशवाहा (Shri Ratnesh Kushwaha)",
+        "name_english": "श्री रत्नेश कुशवाहा (Shri Ratnesh Kushwaha)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "दानापुर (Danapur)",
+    "seat_no": 59,
+    "candidates": [
+      {
+        "name_hindi": "श्री रामकृपाल यादव (Shri Ramkripal Yadav)",
+        "name_english": "श्री रामकृपाल यादव (Shri Ramkripal Yadav)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बिक्रम (Bikram)",
+    "seat_no": 60,
+    "candidates": [
+      {
+        "name_hindi": "श्री सिद्धार्थ सौरव (Shri Siddharth Saurav)",
+        "name_english": "श्री सिद्धार्थ सौरव (Shri Siddharth Saurav)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बड़हरा (Barhara)",
+    "seat_no": 61,
+    "candidates": [
+      {
+        "name_hindi": "श्री राघवेंद्र प्रताप सिंह (Shri Raghvendra Pratap Singh)",
+        "name_english": "श्री राघवेंद्र प्रताप सिंह (Shri Raghvendra Pratap Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "आरा (Arrah)",
+    "seat_no": 62,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजय सिंह \"टाइगर\" (Shri Sanjay Singh \"Tiger\")",
+        "name_english": "श्री संजय सिंह \"टाइगर\" (Shri Sanjay Singh \"Tiger\")",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "तरारी (Tarari)",
+    "seat_no": 63,
+    "candidates": [
+      {
+        "name_hindi": "श्री विशाल प्रशांत (Shri Vishal Prashant)",
+        "name_english": "श्री विशाल प्रशांत (Shri Vishal Prashant)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "अरवल (Arwal)",
+    "seat_no": 64,
+    "candidates": [
+      {
+        "name_hindi": "श्री मनोज शर्मा (Shri Manoj Sharma)",
+        "name_english": "श्री मनोज शर्मा (Shri Manoj Sharma)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "औरंगाबाद (Aurangabad)",
+    "seat_no": 65,
+    "candidates": [
+      {
+        "name_hindi": "श्री त्रिविक्रम सिंह (Shri Trivikram Singh)",
+        "name_english": "श्री त्रिविक्रम सिंह (Shri Trivikram Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गुरुआ (Gurua)",
+    "seat_no": 66,
+    "candidates": [
+      {
+        "name_hindi": "श्री उपेंद्र दांगी (Shri Upendra Dangi)",
+        "name_english": "श्री उपेंद्र दांगी (Shri Upendra Dangi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गया शहर (Gaya Town)",
+    "seat_no": 67,
+    "candidates": [
+      {
+        "name_hindi": "डॉ प्रेम कुमार (Dr. Prem Kumar)",
+        "name_english": "डॉ प्रेम कुमार (Dr. Prem Kumar)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "वजीरगंज (Wazirganj)",
+    "seat_no": 68,
+    "candidates": [
+      {
+        "name_hindi": "श्री बीरेंद्र सिंह (Shri Birendra Singh)",
+        "name_english": "श्री बीरेंद्र सिंह (Shri Birendra Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "हिसुआ (Hisua)",
+    "seat_no": 69,
+    "candidates": [
+      {
+        "name_hindi": "श्री अनिल सिंह (Shri Anil Singh)",
+        "name_english": "श्री अनिल सिंह (Shri Anil Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "वारसलीगंज (Warsaliganj)",
+    "seat_no": 70,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती अरुणा देवी (Smt. Aruna Devi)",
+        "name_english": "श्रीमती अरुणा देवी (Smt. Aruna Devi)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "जमुई (Jamui)",
+    "seat_no": 71,
+    "candidates": [
+      {
+        "name_hindi": "सुश्री श्रेयसी सिंह (Sushri Shreyasi Singh)",
+        "name_english": "सुश्री श्रेयसी सिंह (Sushri Shreyasi Singh)",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "अलीनगर",
+    "seat_no": 72,
+    "candidates": [
+      {
+        "name_hindi": "सुश्री मैथिली ठाकुर",
+        "name_english": "सुश्री मैथिली ठाकुर",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "हयाघाट",
+    "seat_no": 73,
+    "candidates": [
+      {
+        "name_hindi": "श्री राम चंद्र प्रसाद",
+        "name_english": "श्री राम चंद्र प्रसाद",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मुजफ्फरपुर",
+    "seat_no": 74,
+    "candidates": [
+      {
+        "name_hindi": "श्री रंजन कुमार",
+        "name_english": "श्री रंजन कुमार",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गायघाट",
+    "seat_no": 75,
+    "candidates": [
+      {
+        "name_hindi": "श्री सुभाष सिंह",
+        "name_english": "श्री सुभाष सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बनियापुर",
+    "seat_no": 76,
+    "candidates": [
+      {
+        "name_hindi": "श्री केदार नाथ सिंह",
+        "name_english": "श्री केदार नाथ सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "छपरा",
+    "seat_no": 77,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती छोटी कुमारी",
+        "name_english": "श्रीमती छोटी कुमारी",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "सोनपुर",
+    "seat_no": 78,
+    "candidates": [
+      {
+        "name_hindi": "श्री विनय कुमार सिंह",
+        "name_english": "श्री विनय कुमार सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "रोसड़ा (अजा)",
+    "seat_no": 79,
+    "candidates": [
+      {
+        "name_hindi": "श्री बीरेंद्र कुमार",
+        "name_english": "श्री बीरेंद्र कुमार",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बाढ़",
+    "seat_no": 80,
+    "candidates": [
+      {
+        "name_hindi": "डॉ. सियाराम सिंह",
+        "name_english": "डॉ. सियाराम सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "अगिआंव (अजा)",
+    "seat_no": 81,
+    "candidates": [
+      {
+        "name_hindi": "श्री महेश पासवान",
+        "name_english": "श्री महेश पासवान",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "शाहपुर",
+    "seat_no": 82,
+    "candidates": [
+      {
+        "name_hindi": "श्री राकेश ओझा",
+        "name_english": "श्री राकेश ओझा",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बक्सर",
+    "seat_no": 83,
+    "candidates": [
+      {
+        "name_hindi": "श्री आनंद मिश्रा, आईपीएस",
+        "name_english": "श्री आनंद मिश्रा, आईपीएस",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "रामनगर (अजा)",
+    "seat_no": 84,
+    "candidates": [
+      {
+        "name_hindi": "श्री नंद किशोर राम",
+        "name_english": "श्री नंद किशोर राम",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "नरकटियागंज",
+    "seat_no": 85,
+    "candidates": [
+      {
+        "name_hindi": "श्री संजय पांडेय",
+        "name_english": "श्री संजय पांडेय",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बगहा",
+    "seat_no": 86,
+    "candidates": [
+      {
+        "name_hindi": "श्री राम सिंह",
+        "name_english": "श्री राम सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "लौरिया",
+    "seat_no": 87,
+    "candidates": [
+      {
+        "name_hindi": "श्री विनय बिहारी",
+        "name_english": "श्री विनय बिहारी",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "नौतन",
+    "seat_no": 88,
+    "candidates": [
+      {
+        "name_hindi": "श्री नारायण प्रसाद",
+        "name_english": "श्री नारायण प्रसाद",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "चनपटिया",
+    "seat_no": 89,
+    "candidates": [
+      {
+        "name_hindi": "श्री उमाकांत सिंह",
+        "name_english": "श्री उमाकांत सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "हरसिद्धि (अजा)",
+    "seat_no": 90,
+    "candidates": [
+      {
+        "name_hindi": "श्री कृष्णानंदन पासवान",
+        "name_english": "श्री कृष्णानंदन पासवान",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कल्याणपुर",
+    "seat_no": 91,
+    "candidates": [
+      {
+        "name_hindi": "श्री सचिंद्र प्रसाद सिंह",
+        "name_english": "श्री सचिंद्र प्रसाद सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "चिरैया",
+    "seat_no": 92,
+    "candidates": [
+      {
+        "name_hindi": "श्री लालबाबू प्रसाद गुप्ता",
+        "name_english": "श्री लालबाबू प्रसाद गुप्ता",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "कोचाधामन",
+    "seat_no": 93,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती बीना देवी",
+        "name_english": "श्रीमती बीना देवी",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बायसी",
+    "seat_no": 94,
+    "candidates": [
+      {
+        "name_hindi": "श्री विनोद यादव",
+        "name_english": "श्री विनोद यादव",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "राघोपुर",
+    "seat_no": 95,
+    "candidates": [
+      {
+        "name_hindi": "श्री सतीश कुमार यादव",
+        "name_english": "श्री सतीश कुमार यादव",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "बिहपुर",
+    "seat_no": 96,
+    "candidates": [
+      {
+        "name_hindi": "श्री कुमार शैलेंद्र",
+        "name_english": "श्री कुमार शैलेंद्र",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "पीरपैंती (अजा)",
+    "seat_no": 97,
+    "candidates": [
+      {
+        "name_hindi": "श्री मुरारी पासवान",
+        "name_english": "श्री मुरारी पासवान",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "रामगढ़",
+    "seat_no": 98,
+    "candidates": [
+      {
+        "name_hindi": "श्री अशोक कुमार सिंह",
+        "name_english": "श्री अशोक कुमार सिंह",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "मोहनीया (अजा)",
+    "seat_no": 99,
+    "candidates": [
+      {
+        "name_hindi": "श्रीमती संगीता कुमारी",
+        "name_english": "श्रीमती संगीता कुमारी",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "भभुआ",
+    "seat_no": 100,
+    "candidates": [
+      {
+        "name_hindi": "श्री भरत बिंद",
+        "name_english": "श्री भरत बिंद",
+        "party_code": "IND"
+      }
+    ]
+  },
+  {
+    "constituency_name": "गोह",
+    "seat_no": 101,
+    "candidates": [
+      {
+        "name_hindi": "श्री रणवीर सिंह",
+        "name_english": "श्री रणवीर सिंह",
+        "party_code": "IND"
+      }
+    ]
+  }
+]
