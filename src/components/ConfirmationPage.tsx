@@ -132,7 +132,7 @@ export default function ConfirmationPage() {
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           title: 'बिहार चुनाव ओपिनियन पोल',
-          text: shareText,
+          text: `${shareText}\n\n${shareUrl}`,
           files: [file],
         })
       } else {

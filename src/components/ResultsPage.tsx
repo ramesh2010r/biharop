@@ -225,7 +225,7 @@ export default function ResultsPage() {
             await navigator.share({
               files: [file],
               title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
-              text: getShareText()
+              text: `${getShareText()}\n\n${shareUrl}`
             })
           } else if (navigator.share) {
             // Fallback to sharing URL only
