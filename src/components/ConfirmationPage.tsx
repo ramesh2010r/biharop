@@ -150,10 +150,10 @@ export default function ConfirmationPage() {
         ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
       }
 
-      // Download the image
+      // Download the image as optimized JPG
       const link = document.createElement('a')
-      link.download = `bihar-opinion-poll-${voteData.constituency_name}.png`
-      link.href = canvas.toDataURL('image/png', 0.95)
+      link.download = `bihar-opinion-poll-${voteData.constituency_name}.jpg`
+      link.href = canvas.toDataURL('image/jpeg', 0.85)
       link.click()
     }
 
