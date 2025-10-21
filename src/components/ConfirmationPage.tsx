@@ -119,32 +119,33 @@ export default function ConfirmationPage() {
       
       if (isNota) {
         // For NOTA - centered in the blue box area
+        // Blue box appears to be Y=155 to Y=315 (160px height)
         ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 50px Arial, sans-serif'
-        ctx.fillText('NOTA', canvas.width / 2, 190)
+        ctx.font = 'bold 46px Arial, sans-serif'
+        ctx.fillText('NOTA', canvas.width / 2, 210)
         
-        ctx.font = '28px Arial, sans-serif'
-        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 230)
+        ctx.font = '26px Arial, sans-serif'
+        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 250)
         
         // Constituency in yellow below
         ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 270)
+        ctx.font = 'bold 24px Arial, sans-serif'
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 285)
       } else {
-        // For regular candidate - three lines inside blue box
-        // Adjusted to fit in the template's blue box area
+        // For regular candidate - match template line positions
+        // Line 1: ~Y=175, Line 2: ~Y=205, Line 3 (yellow): ~Y=235
         ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 40px Arial, sans-serif'
-        ctx.fillText(voteData.candidate_name, canvas.width / 2, 180)
+        ctx.font = 'bold 38px Arial, sans-serif'
+        ctx.fillText(voteData.candidate_name, canvas.width / 2, 200)
         
         // Party name (white, smaller)
         ctx.font = '24px Arial, sans-serif'
-        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 220)
+        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 235)
         
-        // Constituency and District (yellow)
+        // Constituency and District (yellow) - on the yellow line
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 24px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 260)
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 270)
       }
 
       // Download the image
