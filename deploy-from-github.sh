@@ -8,9 +8,9 @@ set -e
 # Configuration
 SSH_KEY="/Users/rameshkumar/Downloads/opinionweb.pem"
 SERVER_USER="ubuntu"
-SERVER_IP="13.233.97.30"
+SERVER_IP="15.206.160.149"
 DOMAIN="opinionpoll.co.in"
-GITHUB_REPO="https://github.com/YOUR_USERNAME/bihar-opinion-poll.git"  # UPDATE THIS!
+GITHUB_REPO="https://github.com/ramesh2010r/biharop"
 PROJECT_DIR="/home/ubuntu/opinion-poll"
 
 echo "🚀 Deploying Bihar Opinion Poll from GitHub to AWS EC2..."
