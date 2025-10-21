@@ -1652,15 +1652,13 @@ interface District {
                                   >
                                     Edit
                                   </button>
-                                  {admin?.role === 'super_admin' && (
-                                    <button
-                                      onClick={() => deleteCandidate(candidate.candidate_id)}
-                                      disabled={actionLoading}
-                                      className="px-3 py-1.5 text-xs font-medium text-red-700 bg-red-100 rounded-lg hover:bg-red-200 transition-colors disabled:opacity-50"
-                                    >
-                                      Delete
-                                    </button>
-                                  )}
+                                  <button
+                                    onClick={() => deleteCandidate(candidate.candidate_id)}
+                                    disabled={actionLoading}
+                                    className="px-3 py-1.5 text-xs font-medium text-red-700 bg-red-100 rounded-lg hover:bg-red-200 transition-colors disabled:opacity-50"
+                                  >
+                                    Delete
+                                  </button>
                                 </div>
                               </td>
                             </tr>
