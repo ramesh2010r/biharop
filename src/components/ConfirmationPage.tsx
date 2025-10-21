@@ -108,34 +108,43 @@ export default function ConfirmationPage() {
       ctx.drawImage(templateImg, 0, 0, canvas.width, canvas.height)
 
       // Now overlay the dynamic text on specific positions
-      // Adjust these coordinates based on your template layout
+      // Blue box is approximately at Y=155 to Y=315
       
       const isNota = voteData.candidate_name === 'NOTA' || voteData.candidate_name === 'उपरोक्त में से कोई नहीं'
       
-      // Candidate name in the blue box area (center top area)
-      ctx.fillStyle = '#FFFFFF'
-      ctx.font = 'bold 48px Arial, sans-serif'
+      // Set text properties
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       
       if (isNota) {
-        // For NOTA
-        ctx.fillText('NOTA', canvas.width / 2, 200)
-        ctx.font = '32px Arial, sans-serif'
-        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 245)
+        // For NOTA - larger text, centered vertically in blue box
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 52px Arial, sans-serif'
+        ctx.fillText('NOTA', canvas.width / 2, 215)
+        
+        ctx.font = '30px Arial, sans-serif'
+        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 260)
+        
+        // No party name for NOTA, so constituency goes in third line
+        ctx.fillStyle = '#FFD700'
+        ctx.font = 'bold 28px Arial, sans-serif'
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 295)
       } else {
-        // For regular candidate
+        // For regular candidate - three lines inside blue box
+        // Line 1: Candidate name (white, larger)
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 44px Arial, sans-serif'
         ctx.fillText(voteData.candidate_name, canvas.width / 2, 205)
         
-        // Party name
-        ctx.font = '28px Arial, sans-serif'
+        // Line 2: Party name (white, smaller)
+        ctx.font = '26px Arial, sans-serif'
         ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 245)
+        
+        // Line 3: Constituency and District (yellow)
+        ctx.fillStyle = '#FFD700'
+        ctx.font = 'bold 26px Arial, sans-serif'
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 285)
       }
-      
-      // Constituency and District (yellow text)
-      ctx.fillStyle = '#FFD700'
-      ctx.font = 'bold 30px Arial, sans-serif'
-      ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 290)
 
       // Download the image
       const link = document.createElement('a')
