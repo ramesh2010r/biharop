@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Header from './Header'
 import DisclaimerBanner from './DisclaimerBanner'
 import Footer from './Footer'
 import { getApiUrl } from '@/config/api'
@@ -309,22 +310,7 @@ export default function VotingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      {/* Header - Clean & Simple */}
-      <header className="bg-white shadow-md border-b-4 border-orange-500">
-        {/* Top Tricolor Bar */}
-        <div className="bg-gradient-to-r from-orange-500 via-white to-green-600 h-1"></div>
-        
-        <div className="container mx-auto px-4 py-4">
-          <Link href="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800 hindi-text">
-                बिहार ओपिनियन पोल 2025
-              </h1>
-              <p className="text-sm text-gray-600 hindi-text">मतदान पृष्ठ</p>
-            </div>
-          </Link>
-        </div>
-      </header>
+      <Header showResultsButton={false} />
 
       <DisclaimerBanner />
 

@@ -1,0 +1,2207 @@
+[
+  {
+    "id": 6251,
+    "name_hindi": "श्रीमती रेणु देवी",
+    "name_english": null,
+    "constituency_id": 8,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6252,
+    "name_hindi": "श्री प्रमोद कुमार सिन्हा",
+    "name_english": null,
+    "constituency_id": 10,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6253,
+    "name_hindi": "श्री श्यामबाबू प्रसाद यादव",
+    "name_english": null,
+    "constituency_id": 17,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6254,
+    "name_hindi": "श्री राणा रणधीर सिंह",
+    "name_english": null,
+    "constituency_id": 18,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6255,
+    "name_hindi": "श्री प्रमोद कुमार",
+    "name_english": null,
+    "constituency_id": 19,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6256,
+    "name_hindi": "श्री पवन जायसवाल",
+    "name_english": null,
+    "constituency_id": 21,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6257,
+    "name_hindi": "श्री बैद्यनाथ प्रसाद",
+    "name_english": null,
+    "constituency_id": 23,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6258,
+    "name_hindi": "श्री अनिल कुमार राम",
+    "name_english": null,
+    "constituency_id": 24,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6259,
+    "name_hindi": "श्रीमती गायत्री देवी",
+    "name_english": null,
+    "constituency_id": 25,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6260,
+    "name_hindi": "श्री सुनील कुमार पिंटू",
+    "name_english": null,
+    "constituency_id": 28,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6261,
+    "name_hindi": "श्री विनोद नारायण झा",
+    "name_english": null,
+    "constituency_id": 32,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6262,
+    "name_hindi": "श्री अरुण शंकर प्रसाद",
+    "name_english": null,
+    "constituency_id": 33,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6263,
+    "name_hindi": "श्री हरिभूषण ठाकुर बचौल",
+    "name_english": null,
+    "constituency_id": 35,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6264,
+    "name_hindi": "श्री सुजीत पासवान",
+    "name_english": null,
+    "constituency_id": 37,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6265,
+    "name_hindi": "श्री नीतीश मिश्रा",
+    "name_english": null,
+    "constituency_id": 38,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6266,
+    "name_hindi": "श्री नीरज कुमार सिंह बबलू",
+    "name_english": null,
+    "constituency_id": 45,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6267,
+    "name_hindi": "श्रीमती देवंती यादव",
+    "name_english": null,
+    "constituency_id": 46,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6268,
+    "name_hindi": "श्री विद्या सागर केसरी",
+    "name_english": null,
+    "constituency_id": 48,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6269,
+    "name_hindi": "श्री विजय कुमार मंडल",
+    "name_english": null,
+    "constituency_id": 51,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6270,
+    "name_hindi": "श्रीमती स्वीटी सिंह",
+    "name_english": null,
+    "constituency_id": 54,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6271,
+    "name_hindi": "श्री कृष्ण कुमार ऋषि",
+    "name_english": null,
+    "constituency_id": 59,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6272,
+    "name_hindi": "श्री विजय कुमार खेमका",
+    "name_english": null,
+    "constituency_id": 62,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6273,
+    "name_hindi": "श्री तारकिशोर प्रसाद",
+    "name_english": null,
+    "constituency_id": 63,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6274,
+    "name_hindi": "श्रीमती निशा सिंह",
+    "name_english": null,
+    "constituency_id": 66,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6275,
+    "name_hindi": "श्रीमती कविता देवी",
+    "name_english": null,
+    "constituency_id": 69,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6276,
+    "name_hindi": "श्री आलोक रंजन झा",
+    "name_english": null,
+    "constituency_id": 75,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6277,
+    "name_hindi": "श्री संजय सरावगी",
+    "name_english": null,
+    "constituency_id": 82,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6278,
+    "name_hindi": "श्री मुरारी मोहन झा",
+    "name_english": null,
+    "constituency_id": 86,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6279,
+    "name_hindi": "श्री जिबेश कुमार मिश्रा",
+    "name_english": null,
+    "constituency_id": 87,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6280,
+    "name_hindi": "श्रीमती रमा निषाद",
+    "name_english": null,
+    "constituency_id": 89,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6281,
+    "name_hindi": "श्री केदार प्रसाद गुप्ता",
+    "name_english": null,
+    "constituency_id": 93,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6282,
+    "name_hindi": "श्री अरुण कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 96,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6283,
+    "name_hindi": "श्री राजू कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 98,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6284,
+    "name_hindi": "श्री कर्णजीत सिंह",
+    "name_english": null,
+    "constituency_id": 109,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6285,
+    "name_hindi": "श्री जनक सिंह",
+    "name_english": null,
+    "constituency_id": 116,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6286,
+    "name_hindi": "श्री कृष्ण कुमार मंटू",
+    "name_english": null,
+    "constituency_id": 120,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6287,
+    "name_hindi": "श्री अवधेश सिंह",
+    "name_english": null,
+    "constituency_id": 123,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6288,
+    "name_hindi": "श्री संजय कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 124,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6289,
+    "name_hindi": "श्री लखेंद्र कुमार रौशन",
+    "name_english": null,
+    "constituency_id": 130,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6290,
+    "name_hindi": "श्री राजेश कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 137,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6291,
+    "name_hindi": "श्री कुंदन कुमार",
+    "name_english": null,
+    "constituency_id": 146,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6292,
+    "name_hindi": "श्री रोहित पांडेय",
+    "name_english": null,
+    "constituency_id": 156,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6293,
+    "name_hindi": "श्री राम नारायण मंडल",
+    "name_english": null,
+    "constituency_id": 161,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6294,
+    "name_hindi": "श्री पूरण लाल टुडू",
+    "name_english": null,
+    "constituency_id": 162,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6295,
+    "name_hindi": "श्री सम्राट चौधरी",
+    "name_english": null,
+    "constituency_id": 164,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6296,
+    "name_hindi": "श्री कुमार प्रणय",
+    "name_english": null,
+    "constituency_id": 165,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6297,
+    "name_hindi": "श्री विजय कुमार सिन्हा",
+    "name_english": null,
+    "constituency_id": 168,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6298,
+    "name_hindi": "डॉ सुनील कुमार",
+    "name_english": null,
+    "constituency_id": 172,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6299,
+    "name_hindi": "श्री संजीव चौरसिया",
+    "name_english": null,
+    "constituency_id": 181,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6300,
+    "name_hindi": "श्री नितिन नबीन",
+    "name_english": null,
+    "constituency_id": 182,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6301,
+    "name_hindi": "श्री संजय गुप्ता",
+    "name_english": null,
+    "constituency_id": 183,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6302,
+    "name_hindi": "श्री रत्नेश कुशवाहा",
+    "name_english": null,
+    "constituency_id": 184,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6303,
+    "name_hindi": "श्री रामकृपाल यादव",
+    "name_english": null,
+    "constituency_id": 186,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6304,
+    "name_hindi": "श्री सिद्धार्थ सौरव",
+    "name_english": null,
+    "constituency_id": 191,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6305,
+    "name_hindi": "श्री संजय सिंह \"टाइगर\"",
+    "name_english": null,
+    "constituency_id": 194,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6306,
+    "name_hindi": "श्री विशाल प्रशांत",
+    "name_english": null,
+    "constituency_id": 196,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6307,
+    "name_hindi": "श्री मनोज शर्मा",
+    "name_english": null,
+    "constituency_id": 242,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6308,
+    "name_hindi": "श्री त्रिविक्रम सिंह",
+    "name_english": null,
+    "constituency_id": 218,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6309,
+    "name_hindi": "श्री उपेंद्र दांगी",
+    "name_english": null,
+    "constituency_id": 220,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6310,
+    "name_hindi": "श्री बीरेंद्र सिंह",
+    "name_english": null,
+    "constituency_id": 229,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6311,
+    "name_hindi": "श्री अनिल सिंह",
+    "name_english": null,
+    "constituency_id": 231,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6312,
+    "name_hindi": "सुश्री श्रेयसी सिंह",
+    "name_english": null,
+    "constituency_id": 236,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6313,
+    "name_hindi": "सुश्री मैथिली ठाकुर",
+    "name_english": null,
+    "constituency_id": 81,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6314,
+    "name_hindi": "श्री रंजन कुमार",
+    "name_english": null,
+    "constituency_id": 94,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6315,
+    "name_hindi": "श्री सुभाष सिंह",
+    "name_english": null,
+    "constituency_id": 88,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6316,
+    "name_hindi": "श्री केदार नाथ सिंह",
+    "name_english": null,
+    "constituency_id": 115,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6317,
+    "name_hindi": "श्रीमती छोटी कुमारी",
+    "name_english": null,
+    "constituency_id": 118,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6318,
+    "name_hindi": "श्री विनय कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 122,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6319,
+    "name_hindi": "श्री बीरेंद्र कुमार",
+    "name_english": null,
+    "constituency_id": 139,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6320,
+    "name_hindi": "डॉ. सियाराम सिंह",
+    "name_english": null,
+    "constituency_id": 179,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6321,
+    "name_hindi": "श्री महेश पासवान",
+    "name_english": null,
+    "constituency_id": 195,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6322,
+    "name_hindi": "श्री राकेश ओझा",
+    "name_english": null,
+    "constituency_id": 198,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6323,
+    "name_hindi": "श्री आनंद मिश्रा, आईपीएस",
+    "name_english": null,
+    "constituency_id": 200,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6324,
+    "name_hindi": "श्री नंद किशोर राम",
+    "name_english": null,
+    "constituency_id": 2,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6325,
+    "name_hindi": "श्री संजय पांडेय",
+    "name_english": null,
+    "constituency_id": 3,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6326,
+    "name_hindi": "श्री राम सिंह",
+    "name_english": null,
+    "constituency_id": 4,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6327,
+    "name_hindi": "श्री विनय बिहारी",
+    "name_english": null,
+    "constituency_id": 5,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6328,
+    "name_hindi": "श्री नारायण प्रसाद",
+    "name_english": null,
+    "constituency_id": 6,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6329,
+    "name_hindi": "श्री उमाकांत सिंह",
+    "name_english": null,
+    "constituency_id": 7,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6330,
+    "name_hindi": "श्री कृष्णानंदन पासवान",
+    "name_english": null,
+    "constituency_id": 13,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6331,
+    "name_hindi": "श्री सचिंद्र प्रसाद सिंह",
+    "name_english": null,
+    "constituency_id": 16,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6332,
+    "name_hindi": "श्री लालबाबू प्रसाद गुप्ता",
+    "name_english": null,
+    "constituency_id": 20,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6333,
+    "name_hindi": "श्रीमती बीना देवी",
+    "name_english": null,
+    "constituency_id": 55,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6334,
+    "name_hindi": "श्री सतीश कुमार यादव",
+    "name_english": null,
+    "constituency_id": 128,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6335,
+    "name_hindi": "श्री कुमार शैलेंद्र",
+    "name_english": null,
+    "constituency_id": 152,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6336,
+    "name_hindi": "श्री मुरारी पासवान",
+    "name_english": null,
+    "constituency_id": 154,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6337,
+    "name_hindi": "श्री अशोक कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 203,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6338,
+    "name_hindi": "श्री भरत बिंद",
+    "name_english": null,
+    "constituency_id": 205,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6339,
+    "name_hindi": "श्री रणवीर सिंह",
+    "name_english": null,
+    "constituency_id": 214,
+    "party_id": 1,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6340,
+    "name_hindi": "श्री नरेन्द्र सिंह",
+    "name_english": null,
+    "constituency_id": 70,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6341,
+    "name_hindi": "श्री निरंजन कुमार मेहता",
+    "name_english": null,
+    "constituency_id": 71,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6342,
+    "name_hindi": "श्री रमेश ऋषिदेव",
+    "name_english": null,
+    "constituency_id": 72,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6343,
+    "name_hindi": "श्रीमती कविता साह",
+    "name_english": null,
+    "constituency_id": 73,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6344,
+    "name_hindi": "श्री रत्नेश कुमार",
+    "name_english": null,
+    "constituency_id": 74,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6345,
+    "name_hindi": "श्री गुंजेश्वर प्रसाद",
+    "name_english": null,
+    "constituency_id": 77,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6346,
+    "name_hindi": "श्री विनय कुमार चौधरी",
+    "name_english": null,
+    "constituency_id": 80,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6347,
+    "name_hindi": "श्री ईश्वर चौधरी",
+    "name_english": null,
+    "constituency_id": 82,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6348,
+    "name_hindi": "श्री मदन सहनी",
+    "name_english": null,
+    "constituency_id": 85,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6349,
+    "name_hindi": "श्रीमती कोमल सिंह",
+    "name_english": null,
+    "constituency_id": 88,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6350,
+    "name_hindi": "श्री अजय कुशवाहा",
+    "name_english": null,
+    "constituency_id": 90,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6351,
+    "name_hindi": "श्री आदित्य कुशवाहा",
+    "name_english": null,
+    "constituency_id": 92,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6352,
+    "name_hindi": "श्री अजीत कुमार",
+    "name_english": null,
+    "constituency_id": 95,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6353,
+    "name_hindi": "श्री अमरेन्द्र प्रताप सिंह",
+    "name_english": null,
+    "constituency_id": 102,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6354,
+    "name_hindi": "श्री सुनील कुमार",
+    "name_english": null,
+    "constituency_id": 103,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6355,
+    "name_hindi": "श्री रामसेवक सिंह",
+    "name_english": null,
+    "constituency_id": 104,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6356,
+    "name_hindi": "श्री मंजीत सिंह",
+    "name_english": null,
+    "constituency_id": 100,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6357,
+    "name_hindi": "श्री भीष्म कुशवाहा",
+    "name_english": null,
+    "constituency_id": 106,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6358,
+    "name_hindi": "श्री विकास कुमार सिंह उर्फ जीशु सिंह",
+    "name_english": null,
+    "constituency_id": 108,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6359,
+    "name_hindi": "श्री धुमल सिंह",
+    "name_english": null,
+    "constituency_id": 113,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6360,
+    "name_hindi": "श्री रणधीर सिंह",
+    "name_english": null,
+    "constituency_id": 114,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6361,
+    "name_hindi": "श्री छोटे लाल राय",
+    "name_english": null,
+    "constituency_id": 118,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6362,
+    "name_hindi": "श्री सिद्धार्थ पटेल",
+    "name_english": null,
+    "constituency_id": 125,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6363,
+    "name_hindi": "श्री उमेश सिंह कुशवाहा",
+    "name_english": null,
+    "constituency_id": 129,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6364,
+    "name_hindi": "श्री महेश्वर हजारी",
+    "name_english": null,
+    "constituency_id": 16,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6365,
+    "name_hindi": "डॉ० माजिरीक हुसैन",
+    "name_english": null,
+    "constituency_id": 132,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6366,
+    "name_hindi": "श्रीमती अश्वनी कुमारी",
+    "name_english": null,
+    "constituency_id": 133,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6367,
+    "name_hindi": "श्री विद्यासागर सिंह निषाद",
+    "name_english": null,
+    "constituency_id": 135,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6368,
+    "name_hindi": "श्रीमती रवीना कुशवाहा",
+    "name_english": null,
+    "constituency_id": 138,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6369,
+    "name_hindi": "श्री राज कुमार राय",
+    "name_english": null,
+    "constituency_id": 140,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6370,
+    "name_hindi": "श्री राजकुमार सिंह",
+    "name_english": null,
+    "constituency_id": 144,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6371,
+    "name_hindi": "श्री रामचंद्र सदा",
+    "name_english": null,
+    "constituency_id": 148,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6372,
+    "name_hindi": "श्री बब्लू मंडल",
+    "name_english": null,
+    "constituency_id": 149,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6373,
+    "name_hindi": "श्री पन्ना लाल पटेल",
+    "name_english": null,
+    "constituency_id": 150,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6374,
+    "name_hindi": "श्री नचिकेत मंडल",
+    "name_english": null,
+    "constituency_id": 166,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6375,
+    "name_hindi": "श्री रामानंद मंडल",
+    "name_english": null,
+    "constituency_id": 167,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6376,
+    "name_hindi": "श्री रणधीर कुमार सोनी",
+    "name_english": null,
+    "constituency_id": 169,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6377,
+    "name_hindi": "डॉ० कुमार पुष्पम",
+    "name_english": null,
+    "constituency_id": 170,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6378,
+    "name_hindi": "श्री जितेन्द्र कुमार",
+    "name_english": null,
+    "constituency_id": 171,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6379,
+    "name_hindi": "श्री कौशल किशोर",
+    "name_english": null,
+    "constituency_id": 173,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6380,
+    "name_hindi": "श्री रुहेल रंजन",
+    "name_english": null,
+    "constituency_id": 174,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6381,
+    "name_hindi": "श्री कृष्ण मुरारी शरण उर्फ प्रेम मुखि",
+    "name_english": null,
+    "constituency_id": 175,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6382,
+    "name_hindi": "श्री हरिनारायण सिंह",
+    "name_english": null,
+    "constituency_id": 177,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6383,
+    "name_hindi": "श्री अनंत सिंह",
+    "name_english": null,
+    "constituency_id": 178,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6384,
+    "name_hindi": "श्री श्याम रजक",
+    "name_english": null,
+    "constituency_id": 188,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6385,
+    "name_hindi": "श्री अरुण मांझी",
+    "name_english": null,
+    "constituency_id": 189,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6386,
+    "name_hindi": "श्री राधा चरण साह",
+    "name_english": null,
+    "constituency_id": 192,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6387,
+    "name_hindi": "श्री भगवान सिंह कुशवाहा",
+    "name_english": null,
+    "constituency_id": 197,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6388,
+    "name_hindi": "श्री राहुल सिंह",
+    "name_english": null,
+    "constituency_id": 201,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6389,
+    "name_hindi": "श्री संतोष कुमार निराला",
+    "name_english": null,
+    "constituency_id": 202,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6390,
+    "name_hindi": "श्री धीरेन्द्र प्रताप सिंह उर्फ रिंकू सिंह",
+    "name_english": null,
+    "constituency_id": 1,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6391,
+    "name_hindi": "श्री शमबद वर्मा",
+    "name_english": null,
+    "constituency_id": 9,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6392,
+    "name_hindi": "श्री विशाल साह",
+    "name_english": null,
+    "constituency_id": 3,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6393,
+    "name_hindi": "श्रीमती शालिनी मिश्रा",
+    "name_english": null,
+    "constituency_id": 15,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6394,
+    "name_hindi": "श्रीमती श्वेता गुप्ता",
+    "name_english": null,
+    "constituency_id": 22,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6395,
+    "name_hindi": "श्री पंकज मिश्रा",
+    "name_english": null,
+    "constituency_id": 29,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6396,
+    "name_hindi": "श्रीमती मीना कामत",
+    "name_english": null,
+    "constituency_id": 34,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6397,
+    "name_hindi": "श्रीमती शीला मंडल",
+    "name_english": null,
+    "constituency_id": 39,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6398,
+    "name_hindi": "श्री सतीश साह",
+    "name_english": null,
+    "constituency_id": 40,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6399,
+    "name_hindi": "श्री अनिरुद्ध प्रसाद यादव",
+    "name_english": null,
+    "constituency_id": 41,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6400,
+    "name_hindi": "श्री राम विलास कामत",
+    "name_english": null,
+    "constituency_id": 17,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6401,
+    "name_hindi": "श्री विजेन्द्र प्रसाद यादव",
+    "name_english": null,
+    "constituency_id": 43,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6402,
+    "name_hindi": "श्रीमती सोनम रानी सरदार",
+    "name_english": null,
+    "constituency_id": 44,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6403,
+    "name_hindi": "श्री अचमित ऋषिदेव",
+    "name_english": null,
+    "constituency_id": 47,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6404,
+    "name_hindi": "श्रीमती शमृता अजीम",
+    "name_english": null,
+    "constituency_id": 49,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6405,
+    "name_hindi": "जनाब मंजर आलम",
+    "name_english": null,
+    "constituency_id": 50,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6406,
+    "name_hindi": "श्री गोपाल अग्रवाल",
+    "name_english": null,
+    "constituency_id": 53,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6407,
+    "name_hindi": "श्री कलाधर मंडल",
+    "name_english": null,
+    "constituency_id": 60,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6408,
+    "name_hindi": "श्रीमती लेशी सिंह",
+    "name_english": null,
+    "constituency_id": 61,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6409,
+    "name_hindi": "श्री दुलालचन्द्र गोस्वामी",
+    "name_english": null,
+    "constituency_id": 64,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6410,
+    "name_hindi": "श्री शंभु सुमन",
+    "name_english": null,
+    "constituency_id": 67,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6411,
+    "name_hindi": "श्री बुलो मंडल",
+    "name_english": null,
+    "constituency_id": 153,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6412,
+    "name_hindi": "डॉ० ललित नारायण मंडल",
+    "name_english": null,
+    "constituency_id": 157,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6413,
+    "name_hindi": "श्री शुमानंद मुकेश",
+    "name_english": null,
+    "constituency_id": 155,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6414,
+    "name_hindi": "श्री जयंत राज",
+    "name_english": null,
+    "constituency_id": 159,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6415,
+    "name_hindi": "श्री मनीष कुमार",
+    "name_english": null,
+    "constituency_id": 160,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6416,
+    "name_hindi": "श्री मनोज यादव",
+    "name_english": null,
+    "constituency_id": 163,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6417,
+    "name_hindi": "मो० जमा खान",
+    "name_english": null,
+    "constituency_id": 206,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6418,
+    "name_hindi": "श्री महाबली सिंह",
+    "name_english": null,
+    "constituency_id": 213,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6419,
+    "name_hindi": "श्री नागेन्द्र चन्द्रवंशी",
+    "name_english": null,
+    "constituency_id": 211,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6420,
+    "name_hindi": "श्री चंद्रशेखर चन्द्रवंशी",
+    "name_english": null,
+    "constituency_id": 241,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6421,
+    "name_hindi": "श्री ऋतुराज कुमार",
+    "name_english": null,
+    "constituency_id": 243,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6422,
+    "name_hindi": "श्री प्रमोद कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 219,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6423,
+    "name_hindi": "श्रीमती विभा देवी",
+    "name_english": null,
+    "constituency_id": 232,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6424,
+    "name_hindi": "श्री दामोदर रावत",
+    "name_english": null,
+    "constituency_id": 237,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6425,
+    "name_hindi": "श्री सुमित कुमार सिंह",
+    "name_english": null,
+    "constituency_id": 238,
+    "party_id": 3,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6426,
+    "name_hindi": "सुनील कुमार",
+    "name_english": null,
+    "constituency_id": 5,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6427,
+    "name_hindi": "अवधेश राम",
+    "name_english": null,
+    "constituency_id": 13,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6428,
+    "name_hindi": "डॉ. लाल बाबू प्रसाद",
+    "name_english": null,
+    "constituency_id": 21,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6429,
+    "name_hindi": "मोहम्मद परवेज़ आलम",
+    "name_english": null,
+    "constituency_id": 32,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6430,
+    "name_hindi": "राम प्रकाश कुमार यादव",
+    "name_english": null,
+    "constituency_id": 41,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6431,
+    "name_hindi": "राघिब बाबलू",
+    "name_english": null,
+    "constituency_id": 51,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6432,
+    "name_hindi": "अबू अफ़फ़ान फारूक",
+    "name_english": null,
+    "constituency_id": 55,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6433,
+    "name_hindi": "अफ़रोज़ आलम",
+    "name_english": null,
+    "constituency_id": 56,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6434,
+    "name_hindi": "मोहम्मद शहनवाज़ आलम",
+    "name_english": null,
+    "constituency_id": 57,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6435,
+    "name_hindi": "कुनाल निषाद उर्फ सोनू सिंह",
+    "name_english": null,
+    "constituency_id": 66,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6436,
+    "name_hindi": "किशोर कुमार",
+    "name_english": null,
+    "constituency_id": 75,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6437,
+    "name_hindi": "सुरेन्द्र यादव",
+    "name_english": null,
+    "constituency_id": 76,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6438,
+    "name_hindi": "शमीम अख्तर",
+    "name_english": null,
+    "constituency_id": 77,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6439,
+    "name_hindi": "शोएब खान",
+    "name_english": null,
+    "constituency_id": 82,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6440,
+    "name_hindi": "आर.के. मिश्रा",
+    "name_english": null,
+    "constituency_id": 82,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6441,
+    "name_hindi": "बिल्टू साहनी",
+    "name_english": null,
+    "constituency_id": 86,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6442,
+    "name_hindi": "तेज़ नारायण साहनी",
+    "name_english": null,
+    "constituency_id": 90,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6443,
+    "name_hindi": "डॉ. अमित कुमार दास",
+    "name_english": null,
+    "constituency_id": 94,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6444,
+    "name_hindi": "डॉ. शशि शेखर सिन्हा",
+    "name_english": null,
+    "constituency_id": 101,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6445,
+    "name_hindi": "प्रीति किन्नर",
+    "name_english": null,
+    "constituency_id": 103,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6446,
+    "name_hindi": "राहुल कुमार",
+    "name_english": null,
+    "constituency_id": 108,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6447,
+    "name_hindi": "श्रवण कुमार महतो",
+    "name_english": null,
+    "constituency_id": 115,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6448,
+    "name_hindi": "जय प्रकाश सिंह",
+    "name_english": null,
+    "constituency_id": 118,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6449,
+    "name_hindi": "मुशाहिद महतो",
+    "name_english": null,
+    "constituency_id": 121,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6450,
+    "name_hindi": "चंदन लाल मेहता",
+    "name_english": null,
+    "constituency_id": 122,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6451,
+    "name_hindi": "राम बलाक पासवान",
+    "name_english": null,
+    "constituency_id": 16,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6452,
+    "name_hindi": "जागृति ठाकुर",
+    "name_english": null,
+    "constituency_id": 135,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6453,
+    "name_hindi": "डॉ. अरुण कुमार",
+    "name_english": null,
+    "constituency_id": 144,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6454,
+    "name_hindi": "सुरेन्द्र कुमार साहनी",
+    "name_english": null,
+    "constituency_id": 146,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6455,
+    "name_hindi": "जयंती पटेल",
+    "name_english": null,
+    "constituency_id": 149,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6456,
+    "name_hindi": "गजेन्द्र कुमार सिंह (निशाद)",
+    "name_english": null,
+    "constituency_id": 150,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6457,
+    "name_hindi": "विनय कुमार वरुण",
+    "name_english": null,
+    "constituency_id": 151,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6458,
+    "name_hindi": "घनश्याम दास",
+    "name_english": null,
+    "constituency_id": 154,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6459,
+    "name_hindi": "ब्रज किशोर पंडित",
+    "name_english": null,
+    "constituency_id": 163,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6460,
+    "name_hindi": "लता सिंह",
+    "name_english": null,
+    "constituency_id": 171,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6461,
+    "name_hindi": "कुमारी पूनम सिन्हा",
+    "name_english": null,
+    "constituency_id": 176,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6462,
+    "name_hindi": "के. सी. सिन्हा",
+    "name_english": null,
+    "constituency_id": 183,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6463,
+    "name_hindi": "डॉ. विजय कुमार गुप्ता",
+    "name_english": null,
+    "constituency_id": 194,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6464,
+    "name_hindi": "नेहा कुमारी (नतराज)",
+    "name_english": null,
+    "constituency_id": 207,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6465,
+    "name_hindi": "सीता राम दुबे",
+    "name_english": null,
+    "constituency_id": 214,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6466,
+    "name_hindi": "डॉ. अजीत कुमार",
+    "name_english": null,
+    "constituency_id": 222,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6467,
+    "name_hindi": "संतोष चौधरी",
+    "name_english": null,
+    "constituency_id": 6,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6468,
+    "name_hindi": "कपिल देव प्रसाद उर्फ भुवन पटेल",
+    "name_english": null,
+    "constituency_id": 10,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6469,
+    "name_hindi": "लाल बाबू यादव",
+    "name_english": null,
+    "constituency_id": 3,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6470,
+    "name_hindi": "नाज़ अहमद खान उर्फ पप्पू खान",
+    "name_english": null,
+    "constituency_id": 15,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6471,
+    "name_hindi": "डॉ. मंतोष साहनी",
+    "name_english": null,
+    "constituency_id": 16,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6472,
+    "name_hindi": "संजय सिंह",
+    "name_english": null,
+    "constituency_id": 20,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6473,
+    "name_hindi": "नीरज सिंह",
+    "name_english": null,
+    "constituency_id": 22,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6474,
+    "name_hindi": "कृष्ण मोहन",
+    "name_english": null,
+    "constituency_id": 23,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6475,
+    "name_hindi": "डॉ. नवल किशोर चौधरी",
+    "name_english": null,
+    "constituency_id": 24,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6476,
+    "name_hindi": "आज़म हुसैन अनवर",
+    "name_english": null,
+    "constituency_id": 27,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6477,
+    "name_hindi": "जियाउद्दीन खान",
+    "name_english": null,
+    "constituency_id": 28,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6478,
+    "name_hindi": "रत्नेश्वर ठाकुर",
+    "name_english": null,
+    "constituency_id": 31,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6479,
+    "name_hindi": "डॉ. सुरेंद्र कुमार दास",
+    "name_english": null,
+    "constituency_id": 37,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6480,
+    "name_hindi": "केशव भंडारी",
+    "name_english": null,
+    "constituency_id": 38,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6481,
+    "name_hindi": "इंद्रदेव साह",
+    "name_english": null,
+    "constituency_id": 17,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6482,
+    "name_hindi": "प्रदीप राम",
+    "name_english": null,
+    "constituency_id": 44,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6483,
+    "name_hindi": "जनार्दन यादव",
+    "name_english": null,
+    "constituency_id": 46,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6484,
+    "name_hindi": "मो. एकरामुल हक",
+    "name_english": null,
+    "constituency_id": 53,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6485,
+    "name_hindi": "इत्तेफाक आलम उर्फ मुन्ना",
+    "name_english": null,
+    "constituency_id": 58,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6486,
+    "name_hindi": "मनोज कुमार ऋषि",
+    "name_english": null,
+    "constituency_id": 59,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6487,
+    "name_hindi": "आमोद कुमार",
+    "name_english": null,
+    "constituency_id": 60,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6488,
+    "name_hindi": "डॉ. गाज़ी शारिक",
+    "name_english": null,
+    "constituency_id": 63,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6489,
+    "name_hindi": "मोहम्मद शहरयार",
+    "name_english": null,
+    "constituency_id": 64,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6490,
+    "name_hindi": "असहाब आलम",
+    "name_english": null,
+    "constituency_id": 65,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6491,
+    "name_hindi": "बबलू सोरेन",
+    "name_english": null,
+    "constituency_id": 67,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6492,
+    "name_hindi": "प्रमोद कुमार राम",
+    "name_english": null,
+    "constituency_id": 72,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6493,
+    "name_hindi": "शशि कुमार यादव",
+    "name_english": null,
+    "constituency_id": 73,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6494,
+    "name_hindi": "आमिर हैदर",
+    "name_english": null,
+    "constituency_id": 85,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  },
+  {
+    "id": 6495,
+    "name_hindi": "एजाज अहमद",
+    "name_english": null,
+    "constituency_id": 111,
+    "party_id": 13,
+    "photo_url": null,
+    "created_at": "2025-10-21T09:41:52.000Z"
+  }
+]

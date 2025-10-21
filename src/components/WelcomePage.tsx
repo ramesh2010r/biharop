@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Header from './Header'
 import DisclaimerBanner from './DisclaimerBanner'
 import Footer from './Footer'
 
@@ -9,33 +10,7 @@ export default function WelcomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      {/* Header - Clean & Simple */}
-      <header className="bg-white shadow-md border-b-4 border-orange-500">
-        {/* Top Tricolor Bar */}
-        <div className="bg-gradient-to-r from-orange-500 via-white to-green-600 h-1"></div>
-        
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo and Title */}
-            <div className="flex items-center space-x-4">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-800 hindi-text">
-                  बिहार ओपिनियन पोल 2025
-                </h1>
-                <p className="text-sm text-gray-600 hindi-text">जनता की आवाज़</p>
-              </div>
-            </div>
-
-            {/* Results Button */}
-            <Link 
-              href="/results" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hindi-text"
-            >
-              परिणाम देखें
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header showResultsButton={true} />
 
       {/* Disclaimer Banner */}
       <DisclaimerBanner />
