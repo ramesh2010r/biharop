@@ -84,7 +84,7 @@ export default function ConfirmationPage() {
     }
   }
 
-  // Generate and download share image using template
+  // Generate and download share image using background
   const generateShareImage = async () => {
     if (!canvasRef.current || !voteData) return
 
@@ -92,20 +92,20 @@ export default function ConfirmationPage() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Load the template image
-    const templateImg = new Image()
-    templateImg.crossOrigin = 'anonymous'
+    // Load the background image
+    const backgroundImg = new Image()
+    backgroundImg.crossOrigin = 'anonymous'
     
-    // Use the template image from public folder
-    templateImg.src = '/images/vote-template.png'
+    // Use the background image from public folder
+    backgroundImg.src = '/images/vote-background.jpg'
     
-    templateImg.onload = () => {
-      // Set canvas size to match template
-      canvas.width = templateImg.width
-      canvas.height = templateImg.height
+    backgroundImg.onload = () => {
+      // Set canvas size to 1080x1080
+      canvas.width = 1080
+      canvas.height = 1080
 
-      // Draw the template image as background
-      ctx.drawImage(templateImg, 0, 0, canvas.width, canvas.height)
+      // Draw the background image
+      ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
 
       // Now overlay the dynamic text on specific positions
       // Based on template measurements: 1080x1080px
@@ -157,9 +157,9 @@ export default function ConfirmationPage() {
       link.click()
     }
 
-    templateImg.onerror = () => {
-      console.error('Failed to load template image')
-      alert('टेम्पलेट इमेज लोड नहीं हो सकी। कृपया पुनः प्रयास करें।')
+    backgroundImg.onerror = () => {
+      console.error('Failed to load background image')
+      alert('बैकग्राउंड इमेज लोड नहीं हो सकी। कृपया पुनः प्रयास करें।')
     }
   }
 
