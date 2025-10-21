@@ -155,7 +155,7 @@ export default function ResultsPage() {
     }
   }
 
-  const generateResultImage = () => {
+  const handleNativeShare = async () => {
     if (!canvasRef.current || results.length === 0) return
 
     const canvas = canvasRef.current
@@ -163,95 +163,171 @@ export default function ResultsPage() {
     if (!ctx) return
 
     // Set canvas size
-    canvas.width = 1200
-    canvas.height = 630
+    canvas.width = 1080
+    canvas.height = 1080
 
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
-    gradient.addColorStop(0, '#FF9933')
-    gradient.addColorStop(0.5, '#FFFFFF')
-    gradient.addColorStop(1, '#138808')
-    ctx.fillStyle = gradient
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    // Semi-transparent overlay
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    // Border
-    ctx.strokeStyle = '#FF9933'
-    ctx.lineWidth = 10
-    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40)
-
-    // Title
-    ctx.fillStyle = '#1e3a8a'
-    ctx.font = 'bold 40px Arial'
-    ctx.textAlign = 'center'
-    ctx.fillText('बिहार चुनाव ओपिनियन पोल 2025', canvas.width / 2, 80)
-
-    // Constituency name
-    const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
-    const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
-    ctx.fillStyle = '#4b5563'
-    ctx.font = 'bold 32px Arial'
-    ctx.fillText(`${constituencyName}, ${districtName}`, canvas.width / 2, 130)
-
-    // Results title
-    ctx.fillStyle = '#059669'
-    ctx.font = 'bold 36px Arial'
-    ctx.fillText('परिणाम (Results)', canvas.width / 2, 180)
-
-    // Draw top 3 results
-    let yPosition = 240
-    const topResults = results.slice(0, 3)
+    // Load background image
+    const background = new Image()
+    background.crossOrigin = 'anonymous'
+    background.src = '/images/vote-background.jpg'
     
-    topResults.forEach((result, index) => {
-      // Position badge
-      const badgeX = 150
-      const badgeRadius = 25
+    background.onload = async () => {
+      // Draw background
+      ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
       
-      // Badge background
-      ctx.fillStyle = index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : '#CD7F32'
-      ctx.beginPath()
-      ctx.arc(badgeX, yPosition, badgeRadius, 0, Math.PI * 2)
-      ctx.fill()
+      // Get constituency and district names
+      const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
+      const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
       
-      // Badge number
-      ctx.fillStyle = '#ffffff'
-      ctx.font = 'bold 24px Arial'
+      // Get top result
+      const topResult = results[0]
+      
+      // Configure text rendering
       ctx.textAlign = 'center'
-      ctx.fillText(`${index + 1}`, badgeX, yPosition + 8)
-
-      // Candidate info
-      ctx.fillStyle = '#1f2937'
-      ctx.font = 'bold 28px Arial'
-      ctx.textAlign = 'left'
-      ctx.fillText(result.candidate_name, 200, yPosition)
+      ctx.textBaseline = 'middle'
       
-      ctx.fillStyle = '#6b7280'
-      ctx.font = '22px Arial'
-      ctx.fillText(`${result.party_abbreviation}`, 200, yPosition + 30)
+      // Draw top candidate info - White text
+      if (topResult) {
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 48px Arial, sans-serif'
+        ctx.fillText(topResult.candidate_name || 'N/A', canvas.width / 2, 290)
+        
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 40px Arial, sans-serif'
+        ctx.fillText(topResult.party_name || topResult.party_abbreviation || '', canvas.width / 2, 345)
+        
+        // Percentage
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 52px Arial, sans-serif'
+        ctx.fillText(`${topResult.percentage.toFixed(1)}%`, canvas.width / 2, 410)
+      }
+      
+      // Draw location in yellow
+      ctx.fillStyle = '#FFD700'
+      ctx.font = 'bold 36px Arial, sans-serif'
+      ctx.fillText(`${constituencyName}`, canvas.width / 2, 920)
+      
+      ctx.fillStyle = '#FFD700'
+      ctx.font = 'bold 32px Arial, sans-serif'
+      ctx.fillText(`${districtName}`, canvas.width / 2, 970)
+      
+      // Convert to blob
+      canvas.toBlob(async (blob) => {
+        if (!blob) return
+        
+        try {
+          const file = new File([blob], `bihar-poll-results-${constituencyName}.jpg`, { 
+            type: 'image/jpeg' 
+          })
+          
+          // Check if Web Share API with files is supported
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
+              text: getShareText()
+            })
+          } else if (navigator.share) {
+            // Fallback to sharing URL only
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
+              text: getShareText(),
+              url: shareUrl
+            })
+          } else {
+            // Download as fallback
+            const link = document.createElement('a')
+            link.download = `bihar-poll-results-${constituencyName}.jpg`
+            link.href = URL.createObjectURL(blob)
+            link.click()
+            URL.revokeObjectURL(link.href)
+          }
+        } catch (err) {
+          if ((err as Error).name !== 'AbortError') {
+            console.error('Share failed:', err)
+          }
+        }
+      }, 'image/jpeg', 0.85)
+    }
+    
+    background.onerror = () => {
+      console.error('Failed to load background image')
+      alert('इमेज लोड करने में त्रुटि। कृपया पुनः प्रयास करें।')
+    }
+  }
 
-      // Percentage
-      ctx.fillStyle = '#1e40af'
-      ctx.font = 'bold 36px Arial'
-      ctx.textAlign = 'right'
-      ctx.fillText(`${result.percentage.toFixed(1)}%`, canvas.width - 150, yPosition + 15)
+  const generateResultImage = () => {
+    if (!canvasRef.current || results.length === 0) return
 
-      yPosition += 100
-    })
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    // Footer
-    ctx.fillStyle = '#FF9933'
-    ctx.font = 'bold 24px Arial'
-    ctx.textAlign = 'center'
-    ctx.fillText('परिणाम देखें | Check Results', canvas.width / 2, 580)
+    // Set canvas size to match confirmation page (1080x1080)
+    canvas.width = 1080
+    canvas.height = 1080
 
-    // Download
-    const link = document.createElement('a')
-    link.download = 'bihar-poll-results.png'
-    link.href = canvas.toDataURL('image/png')
-    link.click()
+    // Load background image
+    const background = new Image()
+    background.crossOrigin = 'anonymous'
+    background.src = '/images/vote-background.jpg'
+    
+    background.onload = () => {
+      // Draw background
+      ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+      
+      // Get constituency and district names
+      const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
+      const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
+      
+      // Get top 3 results
+      const topResults = results.slice(0, 3)
+      
+      // Configure text rendering
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      
+      // Draw top candidate (Position 1) - White text
+      if (topResults[0]) {
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 48px Arial, sans-serif'
+        ctx.fillText(topResults[0].candidate_name || 'N/A', canvas.width / 2, 290)
+        
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 40px Arial, sans-serif'
+        ctx.fillText(topResults[0].party_name || topResults[0].party_abbreviation || '', canvas.width / 2, 345)
+        
+        // Percentage in larger font
+        ctx.fillStyle = '#FFFFFF'
+        ctx.font = 'bold 52px Arial, sans-serif'
+        ctx.fillText(`${topResults[0].percentage.toFixed(1)}%`, canvas.width / 2, 410)
+      }
+      
+      // Draw location in yellow at bottom
+      ctx.fillStyle = '#FFD700'
+      ctx.font = 'bold 36px Arial, sans-serif'
+      ctx.fillText(`${constituencyName}`, canvas.width / 2, 920)
+      
+      ctx.fillStyle = '#FFD700'
+      ctx.font = 'bold 32px Arial, sans-serif'
+      ctx.fillText(`${districtName}`, canvas.width / 2, 970)
+      
+      // Convert canvas to blob and download as optimized JPG
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const link = document.createElement('a')
+          link.download = `bihar-poll-results-${constituencyName}.jpg`
+          link.href = URL.createObjectURL(blob)
+          link.click()
+          URL.revokeObjectURL(link.href)
+        }
+      }, 'image/jpeg', 0.85)
+    }
+    
+    background.onerror = () => {
+      console.error('Failed to load background image')
+      alert('इमेज लोड करने में त्रुटि। कृपया पुनः प्रयास करें।')
+    }
   }
 
   // Blackout State UI
@@ -459,27 +535,15 @@ export default function ResultsPage() {
 
               {/* Share Buttons */}
               <div className="flex flex-wrap justify-center gap-3 mb-4">
-                {/* Copy Link */}
+                {/* Share with Image (Web Share API) */}
                 <button
-                  onClick={handleCopyLink}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors shadow-md"
+                  onClick={handleNativeShare}
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-semibold transition-colors shadow-md"
                 >
-                  {copied ? (
-                    <>
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span className="hindi-text">कॉपी हो गया!</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                      </svg>
-                      <span className="hindi-text">लिंक कॉपी करें</span>
-                    </>
-                  )}
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                  </svg>
+                  <span className="hindi-text">इमेज के साथ शेयर करें</span>
                 </button>
 
                 {/* Download Image */}
@@ -488,7 +552,7 @@ export default function ResultsPage() {
                   className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-lg font-semibold transition-colors shadow-md"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                   <span className="hindi-text">इमेज डाउनलोड करें</span>
                 </button>
@@ -497,7 +561,7 @@ export default function ResultsPage() {
               {/* Social Media Share */}
               <div className="pt-4 border-t border-gray-200">
                 <p className="text-sm text-gray-600 mb-3 hindi-text text-center">सोशल मीडिया पर शेयर करें:</p>
-                <div className="flex justify-center gap-3">
+                <div className="flex flex-wrap justify-center gap-3">
                   {/* WhatsApp */}
                   <a
                     href={`https://wa.me/?text=${encodeURIComponent(getShareText() + ' ' + shareUrl)}`}
@@ -549,6 +613,20 @@ export default function ResultsPage() {
                       <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                     </svg>
                   </a>
+
+                  {/* Instagram */}
+                  <button
+                    onClick={() => {
+                      generateResultImage()
+                      alert('इमेज डाउनलोड हो गई है! अब Instagram app खोलें और Story/Post में यह इमेज अपलोड करें।')
+                    }}
+                    className="w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white rounded-full flex items-center justify-center transition-colors shadow-md"
+                    title="Instagram पर शेयर करें"
+                  >
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
