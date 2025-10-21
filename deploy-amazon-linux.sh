@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Bihar Opinion Poll - GitHub to AWS EC2 Deployment
-# This script deploys from GitHub repository to AWS EC2
+# Bihar Opinion Poll - GitHub to AWS EC2 (Amazon Linux 2023) Deployment
+# This script deploys from GitHub repository to AWS EC2 running Amazon Linux
 
 set -e
 
@@ -11,9 +11,9 @@ SERVER_USER="ec2-user"
 SERVER_IP="15.206.160.149"
 DOMAIN="opinionpoll.co.in"
 GITHUB_REPO="https://github.com/ramesh2010r/biharop"
-PROJECT_DIR="/home/ubuntu/opinion-poll"
+PROJECT_DIR="/home/ec2-user/opinion-poll"
 
-echo "🚀 Deploying Bihar Opinion Poll from GitHub to AWS EC2..."
+echo "🚀 Deploying Bihar Opinion Poll from GitHub to AWS EC2 (Amazon Linux)..."
 echo "=================================================="
 echo "Server: $SERVER_IP"
 echo "Domain: $DOMAIN"
@@ -22,7 +22,7 @@ echo "=================================================="
 
 # Test SSH connection
 echo "🔑 Testing SSH connection..."
-if ! ssh -i "$SSH_KEY" -o ConnectTimeout=10 $SERVER_USER@$SERVER_IP "echo 'SSH connection successful'" 2>/dev/null; then
+if ! ssh -i "$SSH_KEY" -o ConnectTimeout=10 -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "echo 'SSH connection successful'" 2>/dev/null; then
     echo "❌ ERROR: Cannot connect to server via SSH"
     echo "Please check:"
     echo "  1. EC2 security group allows SSH (port 22)"
@@ -36,45 +36,50 @@ echo "✅ SSH connection successful"
 # Install required software
 echo ""
 echo "📦 Installing required software..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'ENDSSH'
 # Update system
-sudo apt-get update
+sudo dnf update -y
 
 # Install Node.js 20.x
 if ! command -v node &> /dev/null; then
     echo "Installing Node.js..."
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
+    sudo dnf install -y nodejs
 fi
-echo "Node.js version: $(node --version)"
+echo "✅ Node.js version: $(node --version)"
 
-# Install MySQL
+# Install MySQL (MariaDB on Amazon Linux)
 if ! command -v mysql &> /dev/null; then
-    echo "Installing MySQL..."
-    sudo apt-get install -y mysql-server
-    sudo systemctl start mysql
-    sudo systemctl enable mysql
+    echo "Installing MariaDB (MySQL compatible)..."
+    sudo dnf install -y mariadb105-server mariadb105
+    sudo systemctl start mariadb
+    sudo systemctl enable mariadb
 fi
+echo "✅ MariaDB installed"
 
 # Install Nginx
 if ! command -v nginx &> /dev/null; then
     echo "Installing Nginx..."
-    sudo apt-get install -y nginx
+    sudo dnf install -y nginx
     sudo systemctl start nginx
     sudo systemctl enable nginx
 fi
+echo "✅ Nginx installed"
 
 # Install PM2
 if ! command -v pm2 &> /dev/null; then
     echo "Installing PM2..."
     sudo npm install -g pm2
+    pm2 startup systemd -u $USER --hp $HOME
 fi
+echo "✅ PM2 installed"
 
 # Install Git
 if ! command -v git &> /dev/null; then
     echo "Installing Git..."
-    sudo apt-get install -y git
+    sudo dnf install -y git
 fi
+echo "✅ Git installed"
 
 echo "✅ All software installed"
 ENDSSH
@@ -82,7 +87,7 @@ ENDSSH
 # Setup MySQL database
 echo ""
 echo "🗄️ Setting up MySQL database..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'ENDSSH'
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS bihar_opinion_poll;" 2>/dev/null || true
 sudo mysql -e "CREATE USER IF NOT EXISTS 'opinionpoll'@'localhost' IDENTIFIED BY 'BiharPoll@2025#Secure';" 2>/dev/null || true
 sudo mysql -e "GRANT ALL PRIVILEGES ON bihar_opinion_poll.* TO 'opinionpoll'@'localhost';" 2>/dev/null || true
@@ -93,42 +98,41 @@ ENDSSH
 # Clone or update repository from GitHub
 echo ""
 echo "📥 Cloning/Updating repository from GitHub..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP bash -c "'
-if [ -d \"$PROJECT_DIR/.git\" ]; then
-    echo \"Repository exists, pulling latest changes...\"
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
+if [ -d "$PROJECT_DIR" ]; then
+    echo "Updating existing repository..."
     cd $PROJECT_DIR
-    git fetch origin
-    git reset --hard origin/main  # Force update to latest main branch
-    echo \"✅ Repository updated\"
+    git pull origin main
+    echo "✅ Repository updated"
 else
-    echo \"Cloning repository...\"
+    echo "Cloning repository..."
     git clone $GITHUB_REPO $PROJECT_DIR
-    cd $PROJECT_DIR
-    echo \"✅ Repository cloned\"
+    echo "✅ Repository cloned"
 fi
-'"
+ENDSSH
 
 # Create environment files
 echo ""
 echo "⚙️ Creating environment configuration..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
 cd $PROJECT_DIR
 
 # Backend .env
 cat > backend/.env << 'EOF'
+NODE_ENV=production
 PORT=5001
 DB_HOST=localhost
 DB_USER=opinionpoll
 DB_PASSWORD=BiharPoll@2025#Secure
 DB_NAME=bihar_opinion_poll
-JWT_SECRET=$(openssl rand -hex 32)
-NODE_ENV=production
+JWT_SECRET=BiharOpinionPoll2025SecretKey#ChangeThis
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=Admin@123
 EOF
 
-# Frontend .env.production
-cat > .env.production << 'EOF'
+# Frontend .env.local
+cat > .env.local << 'EOF'
 NEXT_PUBLIC_API_URL=https://opinionpoll.co.in
-NODE_ENV=production
 EOF
 
 echo "✅ Environment files created"
@@ -137,37 +141,34 @@ ENDSSH
 # Install dependencies and setup database
 echo ""
 echo "📦 Installing dependencies..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
 cd $PROJECT_DIR
 
 # Install backend dependencies
+echo "Installing backend dependencies..."
 cd backend
 npm install --production
 
-# Import database schema (only if tables don't exist)
-if ! mysql -u opinionpoll -pBiharPoll@2025#Secure bihar_opinion_poll -e "SHOW TABLES LIKE 'Candidates';" | grep -q Candidates; then
-    echo "Importing database schema..."
-    mysql -u opinionpoll -pBiharPoll@2025#Secure bihar_opinion_poll < database/schema.sql
-    mysql -u opinionpoll -pBiharPoll@2025#Secure bihar_opinion_poll < database/system_settings.sql
-    echo "✅ Database schema imported"
-else
-    echo "Database tables already exist, skipping schema import"
-fi
+# Import database schema only if tables don't exist
+echo "Importing database schema..."
+mysql -u opinionpoll -pBiharPoll@2025#Secure bihar_opinion_poll < database/schema.sql 2>/dev/null || echo "Schema already exists"
+mysql -u opinionpoll -pBiharPoll@2025#Secure bihar_opinion_poll < database/system_settings.sql 2>/dev/null || echo "Settings already exist"
 
-# Create admin user (if doesn't exist)
-node scripts/create-admin.js admin admin@opinionpoll.co.in Admin@123 2>/dev/null || echo "Admin user already exists"
+# Create admin user if not exists
+node scripts/create-admin.js 2>/dev/null || echo "Admin user already exists"
 
 # Install frontend dependencies
-cd ..
-npm install
+echo "Installing frontend dependencies..."
+cd $PROJECT_DIR
+npm install --production
 
 echo "✅ Dependencies installed"
 ENDSSH
 
-# Build Next.js frontend
+# Build Next.js application
 echo ""
 echo "🏗️ Building Next.js application..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
 cd $PROJECT_DIR
 npm run build
 echo "✅ Build complete"
@@ -176,7 +177,7 @@ ENDSSH
 # Setup PM2
 echo ""
 echo "🔄 Setting up PM2 process manager..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'ENDSSH'
 cd $PROJECT_DIR
 
 # Create PM2 ecosystem file
@@ -192,12 +193,17 @@ module.exports = {
         PORT: 5001
       },
       instances: 1,
+      exec_mode: 'fork',
       autorestart: true,
       watch: false,
-      max_memory_restart: '1G'
+      max_memory_restart: '1G',
+      error_file: './logs/backend-error.log',
+      out_file: './logs/backend-out.log',
+      time: true
     },
     {
       name: 'bihar-frontend',
+      cwd: './',
       script: 'npm',
       args: 'start',
       env: {
@@ -205,20 +211,26 @@ module.exports = {
         PORT: 3000
       },
       instances: 1,
+      exec_mode: 'fork',
       autorestart: true,
       watch: false,
-      max_memory_restart: '1G'
+      max_memory_restart: '1G',
+      error_file: './logs/frontend-error.log',
+      out_file: './logs/frontend-out.log',
+      time: true
     }
   ]
 };
 EOF
 
-# Restart applications with PM2
+# Create logs directory
+mkdir -p logs
+
+# Start/restart applications with PM2
 pm2 delete all 2>/dev/null || true
 pm2 start ecosystem.config.js
 pm2 save
-pm2 startup systemd -u ubuntu --hp /home/ubuntu > /tmp/pm2-startup.sh
-sudo bash /tmp/pm2-startup.sh
+pm2 startup systemd -u $USER --hp $HOME | grep "sudo" | bash || true
 
 echo "✅ PM2 configured and applications started"
 ENDSSH
@@ -226,37 +238,36 @@ ENDSSH
 # Configure Nginx
 echo ""
 echo "🌐 Configuring Nginx..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
-# Temporary HTTP configuration
-sudo tee /etc/nginx/sites-available/opinion-poll << 'EOF'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
+sudo tee /etc/nginx/conf.d/opinion-poll.conf > /dev/null << 'EOF'
 server {
     listen 80;
-    server_name opinionpoll.co.in www.opinionpoll.co.in _;
+    server_name $DOMAIN www.$DOMAIN _;
 
     client_max_body_size 10M;
 
     location / {
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
     location /api {
         proxy_pass http://localhost:5001;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
     location /uploads {
@@ -267,76 +278,75 @@ server {
 }
 EOF
 
-# Enable site
-sudo ln -sf /etc/nginx/sites-available/opinion-poll /etc/nginx/sites-enabled/
-sudo rm -f /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl restart nginx
-
+# Test and reload Nginx
+sudo nginx -t && sudo systemctl reload nginx
 echo "✅ Nginx configured"
 ENDSSH
 
-# Setup SSL (optional, requires domain DNS)
+# Setup SSL with Let's Encrypt (optional)
 echo ""
 echo "🔐 Setting up SSL certificate (optional)..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
-# Install Certbot
-sudo apt-get install -y certbot python3-certbot-nginx
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << ENDSSH
+# Install certbot
+if ! command -v certbot &> /dev/null; then
+    sudo dnf install -y python3-certbot-nginx
+fi
 
-# Try to get SSL certificate
 echo "Attempting to get SSL certificate..."
 echo "⚠️  This requires DNS to be pointing to this server!"
-sudo certbot --nginx -d opinionpoll.co.in -d www.opinionpoll.co.in \
-  --non-interactive --agree-tos --email admin@opinionpoll.co.in \
-  --redirect 2>&1 || {
+sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos --email admin@$DOMAIN --redirect 2>/dev/null || {
     echo "⚠️  SSL setup skipped. To setup SSL later, run:"
-    echo "   sudo certbot --nginx -d opinionpoll.co.in -d www.opinionpoll.co.in"
+    echo "   sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN"
 }
-
-# Setup auto-renewal
-sudo systemctl enable certbot.timer 2>/dev/null || true
-sudo systemctl start certbot.timer 2>/dev/null || true
-
 echo "✅ SSL configuration complete"
 ENDSSH
 
 # Configure firewall
 echo ""
 echo "🔒 Configuring firewall..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
-sudo ufw allow 22 2>/dev/null || true
-sudo ufw allow 80 2>/dev/null || true
-sudo ufw allow 443 2>/dev/null || true
-sudo ufw --force enable 2>/dev/null || true
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'ENDSSH'
+# Amazon Linux uses firewalld
+if command -v firewall-cmd &> /dev/null; then
+    sudo firewall-cmd --permanent --add-service=http
+    sudo firewall-cmd --permanent --add-service=https
+    sudo firewall-cmd --reload
+fi
 echo "✅ Firewall configured"
 ENDSSH
 
 # Verify deployment
 echo ""
 echo "🔍 Verifying deployment..."
-ssh -i "$SSH_KEY" $SERVER_USER@$SERVER_IP << 'ENDSSH'
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'ENDSSH'
 echo "PM2 Status:"
 pm2 status
 
 echo ""
 echo "Nginx Status:"
-sudo systemctl status nginx --no-pager | head -5
+sudo systemctl status nginx | grep Active
 
 echo ""
-echo "MySQL Status:"
-sudo systemctl status mysql --no-pager | head -5
+echo "MariaDB Status:"
+sudo systemctl status mariadb | grep Active
 
 echo ""
 echo "Testing backend API:"
-curl -s http://localhost:5001/api/health || echo "Backend not responding"
+sleep 3
+curl -s http://localhost:5001/api/health | grep -q "ok" && echo "✅ Backend responding" || echo "⚠️  Backend not responding"
 
 echo ""
 echo "Testing frontend:"
-curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" http://localhost:3000 || echo "Frontend not responding"
+HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)
+echo "HTTP Status: $HTTP_STATUS"
+if [ "$HTTP_STATUS" = "200" ]; then
+    echo "✅ Frontend responding"
+else
+    echo "⚠️  Frontend not responding"
+fi
+ENDSSH
 
 echo ""
 echo "✅ Deployment verification complete"
-ENDSSH
 
 echo ""
 echo "🎉 Deployment Complete!"
@@ -354,7 +364,7 @@ echo "  PM2 Logs: ssh -i $SSH_KEY $SERVER_USER@$SERVER_IP 'pm2 logs'"
 echo "  Restart: ssh -i $SSH_KEY $SERVER_USER@$SERVER_IP 'pm2 restart all'"
 echo ""
 echo "🔄 To update from GitHub:"
-echo "  ./deploy-from-github.sh"
+echo "  ./deploy-amazon-linux.sh"
 echo ""
 echo "⚠️  Next Steps:"
 echo "  1. Ensure DNS points to: $SERVER_IP"

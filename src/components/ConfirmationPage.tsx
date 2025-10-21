@@ -33,6 +33,28 @@ export default function ConfirmationPage() {
     }
   }, [])
 
+  // Polyfill for roundRect if not available
+  useEffect(() => {
+    if (typeof CanvasRenderingContext2D !== 'undefined') {
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (x: number, y: number, width: number, height: number, radius: number) {
+          this.beginPath()
+          this.moveTo(x + radius, y)
+          this.lineTo(x + width - radius, y)
+          this.quadraticCurveTo(x + width, y, x + width, y + radius)
+          this.lineTo(x + width, y + height - radius)
+          this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height)
+          this.lineTo(x + radius, y + height)
+          this.quadraticCurveTo(x, y + height, x, y + height - radius)
+          this.lineTo(x, y + radius)
+          this.quadraticCurveTo(x, y, x + radius, y)
+          this.closePath()
+          return this
+        }
+      }
+    }
+  }, [])
+
   const shareUrl = typeof window !== 'undefined' ? window.location.origin : 'https://opinionpoll.bihar.gov.in'
   const shareText = 'मैंने बिहार चुनाव ओपिनियन पोल में अपनी राय दर्ज की है! आप भी भाग लें। I voted in Bihar Election Opinion Poll!'
 
@@ -62,94 +84,139 @@ export default function ConfirmationPage() {
     }
   }
 
-  // Generate and download share image
-  const generateShareImage = () => {
+  // Generate and download share image (matching your design)
+  const generateShareImage = async () => {
     if (!canvasRef.current || !voteData) return
 
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Set canvas size
-    canvas.width = 1200
-    canvas.height = 630
+    // Set canvas size (Instagram square format)
+    canvas.width = 1080
+    canvas.height = 1080
 
-    // Background gradient (Tricolor inspired)
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
-    gradient.addColorStop(0, '#FF9933')
-    gradient.addColorStop(0.5, '#FFFFFF')
-    gradient.addColorStop(1, '#138808')
-    ctx.fillStyle = gradient
+    // Create tricolor gradient background
+    const topGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height / 3)
+    topGradient.addColorStop(0, '#FF9933')
+    topGradient.addColorStop(0.5, '#FFB366')
+    topGradient.addColorStop(1, '#FFC999')
+    
+    const middleGradient = ctx.createLinearGradient(0, canvas.height / 3, canvas.width, 2 * canvas.height / 3)
+    middleGradient.addColorStop(0, '#FFFFFF')
+    middleGradient.addColorStop(1, '#F0F0F0')
+    
+    const bottomGradient = ctx.createLinearGradient(0, 2 * canvas.height / 3, canvas.width, canvas.height)
+    bottomGradient.addColorStop(0, '#99CC99')
+    bottomGradient.addColorStop(0.5, '#66BB66')
+    bottomGradient.addColorStop(1, '#138808')
+
+    // Fill background sections
+    ctx.fillStyle = topGradient
+    ctx.fillRect(0, 0, canvas.width, canvas.height / 3)
+    
+    ctx.fillStyle = middleGradient
+    ctx.fillRect(0, canvas.height / 3, canvas.width, canvas.height / 3)
+    
+    ctx.fillStyle = bottomGradient
+    ctx.fillRect(0, 2 * canvas.height / 3, canvas.width, canvas.height / 3)
+
+    // Add semi-transparent white overlay
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    // Semi-transparent white overlay
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    // Decorative border
-    ctx.strokeStyle = '#FF9933'
-    ctx.lineWidth = 10
-    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40)
-
-    ctx.strokeStyle = '#138808'
-    ctx.lineWidth = 6
-    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60)
-
-    // Title
-    ctx.fillStyle = '#1e3a8a'
-    ctx.font = 'bold 48px Arial, sans-serif'
+    // Header text - "मैंने अपनी राय दर्ज की !"
+    ctx.fillStyle = '#2D3E9E' // Navy blue
+    ctx.font = 'bold 72px Arial, sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText('बिहार चुनाव ओपिनियन पोल 2025', canvas.width / 2, 100)
+    ctx.fillText('मैंने अपनी राय दर्ज की !', canvas.width / 2, 120)
 
-    // Subtitle
-    ctx.fillStyle = '#4b5563'
-    ctx.font = '32px Arial, sans-serif'
-    ctx.fillText('Bihar Election Opinion Poll 2025', canvas.width / 2, 150)
+    // Blue box for candidate info
+    const boxY = 180
+    const boxHeight = 180
+    const boxPadding = 80
+    
+    ctx.fillStyle = '#2D3E9E'
+    ctx.roundRect(boxPadding, boxY, canvas.width - 2 * boxPadding, boxHeight, 15)
+    ctx.fill()
 
-    // Success message
-    ctx.fillStyle = '#059669'
-    ctx.font = 'bold 40px Arial, sans-serif'
-    ctx.fillText('✓ मैंने अपनी राय दर्ज की!', canvas.width / 2, 220)
-    ctx.font = '28px Arial, sans-serif'
-    ctx.fillText('I Cast My Opinion!', canvas.width / 2, 260)
+    // Candidate name in white (or "NOTA" with special styling)
+    ctx.fillStyle = '#FFFFFF'
+    ctx.font = 'bold 56px Arial, sans-serif'
+    ctx.textAlign = 'center'
+    
+    const isNota = voteData.candidate_name === 'NOTA' || voteData.candidate_name === 'उपरोक्त में से कोई नहीं'
+    
+    if (isNota) {
+      ctx.fillText('NOTA', canvas.width / 2, boxY + 75)
+      ctx.font = '36px Arial, sans-serif'
+      ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, boxY + 125)
+    } else {
+      ctx.fillText(voteData.candidate_name, canvas.width / 2, boxY + 75)
+      
+      // Party name
+      ctx.font = '32px Arial, sans-serif'
+      ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, boxY + 125)
+    }
 
-    // Voted for section
-    ctx.fillStyle = '#1f2937'
+    // Constituency and District in yellow
+    ctx.fillStyle = '#FFD700'
     ctx.font = 'bold 36px Arial, sans-serif'
-    ctx.fillText('मैंने मत दिया:', canvas.width / 2, 330)
+    ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, boxY + 165)
 
-    // Candidate info box
-    ctx.fillStyle = '#f3f4f6'
-    ctx.fillRect(150, 360, canvas.width - 300, 140)
-    ctx.strokeStyle = '#d1d5db'
-    ctx.lineWidth = 2
-    ctx.strokeRect(150, 360, canvas.width - 300, 140)
-
-    // Candidate name
-    ctx.fillStyle = '#1e40af'
-    ctx.font = 'bold 44px Arial, sans-serif'
+    // Logo section - "बिहार ओपिनियन पोल 2025" with hand image
+    const logoY = 450
+    
+    // Red text "बिहार"
+    ctx.fillStyle = '#DC2626'
+    ctx.font = 'bold 52px Arial, sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText(voteData.candidate_name, canvas.width / 2, 415)
+    ctx.fillText('बिहार', canvas.width / 2 - 20, logoY)
+    
+    // Main title "ओपिनियन पोल"
+    ctx.fillStyle = '#DC2626'
+    ctx.font = 'bold 88px Arial, sans-serif'
+    ctx.fillText('ओपिनियन पोल', canvas.width / 2, logoY + 85)
+    
+    // Year "2025" in blue box
+    ctx.fillStyle = '#2D3E9E'
+    ctx.fillRect(canvas.width / 2 + 180, logoY + 20, 140, 65)
+    ctx.fillStyle = '#FFFFFF'
+    ctx.font = 'bold 48px Arial, sans-serif'
+    ctx.fillText('2025', canvas.width / 2 + 250, logoY + 65)
 
-    // Party info
-    ctx.fillStyle = '#6b7280'
-    ctx.font = '32px Arial, sans-serif'
-    ctx.fillText(`${voteData.party_name} (${voteData.party_abbreviation})`, canvas.width / 2, 460)
+    // Voting instruction with red bar
+    const instructionY = logoY + 180
+    ctx.fillStyle = '#DC2626'
+    ctx.fillRect(80, instructionY - 10, 10, 80)
+    
+    ctx.fillStyle = '#1F2937'
+    ctx.font = '28px Arial, sans-serif'
+    ctx.textAlign = 'left'
+    ctx.fillText('अधिक जानकारी एवं वोट के लिए', 100, instructionY + 15)
+    ctx.fillText('नीचे दिए गए वेबसाइट की खोलें।', 100, instructionY + 50)
+    
+    ctx.fillStyle = '#DC2626'
+    ctx.font = 'bold 32px Arial, sans-serif'
+    ctx.fillText('https://opinionpoll.co.in/', 100, instructionY + 95)
 
-    // Location
-    ctx.fillStyle = '#4b5563'
-    ctx.font = '24px Arial, sans-serif'
-    ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 540)
+    // Add voting hand emoji/icon representation
+    ctx.font = 'bold 120px Arial, sans-serif'
+    ctx.fillText('☝️', canvas.width / 2, logoY + 250)
 
-    // Call to action
-    ctx.fillStyle = '#FF9933'
-    ctx.font = 'bold 28px Arial, sans-serif'
-    ctx.fillText('आप भी अपनी राय दें! Cast Your Opinion Too!', canvas.width / 2, 590)
+    // Bottom blue bar with call to action
+    ctx.fillStyle = '#2D3E9E'
+    ctx.fillRect(0, canvas.height - 100, canvas.width, 100)
+    
+    ctx.fillStyle = '#FFFFFF'
+    ctx.font = 'bold 32px Arial, sans-serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('आप भी अपनी राय देने के लिए नीचे दिए गए लिंक पे क्लिक करें', canvas.width / 2, canvas.height - 45)
 
     // Download the image
     const link = document.createElement('a')
-    link.download = 'bihar-opinion-poll-vote.png'
-    link.href = canvas.toDataURL('image/png')
+    link.download = `bihar-opinion-poll-${voteData.constituency_name}.png`
+    link.href = canvas.toDataURL('image/png', 0.95)
     link.click()
   }
 
