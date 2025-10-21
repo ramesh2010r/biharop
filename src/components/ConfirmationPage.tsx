@@ -131,7 +131,7 @@ export default function ConfirmationPage() {
         // Constituency in yellow - positioned lower
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 420)
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
       } else {
         // For regular candidate - three lines in blue box
         // Line 1: Candidate name (white)
@@ -147,7 +147,7 @@ export default function ConfirmationPage() {
         // Line 3: Constituency and District (yellow) - positioned lower
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 420)
+        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
       }
 
       // Download the image
