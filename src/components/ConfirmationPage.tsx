@@ -134,22 +134,20 @@ export default function ConfirmationPage() {
         ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 400)
       } else {
         // For regular candidate - three lines in blue box
-        // Spacing: start at ~280px, 50px apart
+        // Line 1: Candidate name (white)
         ctx.fillStyle = '#FFFFFF'
         ctx.font = 'bold 42px Arial, sans-serif'
         ctx.fillText(voteData.candidate_name, canvas.width / 2, 290)
         
-        // Party name (white, smaller)
+        // Line 2: Party name (white, smaller)
+        ctx.fillStyle = '#FFFFFF'
         ctx.font = '26px Arial, sans-serif'
         ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 345)
         
-        // Constituency and District (yellow)
+        // Line 3: Constituency and District (yellow)
         ctx.fillStyle = '#FFD700'
         ctx.font = 'bold 26px Arial, sans-serif'
         ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 390)
-        ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 24px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 270)
       }
 
       // Download the image
