@@ -258,9 +258,18 @@ export default function ConfirmationPage() {
       const fileName = `bihar-voting-certificate-${Date.now()}.jpg`
       const file = new File([blob], fileName, { type: 'image/jpeg' })
 
-      const shareText = `मैंने बिहार चुनाव ओपिनियन पोल में अपना मत ${voteData.constituency_name}, ${voteData.district_name} से दिया। आप भी अपनी राय दें!`
+      // WhatsApp formatted text with bold (*) and line breaks
+      const shareText = `🗳️ *बिहार चुनाव ओपिनियन पोल 2025*
+
+मैंने अपना मत दिया!
+
+📍 *विधानसभा क्षेत्र:* ${voteData.constituency_name}
+📍 *जिला:* ${voteData.district_name}
+
+✅ आप भी अपनी राय दें और बिहार के भविष्य में योगदान करें!`
+      
       const shareUrl = 'https://opinionpoll.co.in'
-      const fullText = `${shareText}\n\n${shareUrl}`
+      const fullText = `${shareText}\n\n🔗 ${shareUrl}`
 
       // Platform-specific sharing behavior
       if (isIOS) {
@@ -316,8 +325,18 @@ export default function ConfirmationPage() {
   const handleShareTextOnly = async () => {
     if (!voteData) return
     const shareUrl = 'https://opinionpoll.co.in'
-    const shareText = `मैंने बिहार चुनाव ओपिनियन पोल में अपना मत ${voteData.constituency_name}, ${voteData.district_name} से दिया। आप भी अपनी राय दें!`
-    const fullText = `${shareText}\n\n${shareUrl}`
+    
+    // WhatsApp formatted text with bold (*) and line breaks
+    const shareText = `🗳️ *बिहार चुनाव ओपिनियन पोल 2025*
+
+मैंने अपना मत दिया!
+
+📍 *विधानसभा क्षेत्र:* ${voteData.constituency_name}
+📍 *जिला:* ${voteData.district_name}
+
+✅ आप भी अपनी राय दें और बिहार के भविष्य में योगदान करें!`
+    
+    const fullText = `${shareText}\n\n🔗 ${shareUrl}`
 
     // Try Web Share API first
     if (navigator.share) {
