@@ -513,7 +513,6 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
                               <div className="text-2xl md:text-3xl font-black text-blue-600">
                                 {result.percentage.toFixed(1)}%
                               </div>
-                              <p className="text-xs text-gray-500 mt-1">{result.total_votes} वोट</p>
                             </div>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-3 md:h-4 overflow-hidden">
