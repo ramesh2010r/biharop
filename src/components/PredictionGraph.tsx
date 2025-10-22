@@ -62,25 +62,24 @@ export default function PredictionGraph() {
   return (
     <div className="bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-xl p-6 border border-blue-200">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <svg className="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="mb-8">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <svg className="w-8 h-8 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
-            बिहार विधानसभा चुनाव 2025 - विजेता पूर्वानुमान
-          </h2>
-          <p className="text-sm text-gray-600 mt-1">Based on current opinion poll trends</p>
-        </div>
-        <div className="text-right">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <svg className="w-4 h-4 animate-pulse text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="8" />
-            </svg>
-            Live
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hindi-text leading-tight">
+                बिहार विधानसभा चुनाव 2025 - विजेता पूर्वानुमान
+              </h2>
+            </div>
           </div>
-          <p className="text-xs text-gray-500 mt-1">Updated: {lastUpdated}</p>
+          <div className="flex items-center gap-2 ml-4">
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium text-green-600">Live</span>
+          </div>
         </div>
+        <p className="text-sm text-gray-500 mt-2 ml-11">Updated: {lastUpdated}</p>
       </div>
 
       {/* No Data Message */}
@@ -117,12 +116,11 @@ export default function PredictionGraph() {
               </div>
               <div className="text-right">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold" style={{ color: group.groupColor }}>
+                  <span className="text-5xl font-bold" style={{ color: group.groupColor }}>
                     {group.projectedSeats}
                   </span>
-                  <span className="text-gray-500">/ {totalSeats}</span>
+                  <span className="text-lg text-gray-500">/ {totalSeats}</span>
                 </div>
-                <p className="text-sm text-gray-600">{group.percentage.toFixed(1)}% votes</p>
               </div>
             </div>
 
