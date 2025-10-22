@@ -11,6 +11,8 @@ const AAP_ALLIANCE = ['AAP']; // Aam Aadmi Party
 // Simple prediction: Count which party is leading (most votes) in each constituency
 router.get('/predictions', async (req, res) => {
   try {
+    console.log('📊 Predictions API called');
+    
     // Step 1: Get vote counts by party in each constituency
     const [constituencies] = await db.query(`
       SELECT 
@@ -26,6 +28,8 @@ router.get('/predictions', async (req, res) => {
       GROUP BY o.constituency_id, con.name_english, p.id, p.short_code, p.name_english
       ORDER BY o.constituency_id, votes DESC
     `);
+
+    console.log(`✅ Found ${constituencies.length} rows`);
 
     if (constituencies.length === 0) {
       return res.json({
