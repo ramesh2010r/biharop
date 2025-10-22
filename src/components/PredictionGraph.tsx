@@ -62,24 +62,19 @@ export default function PredictionGraph() {
   return (
     <div className="bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-xl p-6 border border-blue-200">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 pb-6 border-b-2 border-gray-200">
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <svg className="w-8 h-8 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hindi-text leading-tight">
-                बिहार विधानसभा चुनाव 2025 - विजेता पूर्वानुमान
-              </h2>
-            </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hindi-text leading-tight">
+              बिहार विधानसभा चुनाव 2025 - विजेता पूर्वानुमान
+            </h2>
+            <p className="text-sm text-gray-500 mt-2">Updated: {lastUpdated}</p>
           </div>
           <div className="flex items-center gap-2 ml-4">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium text-green-600">Live</span>
           </div>
         </div>
-        <p className="text-sm text-gray-500 mt-2 ml-11">Updated: {lastUpdated}</p>
       </div>
 
       {/* No Data Message */}
@@ -97,9 +92,9 @@ export default function PredictionGraph() {
 
       {/* Predictions Graph */}
       {predictions.length > 0 && (
-        <div className="space-y-4 mb-6">
+        <div className="space-y-0 mb-6">
         {predictions.slice(0, 4).map((group, index) => (
-          <div key={group.groupName} className="space-y-2">
+          <div key={group.groupName} className={`space-y-2 py-4 ${index !== predictions.slice(0, 4).length - 1 ? 'border-b-2 border-gray-200' : ''}`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
