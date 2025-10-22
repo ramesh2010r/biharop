@@ -15,6 +15,7 @@ export default function WelcomePage() {
       <StructuredData type="website" />
       <StructuredData type="faqpage" />
       <StructuredData type="dataset" />
+      <StructuredData type="event" />
       <StructuredData 
         type="article" 
         data={{

@@ -3,7 +3,7 @@
 import Script from 'next/script'
 
 interface StructuredDataProps {
-  type: 'organization' | 'website' | 'faqpage' | 'dataset' | 'article' | 'breadcrumb'
+  type: 'organization' | 'website' | 'faqpage' | 'dataset' | 'article' | 'breadcrumb' | 'event'
   data?: any
 }
 
@@ -226,6 +226,56 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
               item: 'https://opinionpoll.co.in'
             }
           ]
+        }
+
+      case 'event':
+        // Standalone Event schema for rich results
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'Event',
+          '@id': 'https://opinionpoll.co.in/#bihar-elections-2025',
+          name: 'Bihar Assembly Elections 2025',
+          description: '243 constituency assembly elections in Bihar state. Participate in our comprehensive opinion poll to share your electoral preferences.',
+          startDate: '2025-11-01T00:00:00+05:30',
+          endDate: '2025-11-30T23:59:59+05:30',
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+          location: {
+            '@type': 'Place',
+            name: 'Bihar, India',
+            address: {
+              '@type': 'PostalAddress',
+              addressRegion: 'Bihar',
+              addressCountry: 'IN'
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 25.0961,
+              longitude: 85.3131
+            }
+          },
+          image: [
+            'https://opinionpoll.co.in/images/Logo_OP.webp'
+          ],
+          organizer: {
+            '@type': 'Organization',
+            name: 'Bihar Opinion Poll',
+            url: 'https://opinionpoll.co.in'
+          },
+          performer: {
+            '@type': 'Organization',
+            name: 'Election Commission of India',
+            url: 'https://eci.gov.in'
+          },
+          isAccessibleForFree: true,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+            url: 'https://opinionpoll.co.in/vote',
+            validFrom: '2025-01-01T00:00:00+05:30'
+          }
         }
 
       case 'faqpage':
