@@ -18,13 +18,13 @@ router.get('/predictions', async (req, res) => {
         con.name_english as constituency_name,
         p.abbreviation as party_abbreviation,
         p.name_english as party_name,
-        COUNT(o.opinion_id) as votes,
-        ROUND(COUNT(o.opinion_id) * 100.0 / SUM(COUNT(o.opinion_id)) OVER (PARTITION BY o.constituency_id), 2) as vote_percentage
-      FROM opinions o
-      JOIN candidates c ON o.candidate_id = c.candidate_id
-      JOIN parties p ON c.party_id = p.party_id
-      JOIN constituencies con ON o.constituency_id = con.constituency_id
-      GROUP BY o.constituency_id, con.name_english, p.party_id, p.abbreviation, p.name_english
+        COUNT(o.id) as votes,
+        ROUND(COUNT(o.id) * 100.0 / SUM(COUNT(o.id)) OVER (PARTITION BY o.constituency_id), 2) as vote_percentage
+      FROM Opinions o
+      JOIN Candidates c ON o.candidate_id = c.id
+      JOIN Parties p ON c.party_id = p.id
+      JOIN Constituencies con ON o.constituency_id = con.id
+      GROUP BY o.constituency_id, con.name_english, p.id, p.abbreviation, p.name_english
       ORDER BY o.constituency_id, votes DESC
     `);
 
