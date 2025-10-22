@@ -780,11 +780,18 @@ router.delete('/candidates/:id', authenticateAdmin, requireSuperAdmin, async (re
 
 /**
  * GET /api/admin/votes/recent
- * Get recent votes with candidate and constituency details
+ * Get recent votes with candidate and constituency details (with pagination)
  */
 router.get('/votes/recent', authenticateAdmin, async (req, res) => {
   try {
-    const limit = req.query.limit || 100;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 50;
+    const offset = (page - 1) * limit;
+    
+    // Get total count for pagination
+    const [countResult] = await db.query('SELECT COUNT(*) as total FROM Opinions');
+    const totalVotes = countResult[0].total;
+    const totalPages = Math.ceil(totalVotes / limit);
     
     const [votes] = await db.query(`
       SELECT 
@@ -802,8 +809,8 @@ router.get('/votes/recent', authenticateAdmin, async (req, res) => {
       LEFT JOIN Constituencies con ON o.constituency_id = con.id
       LEFT JOIN Parties p ON c.party_id = p.id
       ORDER BY o.voted_at DESC
-      LIMIT ?
-    `, [parseInt(limit)]);
+      LIMIT ? OFFSET ?
+    `, [limit, offset]);
 
     // Format response
     const formattedVotes = votes.map(vote => ({
@@ -824,7 +831,17 @@ router.get('/votes/recent', authenticateAdmin, async (req, res) => {
       }
     }));
 
-    res.json({ votes: formattedVotes });
+    res.json({ 
+      votes: formattedVotes,
+      pagination: {
+        currentPage: page,
+        totalPages: totalPages,
+        totalVotes: totalVotes,
+        limit: limit,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1
+      }
+    });
   } catch (error) {
     console.error('Error fetching votes:', error);
     res.status(500).json({ error: 'वोट लोड नहीं हो सके' });

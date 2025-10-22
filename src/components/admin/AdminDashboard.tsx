@@ -100,13 +100,32 @@ interface District {
     constituency?: {
       name_hindi: string
     }
-  }export default function AdminDashboard() {
+  }
+
+interface PaginationInfo {
+  currentPage: number
+  totalPages: number
+  totalVotes: number
+  limit: number
+  hasNextPage: boolean
+  hasPrevPage: boolean
+}
+
+export default function AdminDashboard() {
   const router = useRouter()
   const [admin, setAdmin] = useState<Admin | null>(null)
   const [stats, setStats] = useState<Stats | null>(null)
   const [phases, setPhases] = useState<ElectionPhase[]>([])
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [votes, setVotes] = useState<Vote[]>([])
+  const [votesPagination, setVotesPagination] = useState<PaginationInfo>({
+    currentPage: 1,
+    totalPages: 1,
+    totalVotes: 0,
+    limit: 50,
+    hasNextPage: false,
+    hasPrevPage: false
+  })
   const [parties, setParties] = useState<Party[]>([])
   const [constituencies, setConstituencies] = useState<Constituency[]>([])
   const [districts, setDistricts] = useState<District[]>([])
@@ -196,6 +215,28 @@ interface District {
     })
   }
 
+  // Function to load votes with pagination
+  const loadVotes = async (page: number = 1) => {
+    try {
+      const token = localStorage.getItem('adminToken')
+      if (!token) return
+
+      const votesRes = await fetch(getApiUrl(`/api/admin/votes/recent?page=${page}&limit=50`), {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      
+      if (votesRes.ok) {
+        const votesData = await votesRes.json()
+        setVotes(votesData.votes || [])
+        if (votesData.pagination) {
+          setVotesPagination(votesData.pagination)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading votes:', error)
+    }
+  }
+
   useEffect(() => {
     // Check if admin is logged in
     const token = localStorage.getItem('adminToken')
@@ -267,14 +308,8 @@ interface District {
         setDistricts(districtsData || [])
       }
 
-      // Load recent votes
-      const votesRes = await fetch(getApiUrl('/api/admin/votes/recent'), {
-        headers: { 'Authorization': `Bearer ${token}` }
-      })
-      if (votesRes.ok) {
-        const votesData = await votesRes.json()
-        setVotes(votesData.votes || votesData || [])
-      }
+      // Load recent votes (with pagination)
+      await loadVotes(1) // Load first page
 
       // Load system settings
       const settingsRes = await fetch(getApiUrl('/api/admin/settings'), {
@@ -2241,8 +2276,9 @@ interface District {
                   <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs font-medium text-green-600 uppercase">Recent (Last 50)</p>
-                        <p className="text-2xl font-bold text-green-900 mt-1">{votes.length}</p>
+                        <p className="text-xs font-medium text-green-600 uppercase">Current Page</p>
+                        <p className="text-2xl font-bold text-green-900 mt-1">{votes.length} votes</p>
+                        <p className="text-xs text-green-700 mt-1">Page {votesPagination.currentPage}/{votesPagination.totalPages}</p>
                       </div>
                       <div className="w-10 h-10 bg-green-200 rounded-lg flex items-center justify-center">
                         <svg className="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2317,8 +2353,16 @@ interface District {
                   </div>
                 ) : (
                   <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                      <h4 className="text-sm font-semibold text-gray-900">Recent Votes (Last 50)</h4>
+                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-gray-900">
+                        All Votes (Page {votesPagination.currentPage} of {votesPagination.totalPages})
+                      </h4>
+                      <button
+                        onClick={() => loadVotes(votesPagination.currentPage)}
+                        className="text-xs px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                      >
+                        🔄 Refresh
+                      </button>
                     </div>
                     <div className="overflow-x-auto">
                       <table className="w-full">
@@ -2360,10 +2404,60 @@ interface District {
                         </tbody>
                       </table>
                     </div>
-                    <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
-                      <p className="text-xs text-gray-600">
-                        Showing {votes.length} most recent votes out of {stats?.totalVotes || 0} total votes
-                      </p>
+                    
+                    {/* Pagination Controls */}
+                    <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+                      <div className="flex-1 flex justify-between items-center">
+                        <div>
+                          <p className="text-xs text-gray-600">
+                            Showing <span className="font-medium">{((votesPagination.currentPage - 1) * votesPagination.limit) + 1}</span> to{' '}
+                            <span className="font-medium">
+                              {Math.min(votesPagination.currentPage * votesPagination.limit, votesPagination.totalVotes)}
+                            </span> of{' '}
+                            <span className="font-medium">{votesPagination.totalVotes}</span> total votes
+                          </p>
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => loadVotes(1)}
+                            disabled={votesPagination.currentPage === 1}
+                            className="px-2 py-1 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            title="First page"
+                          >
+                            «
+                          </button>
+                          
+                          <button
+                            onClick={() => loadVotes(votesPagination.currentPage - 1)}
+                            disabled={!votesPagination.hasPrevPage}
+                            className="px-3 py-1 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                          >
+                            ← Previous
+                          </button>
+                          
+                          <span className="px-3 py-1 text-xs font-medium text-gray-700">
+                            Page {votesPagination.currentPage} of {votesPagination.totalPages}
+                          </span>
+                          
+                          <button
+                            onClick={() => loadVotes(votesPagination.currentPage + 1)}
+                            disabled={!votesPagination.hasNextPage}
+                            className="px-3 py-1 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                          >
+                            Next →
+                          </button>
+                          
+                          <button
+                            onClick={() => loadVotes(votesPagination.totalPages)}
+                            disabled={votesPagination.currentPage === votesPagination.totalPages}
+                            className="px-2 py-1 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            title="Last page"
+                          >
+                            »
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
