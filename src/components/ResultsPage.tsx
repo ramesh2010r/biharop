@@ -295,7 +295,7 @@ export default function ResultsPage() {
   if (blackoutStatus.isBlackout && !selectedConstituency) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-        <Header showResultsButton={false} />
+        <Header />
 
         <DisclaimerBanner />
 
@@ -342,7 +342,7 @@ export default function ResultsPage() {
   // Normal Results Display
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <Header showResultsButton={false} />
+      <Header />
 
       <DisclaimerBanner />
 

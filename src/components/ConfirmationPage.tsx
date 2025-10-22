@@ -477,7 +477,7 @@ export default function ConfirmationPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <Header showResultsButton={false} />
+      <Header />
 
       <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-3xl mx-auto">
