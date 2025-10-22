@@ -532,25 +532,6 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
                         परिणाम वास्तविक समय में अपडेट होते हैं
                       </p>
                     </div>
-
-                    {/* Alliance-wise Predictions Section */}
-                    <div className="mt-8">
-                      {/* Divider */}
-                      <div className="h-px bg-white/30 mb-6"></div>
-                      
-                      {/* Section Header */}
-                      <h3 className="text-xl md:text-2xl font-bold text-white hindi-text mb-4 text-center">
-                        गठबंधन के अनुसार पूर्वानुमान
-                      </h3>
-                      <p className="text-sm text-white/80 hindi-text text-center mb-6">
-                        Alliance-wise Seat Predictions
-                      </p>
-                      
-                      {/* Prediction Graph - with custom styling to fit in the blue card */}
-                      <div className="bg-white/95 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg">
-                        <PredictionGraph />
-                      </div>
-                    </div>
                   </div>
                 )}
 
@@ -652,6 +633,13 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
                 )}
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Alliance-wise Predictions Section - Separate Card */}
+        {!loading && results.length > 0 && selectedConstituency && (
+          <div className="max-w-5xl mx-auto mt-8">
+            <PredictionGraph />
           </div>
         )}
 
