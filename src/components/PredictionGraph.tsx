@@ -140,18 +140,6 @@ export default function PredictionGraph() {
             {/* Card Body - Progress Bar */}
             <div className="px-5 py-4">
               <div className="relative h-16 bg-gray-100 rounded-xl overflow-hidden shadow-inner">
-                {/* Majority Mark Line - Only show on first item */}
-                {index === 0 && (
-                  <div 
-                    className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-20"
-                    style={{ left: `${(majorityMark / totalSeats) * 100}%` }}
-                  >
-                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded whitespace-nowrap shadow-sm">
-                      Majority: {majorityMark}
-                    </div>
-                  </div>
-                )}
-
                 {/* Animated Progress Bar */}
                 <div
                   className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out rounded-xl"
