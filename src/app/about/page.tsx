@@ -29,13 +29,13 @@ export default function AboutPage() {
 
           {/* Mission */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Our Mission</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               Bihar Opinion Poll is an independent digital platform dedicated to providing citizens a voice in 
               understanding public sentiment regarding the Bihar Assembly Elections 2025. We believe in the power 
               of collective opinion and transparent data to strengthen democratic discourse.
             </p>
-            <p className="text-gray-700 mb-4 leading-relaxed hindi-text">
+            <p className="text-gray-700 leading-relaxed text-justify hindi-text">
               बिहार ओपिनियन पोल एक स्वतंत्र डिजिटल मंच है जो बिहार विधानसभा चुनाव 2025 के बारे में जनता की 
               राय को समझने के लिए नागरिकों को एक आवाज प्रदान करने के लिए समर्पित है। हम सामूहिक राय और 
               पारदर्शी डेटा की शक्ति में विश्वास करते हैं।
@@ -82,34 +82,61 @@ export default function AboutPage() {
 
           {/* Why We Exist */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Why We Exist</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Why We Exist</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               Traditional opinion polls often have limited reach and sample sizes. Our digital platform democratizes 
               the polling process, allowing anyone with internet access to participate and view results. We aim to:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2 mb-4">
-              <li>Provide a voice to every citizen interested in Bihar elections</li>
-              <li>Offer transparent, real-time polling data</li>
-              <li>Help understand constituency-level sentiment</li>
-              <li>Foster informed political discourse</li>
-              <li>Complement traditional election analysis methods</li>
+            <ul className="list-none space-y-2 ml-0">
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Provide a voice to every citizen interested in Bihar elections</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Offer transparent, real-time polling data</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Help understand constituency-level sentiment</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Foster informed political discourse</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Complement traditional election analysis methods</span>
+              </li>
             </ul>
           </section>
 
           {/* Disclaimer */}
           <section className="mb-8">
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">⚠️ Important Disclaimer</h3>
-              <p className="text-gray-700 mb-3 leading-relaxed">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">⚠️ Important Disclaimer</h3>
+              <p className="text-gray-700 mb-4 leading-relaxed text-justify">
                 Bihar Opinion Poll is an independent opinion survey platform and is NOT:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2">
-                <li>An official voting platform</li>
-                <li>Affiliated with the Election Commission of India</li>
-                <li>Associated with any political party or candidate</li>
-                <li>A predictor of actual election outcomes</li>
+              <ul className="list-none space-y-2 ml-0">
+                <li className="flex items-start">
+                  <span className="text-yellow-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">An official voting platform</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Affiliated with the Election Commission of India</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Associated with any political party or candidate</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">A predictor of actual election outcomes</span>
+                </li>
               </ul>
-              <p className="text-gray-700 mt-4 leading-relaxed">
+              <p className="text-gray-700 mt-4 leading-relaxed text-justify">
                 Our results are indicative of public opinion trends and should not be considered as actual 
                 election results or predictions.
               </p>
@@ -118,23 +145,38 @@ export default function AboutPage() {
 
           {/* Technology */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Our Technology</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Our Technology</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               We use modern web technologies to ensure a fast, secure, and user-friendly experience:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong>Secure Infrastructure:</strong> SSL encryption and secure data storage</li>
-              <li><strong>Duplicate Prevention:</strong> Browser fingerprinting technology</li>
-              <li><strong>Responsive Design:</strong> Works seamlessly on mobile, tablet, and desktop</li>
-              <li><strong>Real-time Updates:</strong> Live constituency-wise result aggregation</li>
-              <li><strong>Bilingual Support:</strong> Full support for Hindi and English</li>
+            <ul className="list-none space-y-2 ml-0">
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700"><strong>Secure Infrastructure:</strong> SSL encryption and secure data storage</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700"><strong>Duplicate Prevention:</strong> Browser fingerprinting technology</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700"><strong>Responsive Design:</strong> Works seamlessly on mobile, tablet, and desktop</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700"><strong>Real-time Updates:</strong> Live constituency-wise result aggregation</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700"><strong>Bilingual Support:</strong> Full support for Hindi and English</span>
+              </li>
             </ul>
           </section>
 
           {/* Transparency */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Transparency & Integrity</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Transparency & Integrity</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               We are committed to maintaining the highest standards of transparency and data integrity:
             </p>
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
@@ -165,22 +207,26 @@ export default function AboutPage() {
 
           {/* Contact */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Get In Touch</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Get In Touch</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               Have questions, suggestions, or concerns? We&apos;d love to hear from you.
             </p>
             <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
-              <p className="text-gray-700 mb-2">
-                <strong>General Inquiries:</strong> info@opinionpoll.co.in
+              <p className="text-gray-700 mb-3 flex items-start">
+                <strong className="min-w-[160px]">General Inquiries:</strong>
+                <span>info@opinionpoll.co.in</span>
               </p>
-              <p className="text-gray-700 mb-2">
-                <strong>Technical Support:</strong> support@opinionpoll.co.in
+              <p className="text-gray-700 mb-3 flex items-start">
+                <strong className="min-w-[160px]">Technical Support:</strong>
+                <span>support@opinionpoll.co.in</span>
               </p>
-              <p className="text-gray-700 mb-2">
-                <strong>Website:</strong> <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
+              <p className="text-gray-700 mb-3 flex items-start">
+                <strong className="min-w-[160px]">Website:</strong>
+                <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
               </p>
-              <p className="text-gray-700 mb-2 hindi-text">
-                <strong>संपर्क:</strong> info@opinionpoll.co.in
+              <p className="text-gray-700 mb-4 hindi-text flex items-start">
+                <strong className="min-w-[160px]">संपर्क:</strong>
+                <span>info@opinionpoll.co.in</span>
               </p>
               <div className="mt-4">
                 <Link 
@@ -195,8 +241,8 @@ export default function AboutPage() {
 
           {/* Acknowledgments */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Acknowledgments</h3>
-            <p className="text-gray-700 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Acknowledgments</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               We acknowledge the importance of democratic participation and thank all citizens who take the time 
               to share their opinions on our platform. Your participation makes this initiative meaningful and 
               helps create a more informed electorate.

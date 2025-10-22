@@ -25,9 +25,9 @@ export default function ContactPage() {
         <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
           {/* Title */}
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Contact Us</h1>
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 hindi-text">संपर्क करें</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-8 hindi-text">संपर्क करें</h2>
           
-          <p className="text-gray-700 mb-8 leading-relaxed">
+          <p className="text-gray-700 mb-10 leading-relaxed text-justify">
             We&apos;re here to help! If you have any questions, concerns, or feedback about Bihar Opinion Poll, 
             please don&apos;t hesitate to reach out to us.
           </p>

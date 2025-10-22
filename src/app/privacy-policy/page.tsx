@@ -31,13 +31,13 @@ export default function PrivacyPolicyPage() {
 
           {/* Introduction */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Introduction</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Introduction</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               Welcome to Bihar Opinion Poll (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your privacy 
               and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, 
               disclose, and safeguard your information when you visit our website opinionpoll.co.in.
             </p>
-            <p className="text-gray-700 leading-relaxed hindi-text">
+            <p className="text-gray-700 leading-relaxed text-justify hindi-text">
               बिहार ओपिनियन पोल में आपका स्वागत है। हम आपकी गोपनीयता की रक्षा के लिए प्रतिबद्ध हैं और आपकी व्यक्तिगत 
               जानकारी की सुरक्षा सुनिश्चित करते हैं।
             </p>
@@ -45,49 +45,100 @@ export default function PrivacyPolicyPage() {
 
           {/* Information We Collect */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">1. Information We Collect</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">1. Information We Collect</h3>
             
-            <h4 className="text-xl font-semibold text-gray-800 mb-3">1.1 Voting Information</h4>
-            <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">
-              <li>District and constituency selection</li>
-              <li>Candidate preference (anonymous voting)</li>
-              <li>Browser fingerprint for duplicate vote prevention</li>
-              <li>Timestamp of vote submission</li>
-            </ul>
+            <div className="mb-6">
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">1.1 Voting Information</h4>
+              <ul className="list-none space-y-2 ml-0">
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">District and constituency selection</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Candidate preference (anonymous voting)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Browser fingerprint for duplicate vote prevention</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Timestamp of vote submission</span>
+                </li>
+              </ul>
+            </div>
 
-            <h4 className="text-xl font-semibold text-gray-800 mb-3">1.2 Technical Information</h4>
-            <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">
-              <li>IP address</li>
-              <li>Browser type and version</li>
-              <li>Device information</li>
-              <li>Operating system</li>
-              <li>Cookies and similar tracking technologies</li>
-            </ul>
+            <div className="mb-6">
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">1.2 Technical Information</h4>
+              <ul className="list-none space-y-2 ml-0">
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">IP address</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Browser type and version</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Device information</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Operating system</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-orange-600 mr-3 mt-1">•</span>
+                  <span className="text-gray-700">Cookies and similar tracking technologies</span>
+                </li>
+              </ul>
+            </div>
 
-            <h4 className="text-xl font-semibold text-gray-800 mb-3">1.3 Google Analytics</h4>
-            <p className="text-gray-700 mb-4 leading-relaxed">
-              We use Google Analytics to analyze website traffic and user behavior. Google Analytics collects 
-              information anonymously and reports website trends without identifying individual visitors.
-            </p>
+            <div>
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">1.3 Google Analytics</h4>
+              <p className="text-gray-700 leading-relaxed text-justify">
+                We use Google Analytics to analyze website traffic and user behavior. Google Analytics collects 
+                information anonymously and reports website trends without identifying individual visitors.
+              </p>
+            </div>
           </section>
 
           {/* How We Use Information */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">2. How We Use Your Information</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>To process and record your opinion poll votes</li>
-              <li>To prevent duplicate voting and maintain data integrity</li>
-              <li>To display aggregated poll results</li>
-              <li>To improve our website and user experience</li>
-              <li>To analyze website traffic and usage patterns</li>
-              <li>To comply with legal obligations</li>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">2. How We Use Your Information</h3>
+            <ul className="list-none space-y-2 ml-0">
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To process and record your opinion poll votes</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To prevent duplicate voting and maintain data integrity</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To display aggregated poll results</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To improve our website and user experience</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To analyze website traffic and usage patterns</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">To comply with legal obligations</span>
+              </li>
             </ul>
           </section>
 
           {/* Data Security */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">3. Data Security</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">3. Data Security</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               We implement appropriate technical and organizational security measures to protect your personal 
               information against unauthorized access, alteration, disclosure, or destruction. However, no method 
               of transmission over the Internet or electronic storage is 100% secure.
@@ -96,8 +147,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Cookies */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">4. Cookies and Tracking Technologies</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">4. Cookies and Tracking Technologies</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               We use cookies and similar tracking technologies to enhance your experience on our website. 
               You can control cookie settings through your browser preferences. However, disabling cookies 
               may affect the functionality of our website.
@@ -106,20 +157,22 @@ export default function PrivacyPolicyPage() {
 
           {/* Third-Party Services */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">5. Third-Party Services</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">5. Third-Party Services</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               Our website may contain advertisements served by Google AdSense and use Google Analytics for 
               website analytics. These third-party services have their own privacy policies and we encourage 
               you to review them:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
+            <ul className="list-none space-y-2 ml-0">
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" 
                    className="text-orange-600 hover:text-orange-700 underline">
                   Google Privacy Policy
                 </a>
               </li>
-              <li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
                 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" 
                    className="text-orange-600 hover:text-orange-700 underline">
                   Google Advertising Policy
@@ -130,23 +183,38 @@ export default function PrivacyPolicyPage() {
 
           {/* User Rights */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">6. Your Rights</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">6. Your Rights</h3>
             <p className="text-gray-700 mb-4 leading-relaxed">
               You have the right to:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>Access the personal information we hold about you</li>
-              <li>Request correction of inaccurate information</li>
-              <li>Request deletion of your information (subject to legal requirements)</li>
-              <li>Opt-out of marketing communications</li>
-              <li>Disable cookies through your browser settings</li>
+            <ul className="list-none space-y-2 ml-0">
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Access the personal information we hold about you</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Request correction of inaccurate information</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Request deletion of your information (subject to legal requirements)</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Opt-out of marketing communications</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-orange-600 mr-3 mt-1">•</span>
+                <span className="text-gray-700">Disable cookies through your browser settings</span>
+              </li>
             </ul>
           </section>
 
           {/* Children's Privacy */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">7. Children&apos;s Privacy</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">7. Children&apos;s Privacy</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               Our website is intended for users who are 18 years of age or older. We do not knowingly collect 
               personal information from children under 18. If you believe we have collected information from 
               a child under 18, please contact us immediately.
@@ -155,8 +223,8 @@ export default function PrivacyPolicyPage() {
 
           {/* Changes to Policy */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">8. Changes to This Privacy Policy</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">8. Changes to This Privacy Policy</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               We may update this Privacy Policy from time to time. We will notify you of any changes by posting 
               the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
             </p>
@@ -164,27 +232,30 @@ export default function PrivacyPolicyPage() {
 
           {/* Contact */}
           <section className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">9. Contact Us</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">9. Contact Us</h3>
+            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
               If you have any questions about this Privacy Policy, please contact us:
             </p>
             <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
-              <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> privacy@opinionpoll.co.in
+              <p className="text-gray-700 mb-3 flex items-start">
+                <strong className="min-w-[80px]">Email:</strong> 
+                <span>privacy@opinionpoll.co.in</span>
               </p>
-              <p className="text-gray-700 mb-2">
-                <strong>Website:</strong> <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
+              <p className="text-gray-700 mb-3 flex items-start">
+                <strong className="min-w-[80px]">Website:</strong> 
+                <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
               </p>
-              <p className="text-gray-700 hindi-text">
-                <strong>संपर्क:</strong> privacy@opinionpoll.co.in
+              <p className="text-gray-700 hindi-text flex items-start">
+                <strong className="min-w-[80px]">संपर्क:</strong> 
+                <span>privacy@opinionpoll.co.in</span>
               </p>
             </div>
           </section>
 
           {/* GDPR Compliance */}
           <section className="mb-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">GDPR & Data Protection Compliance</h3>
-            <p className="text-gray-700 leading-relaxed">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">GDPR & Data Protection Compliance</h3>
+            <p className="text-gray-700 leading-relaxed text-justify">
               We comply with applicable data protection laws including GDPR principles. Your data is processed 
               lawfully, fairly, and transparently. We only collect data necessary for our services and retain 
               it only as long as needed.
