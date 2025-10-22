@@ -256,23 +256,52 @@ export default function ConfirmationPage() {
       const shareUrl = 'https://opinionpoll.co.in'
       const fullText = `${shareText}\n\n${shareUrl}`
 
-      // Check if Web Share API with files is supported
+      // Detect if Android
+      const isAndroid = /Android/i.test(navigator.userAgent)
+
+      // Check if Web Share API is supported
       if (navigator.share) {
         try {
-          // Try sharing with both text and files
+          // For Android: Copy text to clipboard first, then show instructions
+          if (isAndroid) {
+            try {
+              await navigator.clipboard.writeText(fullText)
+              
+              // Show instructions to user BEFORE sharing
+              const proceed = confirm(
+                '✅ संदेश कॉपी हो गया!\n\n' +
+                'अब इमेज शेयर करें:\n' +
+                '1. OK दबाएं\n' +
+                '2. WhatsApp/Telegram चुनें\n' +
+                '3. इमेज भेजें\n' +
+                '4. फिर मैसेज बॉक्स में लॉन्ग प्रेस करके "Paste" करें\n\n' +
+                '---\n\n' +
+                '✅ Message copied!\n\n' +
+                'Now share image:\n' +
+                '1. Press OK\n' +
+                '2. Choose WhatsApp/Telegram\n' +
+                '3. Send image\n' +
+                '4. Long press in message box and "Paste"'
+              )
+              
+              if (!proceed) return
+            } catch (clipErr) {
+              console.log('Clipboard failed:', clipErr)
+            }
+          }
+
+          // Share the image
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            // Android requires title and text to be shown with image
             await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
-              text: `${shareText}\n\n🔗 ${shareUrl}\n\nआप भी अपनी राय दें और बिहार के भविष्य में भागीदार बनें!`,
+              title: 'बिहार चुनाव ओपिनियन पोल',
+              text: isAndroid ? '' : fullText, // Don't include text on Android as it's ignored
               files: [file],
             })
           } else {
             // Fallback: Just share text without image
             await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
+              title: 'बिहार चुनाव ओपिनियन पोल',
               text: fullText,
-              url: shareUrl,
             })
           }
         } catch (shareErr) {
