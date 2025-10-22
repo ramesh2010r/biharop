@@ -60,23 +60,29 @@ export default function PredictionGraph() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-xl p-6 border border-blue-200">
+    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
       {/* Header */}
-      <div className="mb-8 pb-6 border-b-2 border-gray-200">
-        <div className="flex items-start justify-between">
+      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 px-6 py-5">
+        <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 hindi-text leading-tight">
+            <h2 className="text-2xl md:text-3xl font-bold text-white hindi-text leading-tight drop-shadow-sm">
               बिहार विधानसभा चुनाव 2025 - विजेता पूर्वानुमान
             </h2>
-            <p className="text-sm text-gray-500 mt-2">Updated: {lastUpdated}</p>
+            <p className="text-orange-100 text-sm mt-1 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Updated: {lastUpdated}
+            </p>
           </div>
-          <div className="flex items-center gap-2 ml-4">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-green-600">Live</span>
+          <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse shadow-lg"></div>
+            <span className="text-sm font-semibold text-white">Live</span>
           </div>
         </div>
       </div>
 
+      <div className="p-6">
       {/* No Data Message */}
       {predictions.length === 0 && (
         <div className="text-center py-12">
@@ -92,70 +98,84 @@ export default function PredictionGraph() {
 
       {/* Predictions Graph */}
       {predictions.length > 0 && (
-        <div className="space-y-0 mb-6">
+        <div className="grid gap-4 mb-6">
         {predictions.slice(0, 4).map((group, index) => (
-          <div key={group.groupName} className={`space-y-2 py-4 ${index !== predictions.slice(0, 4).length - 1 ? 'border-b-2 border-gray-200' : ''}`}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
-                  index === 0 ? 'bg-gradient-to-r from-green-500 to-green-600' :
-                  index === 1 ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
-                  index === 2 ? 'bg-gradient-to-r from-orange-500 to-orange-600' :
-                  'bg-gradient-to-r from-gray-500 to-gray-600'
-                }`}>
-                  {index + 1}
+          <div 
+            key={group.groupName} 
+            className="group bg-gradient-to-br from-gray-50 to-white rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md"
+          >
+            {/* Card Header */}
+            <div className="px-5 py-4 bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md ${
+                    index === 0 ? 'bg-gradient-to-br from-green-500 to-green-600' :
+                    index === 1 ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
+                    index === 2 ? 'bg-gradient-to-br from-orange-500 to-orange-600' :
+                    'bg-gradient-to-br from-gray-500 to-gray-600'
+                  }`}>
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-xl text-gray-900">{group.groupName}</h3>
+                    {group.projectedSeats >= majorityMark && (
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <span className="text-lg">👑</span>
+                        <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">Majority</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg text-gray-900">{group.groupName}</h3>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold" style={{ color: group.groupColor }}>
-                    {group.projectedSeats}
-                  </span>
-                  <span className="text-lg text-gray-500">/ {totalSeats}</span>
+                <div className="text-right">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-5xl md:text-6xl font-black tracking-tight" style={{ color: group.groupColor }}>
+                      {group.projectedSeats}
+                    </span>
+                    <span className="text-xl text-gray-400 font-medium">/ {totalSeats}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Progress Bar */}
-            <div className="relative h-12 bg-gray-100 rounded-lg overflow-hidden">
-              {/* Majority Mark Line */}
-              {index === 0 && (
-                <div 
-                  className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-10"
-                  style={{ left: `${(majorityMark / totalSeats) * 100}%` }}
-                >
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-red-600 font-semibold whitespace-nowrap">
-                    Majority: {majorityMark}
+            {/* Card Body - Progress Bar */}
+            <div className="px-5 py-4">
+              <div className="relative h-16 bg-gray-100 rounded-xl overflow-hidden shadow-inner">
+                {/* Majority Mark Line - Only show on first item */}
+                {index === 0 && (
+                  <div 
+                    className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-20"
+                    style={{ left: `${(majorityMark / totalSeats) * 100}%` }}
+                  >
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded whitespace-nowrap shadow-sm">
+                      Majority: {majorityMark}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* Projected Seats Bar */}
-              <div
-                className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out"
-                style={{
-                  width: `${(group.projectedSeats / totalSeats) * 100}%`,
-                  background: `linear-gradient(90deg, ${group.groupColor}, ${group.groupColor}dd)`
-                }}
-              />
+                {/* Animated Progress Bar */}
+                <div
+                  className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out rounded-xl"
+                  style={{
+                    width: `${(group.projectedSeats / totalSeats) * 100}%`,
+                    background: `linear-gradient(135deg, ${group.groupColor} 0%, ${group.groupColor}cc 100%)`,
+                    boxShadow: `0 0 20px ${group.groupColor}40`
+                  }}
+                >
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+                </div>
 
-              {/* Leading In Badge */}
-              {group.leadingIn > 0 && (
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 shadow-sm border border-gray-200">
-                  Leading in {group.leadingIn} seats
-                </div>
-              )}
-              
-              {/* Majority Badge */}
-              {group.projectedSeats >= majorityMark && (
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white font-bold text-sm drop-shadow-lg flex items-center gap-1">
-                  <span className="text-xl">👑</span>
-                  <span>Majority</span>
-                </div>
-              )}
+                {/* Leading Badge */}
+                {group.leadingIn > 0 && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 z-10">
+                    <div className="bg-white px-4 py-2 rounded-full shadow-lg border-2" style={{ borderColor: group.groupColor }}>
+                      <span className="font-bold text-sm" style={{ color: group.groupColor }}>
+                        Leading in {group.leadingIn} seats
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ))}
@@ -180,13 +200,14 @@ export default function PredictionGraph() {
       )}
 
       {/* Disclaimer */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <p className="text-sm text-gray-600 text-center hindi-text flex items-center justify-center gap-2">
-          <svg className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+      <div className="bg-amber-50 border-t border-amber-100 px-6 py-4 mt-6">
+        <p className="text-sm text-gray-700 text-center hindi-text flex items-center justify-center gap-2">
+          <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
           </svg>
           यह एक ओपिनियन पोल आधारित पूर्वानुमान है, आधिकारिक परिणाम नहीं
         </p>
+      </div>
       </div>
     </div>
   )
