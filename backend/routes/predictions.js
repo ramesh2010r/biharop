@@ -11,15 +11,14 @@ const AAP_ALLIANCE = ['AAP']; // Aam Aadmi Party
 // Simple prediction: Count which party is leading (most votes) in each constituency
 router.get('/predictions', async (req, res) => {
   try {
-    // Step 1: Get the leading party in each constituency (simple: whoever has most votes wins)
+    // Step 1: Get vote counts by party in each constituency
     const [constituencies] = await db.query(`
       SELECT 
         o.constituency_id,
         con.name_english as constituency_name,
         p.short_code as party_abbreviation,
         p.name_english as party_name,
-        COUNT(o.id) as votes,
-        ROUND(COUNT(o.id) * 100.0 / SUM(COUNT(o.id)) OVER (PARTITION BY o.constituency_id), 2) as vote_percentage
+        COUNT(o.id) as votes
       FROM Opinions o
       JOIN Candidates c ON o.candidate_id = c.id
       JOIN Parties p ON c.party_id = p.id
@@ -38,20 +37,32 @@ router.get('/predictions', async (req, res) => {
       });
     }
 
-    // Step 2: For each constituency, find the winner (party with most votes)
+    // Step 2: Calculate vote percentages per constituency and find winners
+    const constituencyVotes = {}; // Track total votes per constituency
+    constituencies.forEach(row => {
+      const constId = row.constituency_id;
+      if (!constituencyVotes[constId]) {
+        constituencyVotes[constId] = 0;
+      }
+      constituencyVotes[constId] += parseInt(row.votes);
+    });
+
+    // Now calculate percentages and find winners
     const constituencyWinners = {};
     const partyVoteData = {};
     
     constituencies.forEach(row => {
       const constId = row.constituency_id;
       const party = row.party_abbreviation;
+      const votes = parseInt(row.votes);
+      const percentage = ((votes / constituencyVotes[constId]) * 100).toFixed(2);
       
-      // Track winner per constituency
-      if (!constituencyWinners[constId] || row.votes > constituencyWinners[constId].votes) {
+      // Track winner per constituency (highest votes)
+      if (!constituencyWinners[constId] || votes > constituencyWinners[constId].votes) {
         constituencyWinners[constId] = {
           party: party,
-          votes: row.votes,
-          percentage: row.vote_percentage,
+          votes: votes,
+          percentage: parseFloat(percentage),
           name: row.constituency_name
         };
       }
@@ -59,12 +70,12 @@ router.get('/predictions', async (req, res) => {
       // Track total votes per party across all constituencies
       if (!partyVoteData[party]) {
         partyVoteData[party] = {
-          name: row.party_name,
+          name: row.party_name || party,
           totalVotes: 0,
           seatsWon: 0
         };
       }
-      partyVoteData[party].totalVotes += parseInt(row.votes);
+      partyVoteData[party].totalVotes += votes;
     });
 
     // Step 3: Count seats won by each party
