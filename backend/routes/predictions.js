@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../config/database');
 
 // Updated Party alliance mappings based on Bihar Election 2025
-const INDIA_ALLIANCE = ['INC', 'RJD', 'CPIM', 'CPI', 'CPI(ML)', 'CONG', 'RLD'];
-const NDA_ALLIANCE = ['BJP', 'JDU', 'LJP', 'LJPRV', 'HAM', 'RLJP'];
-const JAN_SURAJ = ['JSKP', 'JSP']; // Jan Suraaj Party (Prashant Kishor)
+const NDA_ALLIANCE = ['BJP', 'JDU', 'JD(U)', 'LJP-RV', 'LJPRV', 'RLM', 'HAM']; // NDA: BJP (101), JD(U) (101), LJP-RV (29), RLM (6), HAM (6)
+const INDIA_ALLIANCE = ['INC', 'CONG', 'RJD', 'NCP', 'DMK', 'TMC', 'CPI', 'CPIM', 'CPI(M)', 'CPI(ML)', 'JD(S)', 'IUML', 'RLD', 'AIFB', 'PDP']; // INDIA Alliance
+const JAN_SURAJ = ['JSKP', 'JSP', 'JAN SURAJ']; // Jan Suraaj Party (Prashant Kishor)
 const AAP_ALLIANCE = ['AAP']; // Aam Aadmi Party
 
 // Simple prediction: Count which party is leading (most votes) in each constituency
@@ -130,12 +130,12 @@ router.get('/predictions', async (req, res) => {
       };
     };
 
-    // Calculate for all alliances
+    // Calculate for all alliances - Order: NDA, INDIA, Jan Suraaj, AAP, Others
     const allPredictions = [
-      calculateAllianceData('NDA', NDA_ALLIANCE, '#FF6B00'),
-      calculateAllianceData('INDIA', INDIA_ALLIANCE, '#FF9933'),
-      calculateAllianceData('Jan Suraaj', JAN_SURAJ, '#00A86B'),
-      calculateAllianceData('AAP', AAP_ALLIANCE, '#0066CC')
+      calculateAllianceData('NDA', NDA_ALLIANCE, '#FF6600'), // Orange (BJP color theme)
+      calculateAllianceData('INDIA', INDIA_ALLIANCE, '#138808'), // Green (Congress theme)
+      calculateAllianceData('Jan Suraaj', JAN_SURAJ, '#0088CC'), // Blue
+      calculateAllianceData('AAP', AAP_ALLIANCE, '#0066FF') // Dark Blue (AAP theme)
     ];
 
     // Add Others (parties not in any major alliance)
