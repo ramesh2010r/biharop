@@ -103,7 +103,7 @@ export default function PredictionGraph() {
           <div key={group.groupName} className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
                   index === 0 ? 'bg-gradient-to-r from-green-500 to-green-600' :
                   index === 1 ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
                   index === 2 ? 'bg-gradient-to-r from-orange-500 to-orange-600' :
@@ -112,26 +112,22 @@ export default function PredictionGraph() {
                   {index + 1}
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900">{group.groupName}</h3>
-                  <p className="text-xs text-gray-500">
-                    {group.parties.slice(0, 3).join(', ')}
-                    {group.parties.length > 3 && ` +${group.parties.length - 3} more`}
-                  </p>
+                  <h3 className="font-bold text-lg text-gray-900">{group.groupName}</h3>
                 </div>
               </div>
               <div className="text-right">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold" style={{ color: group.groupColor }}>
+                  <span className="text-4xl font-bold" style={{ color: group.groupColor }}>
                     {group.projectedSeats}
                   </span>
-                  <span className="text-sm text-gray-500">/ {totalSeats}</span>
+                  <span className="text-gray-500">/ {totalSeats}</span>
                 </div>
-                <p className="text-xs text-gray-500">{group.percentage.toFixed(1)}% votes</p>
+                <p className="text-sm text-gray-600">{group.percentage.toFixed(1)}% votes</p>
               </div>
             </div>
 
             {/* Progress Bar */}
-            <div className="relative h-10 bg-gray-100 rounded-lg overflow-hidden">
+            <div className="relative h-12 bg-gray-100 rounded-lg overflow-hidden">
               {/* Majority Mark Line */}
               {index === 0 && (
                 <div 
@@ -146,21 +142,25 @@ export default function PredictionGraph() {
 
               {/* Projected Seats Bar */}
               <div
-                className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out flex items-center justify-end px-3"
+                className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out"
                 style={{
                   width: `${(group.projectedSeats / totalSeats) * 100}%`,
                   background: `linear-gradient(90deg, ${group.groupColor}, ${group.groupColor}dd)`
                 }}
-              >
-                <span className="text-white font-bold text-sm drop-shadow">
-                  {group.projectedSeats >= majorityMark && '👑 Majority'}
-                </span>
-              </div>
+              />
 
               {/* Leading In Badge */}
               {group.leadingIn > 0 && (
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-700 shadow-md">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 shadow-sm border border-gray-200">
                   Leading in {group.leadingIn} seats
+                </div>
+              )}
+              
+              {/* Majority Badge */}
+              {group.projectedSeats >= majorityMark && (
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white font-bold text-sm drop-shadow-lg flex items-center gap-1">
+                  <span className="text-xl">👑</span>
+                  <span>Majority</span>
                 </div>
               )}
             </div>
@@ -187,10 +187,12 @@ export default function PredictionGraph() {
       )}
 
       {/* Disclaimer */}
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <p className="text-xs text-gray-500 text-center">
-          ⚠️ यह एक ओपिनियन पोल आधारित पूर्वानुमान है, आधिकारिक परिणाम नहीं | 
-          This is an opinion poll-based prediction, not official results
+      <div className="mt-6 pt-4 border-t border-gray-200">
+        <p className="text-sm text-gray-600 text-center hindi-text flex items-center justify-center gap-2">
+          <svg className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+          यह एक ओपिनियन पोल आधारित पूर्वानुमान है, आधिकारिक परिणाम नहीं
         </p>
       </div>
     </div>
