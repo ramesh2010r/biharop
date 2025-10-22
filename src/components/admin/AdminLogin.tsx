@@ -102,19 +102,6 @@ export default function AdminLogin() {
               {loading ? 'लॉगिन हो रहा है...' : 'लॉगिन करें'}
             </button>
           </form>
-
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-xs text-gray-600 hindi-text mb-2">
-              <strong>डिफ़ॉल्ट क्रेडेंशियल:</strong>
-            </p>
-            <p className="text-xs text-gray-600 font-mono">
-              Username: admin<br />
-              Password: admin123
-            </p>
-            <p className="text-xs text-red-600 mt-2">
-              ⚠️ प्रोडक्शन में इन्हें बदलना न भूलें!
-            </p>
-          </div>
         </div>
 
         {/* Back to Home */}

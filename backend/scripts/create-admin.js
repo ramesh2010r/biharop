@@ -39,33 +39,33 @@ async function createDefaultAdmin() {
     // Check if admin already exists
     const [existingAdmins] = await connection.query(
       'SELECT * FROM Admins WHERE username = ?',
-      ['admin']
+      ['adminuser']
     );
 
     if (existingAdmins.length > 0) {
-      console.log('⚠️  Default admin already exists');
-      console.log('Username: admin');
+      console.log('⚠️  Admin user already exists');
+      console.log('Username: adminuser');
       console.log('\nTo reset password, delete the admin user and run this script again.');
       await connection.end();
       process.exit(0);
     }
 
     // Create default admin
-    const defaultPassword = 'admin123';
+    const defaultPassword = 'Test@123';
     const hashedPassword = await bcrypt.hash(defaultPassword, 10);
 
     await connection.query(
       'INSERT INTO Admins (username, password_hash, role) VALUES (?, ?, ?)',
-      ['admin', hashedPassword, 'Super Admin']
+      ['adminuser', hashedPassword, 'Super Admin']
     );
 
-    console.log('\n✅ Default admin created successfully!');
+    console.log('\n✅ Admin user created successfully!');
     console.log('═══════════════════════════════════════');
-    console.log('Username: admin');
-    console.log('Password: admin123');
+    console.log('Username: adminuser');
+    console.log('Password: Test@123');
     console.log('Role: Super Admin');
     console.log('═══════════════════════════════════════');
-    console.log('\n⚠️  IMPORTANT: Change this password after first login!');
+    console.log('\n⚠️  IMPORTANT: Keep these credentials secure!');
     console.log('Login at: http://localhost:3000/admin\n');
 
   } catch (error) {

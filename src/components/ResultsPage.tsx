@@ -636,12 +636,10 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
           </div>
         )}
 
-        {/* Alliance-wise Predictions Section - Separate Card */}
-        {!loading && results.length > 0 && selectedConstituency && (
-          <div className="max-w-5xl mx-auto mt-8">
-            <PredictionGraph />
-          </div>
-        )}
+        {/* Alliance-wise Predictions Section - Always Visible Separate Card */}
+        <div className="max-w-5xl mx-auto mt-8">
+          <PredictionGraph />
+        </div>
 
         {/* No results message when constituency selected but no votes */}
         {selectedConstituency && !error && results.length === 0 && !loading && (
