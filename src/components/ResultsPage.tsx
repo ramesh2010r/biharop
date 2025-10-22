@@ -372,68 +372,113 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
       <DisclaimerBanner />
 
       <main className="container mx-auto px-4 py-8">
-        {/* Unified Card - Always show selection at top */}
+        {/* Enhanced Selection Card - Always show at top */}
         {!loading && !blackoutStatus.isBlackout && (
-          <div className="max-w-4xl mx-auto mb-8">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-              {/* Section 1: Selection Area with Gradient - ALWAYS VISIBLE */}
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 py-6 md:py-8 px-4 md:px-6">
-                <h2 className="text-lg md:text-xl font-bold text-white hindi-text mb-4 text-center">
-                  क्षेत्र चयन
-                </h2>
-                <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+          <div className="max-w-5xl mx-auto mb-8">
+            {/* Main Selection Card with Modern Design */}
+            <div className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 rounded-3xl shadow-2xl overflow-hidden">
+              {/* Decorative Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -mr-32 -mt-32"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full -ml-24 -mb-24"></div>
+              </div>
+
+              {/* Content Container */}
+              <div className="relative z-10 p-6 md:p-10">
+                {/* Header with Icon */}
+                <div className="flex items-center justify-center mb-6 md:mb-8">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-7 h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white hindi-text">
+                      क्षेत्र चयन
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Selection Grid */}
+                <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6">
                   {/* District Selector */}
-                  <div>
-                    <label className="block text-sm font-semibold text-white hindi-text mb-2">
-                      जिला चुनें
+                  <div className="space-y-3">
+                    <label className="flex items-center space-x-2 text-white hindi-text font-semibold text-sm md:text-base">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                      </svg>
+                      <span>जिला चुनें</span>
                     </label>
-                    <select
-                      value={selectedDistrict || ''}
-                      onChange={(e) => handleDistrictSelect(Number(e.target.value))}
-                      className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm md:text-base"
-                    >
-                      <option value="">-- जिला चुनें --</option>
-                      {districts.map((district) => (
-                        <option key={district.id} value={district.id}>
-                          {district.name_hindi}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={selectedDistrict || ''}
+                        onChange={(e) => handleDistrictSelect(Number(e.target.value))}
+                        className="w-full px-4 md:px-5 py-3 md:py-4 bg-white border-2 border-transparent rounded-xl focus:ring-4 focus:ring-white/30 focus:border-white text-gray-800 font-medium text-sm md:text-base appearance-none cursor-pointer transition-all duration-200 hover:shadow-lg"
+                      >
+                        <option value="">-- जिला चुनें --</option>
+                        {districts.map((district) => (
+                          <option key={district.id} value={district.id}>
+                            {district.name_hindi}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Constituency Selector */}
-                  <div>
-                    <label className="block text-sm font-semibold text-white hindi-text mb-2">
-                      विधानसभा चुनें
+                  <div className="space-y-3">
+                    <label className="flex items-center space-x-2 text-white hindi-text font-semibold text-sm md:text-base">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                      </svg>
+                      <span>विधानसभा चुनें</span>
                     </label>
-                    <select
-                      value={selectedConstituency || ''}
-                      onChange={(e) => handleConstituencySelect(Number(e.target.value))}
-                      disabled={!selectedDistrict}
-                      className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-transparent disabled:bg-gray-100 text-sm md:text-base"
-                    >
-                      <option value="">-- विधानसभा चुनें --</option>
-                      {constituencies.map((constituency) => (
-                        <option key={constituency.id} value={constituency.id}>
-                          {constituency.name_hindi}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={selectedConstituency || ''}
+                        onChange={(e) => handleConstituencySelect(Number(e.target.value))}
+                        disabled={!selectedDistrict}
+                        className="w-full px-4 md:px-5 py-3 md:py-4 bg-white border-2 border-transparent rounded-xl focus:ring-4 focus:ring-white/30 focus:border-white text-gray-800 font-medium text-sm md:text-base appearance-none cursor-pointer disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 transition-all duration-200 hover:shadow-lg disabled:hover:shadow-none"
+                      >
+                        <option value="">-- विधानसभा चुनें --</option>
+                        {constituencies.map((constituency) => (
+                          <option key={constituency.id} value={constituency.id}>
+                            {constituency.name_hindi}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Placeholder message when no selection */}
+
+                {/* Info Message with Animation */}
                 {!selectedDistrict && (
-                  <div className="mt-4 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-3">
-                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                        <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
-                      </svg>
+                  <div className="mt-6 p-4 md:p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                    <div className="flex items-start space-x-3 md:space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
+                          <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white text-sm md:text-base hindi-text font-medium leading-relaxed">
+                          परिणाम देखने के लिए कृपया जिला और विधानसभा का चयन करें
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-white text-sm hindi-text">
-                      परिणाम देखने के लिए कृपया जिला और विधानसभा का चयन करें
-                    </p>
                   </div>
                 )}
               </div>
