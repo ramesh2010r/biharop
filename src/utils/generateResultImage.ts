@@ -183,14 +183,14 @@ export function generateResultImage(params: ImageGenerationParams): Promise<stri
       ctx.textAlign = 'center'
       ctx.fillText('© 2025 Bihar Opinion Poll. All rights reserved.', canvas.width / 2, yPosition)
 
-      // Convert to data URL
-      resolve(canvas.toDataURL('image/png'))
+      // Convert to data URL (JPEG format with 95% quality)
+      resolve(canvas.toDataURL('image/jpeg', 0.95))
     }
     
     logo.onerror = () => {
       console.error('Failed to load logo')
-      // Still generate image without logo
-      resolve(canvas.toDataURL('image/png'))
+      // Still generate image without logo (JPEG format)
+      resolve(canvas.toDataURL('image/jpeg', 0.95))
     }
   })
 }

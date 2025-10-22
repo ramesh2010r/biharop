@@ -285,7 +285,7 @@ export default function ResultsPage() {
 
     if (imageDataUrl) {
       const link = document.createElement('a')
-      link.download = `bihar-poll-results-${constituencyName}.png`
+      link.download = `bihar-poll-results-${constituencyName}.jpg`
       link.href = imageDataUrl
       link.click()
     }
