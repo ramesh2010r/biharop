@@ -372,38 +372,12 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
       <DisclaimerBanner />
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 hindi-text mb-6 md:mb-8 text-center">
-          ओपिनियन पोल के परिणाम
-        </h1>
-
-        {/* Prediction Graph - Real-time Winner Prediction */}
-        {!blackoutStatus.isBlackout && (
-          <div className="max-w-5xl mx-auto mb-8">
-            <PredictionGraph />
-          </div>
-        )}
-
-        {/* Error Message */}
-        {error && (
-          <div className="max-w-4xl mx-auto mb-4 bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
-            <p className="text-red-700 hindi-text">{error}</p>
-          </div>
-        )}
-
-        {/* Loading State */}
-        {loading && (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-            <p className="mt-4 text-gray-600 hindi-text">परिणाम लोड हो रहे हैं...</p>
-          </div>
-        )}
-
-        {/* Unified Card - Always show selection, conditionally show results */}
+        {/* Unified Card - Always show selection at top */}
         {!loading && !blackoutStatus.isBlackout && (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto mb-8">
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               {/* Section 1: Selection Area with Gradient - ALWAYS VISIBLE */}
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 py-6 md:py-8 px-4 md:px-6 border-b-2 border-gray-200">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 py-6 md:py-8 px-4 md:px-6">
                 <h2 className="text-lg md:text-xl font-bold text-white hindi-text mb-4 text-center">
                   क्षेत्र चयन
                 </h2>
@@ -447,8 +421,56 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
                     </select>
                   </div>
                 </div>
+                
+                {/* Placeholder message when no selection */}
+                {!selectedDistrict && (
+                  <div className="mt-4 text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-3">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                        <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
+                      </svg>
+                    </div>
+                    <p className="text-white text-sm hindi-text">
+                      परिणाम देखने के लिए कृपया जिला और विधानसभा का चयन करें
+                    </p>
+                  </div>
+                )}
               </div>
+            </div>
+          </div>
+        )}
 
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 hindi-text mb-6 md:mb-8 text-center">
+          ओपिनियन पोल के परिणाम
+        </h1>
+
+        {/* Prediction Graph - Real-time Winner Prediction */}
+        {!blackoutStatus.isBlackout && (
+          <div className="max-w-5xl mx-auto mb-8">
+            <PredictionGraph />
+          </div>
+        )}
+
+        {/* Error Message */}
+        {error && (
+          <div className="max-w-4xl mx-auto mb-4 bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
+            <p className="text-red-700 hindi-text">{error}</p>
+          </div>
+        )}
+
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+            <p className="mt-4 text-gray-600 hindi-text">परिणाम लोड हो रहे हैं...</p>
+          </div>
+        )}
+
+        {/* Results Display Card */}
+        {!loading && !blackoutStatus.isBlackout && results.length > 0 && (
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               {/* Section 2: Results Display - Only show if results exist */}
               {results.length > 0 && (
                 <>
@@ -585,33 +607,24 @@ ${topCandidate?.percentage.toFixed(1)}% वोट
               </div>
             </>
               )}
-
-              {/* Prompt message when no constituency selected */}
-              {!selectedConstituency && (
-                <div className="py-8 md:py-12 px-4 md:px-6 text-center bg-gradient-to-br from-blue-50 to-orange-50">
-                  <svg className="w-12 h-12 md:w-16 md:h-16 text-primary-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                    <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-base md:text-lg text-gray-700 hindi-text">परिणाम देखने के लिए कृपया जिला और विधानसभा का चयन करें</p>
-                </div>
-              )}
-
-              {/* No results message when constituency selected but no votes */}
-              {selectedConstituency && !error && results.length === 0 && (
-                <div className="py-8 md:py-12 px-4 md:px-6 text-center">
-                  <svg className="w-12 h-12 md:w-16 md:h-16 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-sm md:text-base text-gray-600 hindi-text">इस विधानसभा के लिए अभी तक कोई मत नहीं डाला गया है।</p>
-                </div>
-              )}
             </div>
-
-            {/* Hidden canvas for image generation */}
-            {results.length > 0 && <canvas ref={canvasRef} style={{ display: 'none' }} />}
           </div>
         )}
+
+        {/* No results message when constituency selected but no votes */}
+        {selectedConstituency && !error && results.length === 0 && !loading && (
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden py-8 md:py-12 px-4 md:px-6 text-center">
+              <svg className="w-12 h-12 md:w-16 md:h-16 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <p className="text-sm md:text-base text-gray-600 hindi-text">इस विधानसभा के लिए अभी तक कोई मत नहीं डाला गया है।</p>
+            </div>
+          </div>
+        )}
+
+        {/* Hidden canvas for image generation */}
+        {results.length > 0 && <canvas ref={canvasRef} style={{ display: 'none' }} />}
 
       </main>
 
