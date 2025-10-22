@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function AdminLogin() {
   const router = useRouter()
@@ -118,9 +119,9 @@ export default function AdminLogin() {
 
         {/* Back to Home */}
         <div className="text-center mt-6">
-          <a href="/" className="text-primary-600 hover:text-primary-700 text-sm">
+          <Link href="/" className="text-primary-600 hover:text-primary-700 text-sm">
             ← होम पेज पर वापस जाएं
-          </a>
+          </Link>
         </div>
 
         {/* Footer */}

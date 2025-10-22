@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-blue-50 flex items-center justify-center p-4">
@@ -15,15 +17,15 @@ export default function NotFound() {
         <p className="text-sm text-gray-500 mb-8">
           क्षमा करें, यह पृष्ठ मौजूद नहीं है।
           <br />
-          Sorry, the page you are looking for doesn't exist.
+          Sorry, the page you are looking for doesn&apos;t exist.
         </p>
         
-        <a
+        <Link
           href="/"
           className="inline-block px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
         >
           मुख्य पृष्ठ पर जाएं / Go to Home
-        </a>
+        </Link>
       </div>
     </div>
   )

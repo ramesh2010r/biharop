@@ -2930,7 +2930,7 @@ interface District {
                   <p className="text-xs font-semibold text-blue-900 mb-2">💡 Tips:</p>
                   <ul className="text-xs text-blue-800 space-y-1">
                     <li>• Recommended size: 200x200px, transparent background</li>
-                    <li>• For Independents: Use generic "IND" symbol</li>
+                    <li>• For Independents: Use generic &quot;IND&quot; symbol</li>
                     <li>• Supports: PNG, JPG, SVG, GIF, WEBP</li>
                   </ul>
                 </div>
