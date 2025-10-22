@@ -28,7 +28,7 @@ export default function PredictionGraph() {
 
   const fetchPredictions = async () => {
     try {
-      const response = await fetch(getApiUrl('/api/results/predictions'))
+      const response = await fetch(getApiUrl('/api/predictions/predictions'))
       if (response.ok) {
         const data = await response.json()
         setPredictions(data.predictions || [])

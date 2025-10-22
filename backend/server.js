@@ -56,8 +56,8 @@ app.use('/api/districts', districtRoutes);
 app.use('/api/constituencies', constituencyRoutes);
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/vote', voteRoutes);
+app.use('/api/predictions', predictionsRoutes); // Changed from /api/results to avoid conflict
 app.use('/api/results', resultsRoutes);
-app.use('/api/results', predictionsRoutes);
 app.use('/api/blackout-status', complianceRoutes);
 app.use('/api/settings', settingsRoutes); // Public settings
 app.use('/api/admin', adminRoutes);
