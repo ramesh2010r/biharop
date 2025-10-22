@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 1200px;
+            height: 630px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .border {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 10px solid #d97706;
+            border-radius: 15px;
+        }
+        .content {
+            text-align: center;
+            padding: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .logo-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-center;
+            margin: 0 auto 30px;
+            border: 6px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            font-size: 70px;
+        }
+        .main-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #78350f;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            font-size: 38px;
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .success-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            padding: 30px 45px;
+            border-radius: 15px;
+            border: 3px solid #16a34a;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+        .success-text {
+            font-size: 42px;
+            font-weight: bold;
+            color: #15803d;
+            margin-bottom: 10px;
+        }
+        .success-english {
+            font-size: 32px;
+            color: #166534;
+            font-style: italic;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 25px 40px;
+            border-radius: 15px;
+            border: 3px solid #f59e0b;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+        .cta-hindi {
+            font-size: 38px;
+            font-weight: bold;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+        .cta-english {
+            font-size: 30px;
+            color: #92400e;
+            font-weight: 600;
+        }
+        .website-url {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e3a8a;
+            background: white;
+            padding: 15px 40px;
+            border-radius: 12px;
+            border: 3px solid #3b82f6;
+            display: inline-block;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+        .decoration {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #f59e0b;
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+        .decoration-1 {
+            top: 50px;
+            left: 50px;
+        }
+        .decoration-2 {
+            bottom: 50px;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="border"></div>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="content">
+        <div class="logo-badge">🗳️</div>
+        <div class="main-title">बिहार चुनाव ओपिनियन पोल</div>
+        <div class="subtitle">Bihar Election Opinion Poll 2025</div>
+        
+        <div class="success-box">
+            <div class="success-text">✅ मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है</div>
+            <div class="success-english">I have successfully cast my vote</div>
+        </div>
+        
+        <div class="cta-box">
+            <div class="cta-hindi">👇 आप भी नीचे दिए गए लिंक पर क्लिक करके दर्ज करें</div>
+            <div class="cta-english">Click the link below to cast your vote</div>
+        </div>
+        
+        <div class="website-url">🔗 opinionpoll.co.in</div>
+    </div>
+</body>
+</html>

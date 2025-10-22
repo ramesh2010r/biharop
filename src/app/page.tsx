@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: 'Bihar Opinion Poll',
     images: [
       {
-        url: '/api/og-image',
+        url: 'https://opinionpoll.co.in/images/og-share-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Bihar Election Opinion Poll 2025 - Cast Your Vote',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
     description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी अपनी राय दें।',
-    images: ['/api/og-image'],
+    images: ['https://opinionpoll.co.in/images/og-share-image.jpg'],
   },
   keywords: [
     // High-volume primary keywords
