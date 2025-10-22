@@ -16,7 +16,7 @@ router.get('/predictions', async (req, res) => {
       SELECT 
         o.constituency_id,
         con.name_english as constituency_name,
-        p.abbreviation as party_abbreviation,
+        p.short_code as party_abbreviation,
         p.name_english as party_name,
         COUNT(o.id) as votes,
         ROUND(COUNT(o.id) * 100.0 / SUM(COUNT(o.id)) OVER (PARTITION BY o.constituency_id), 2) as vote_percentage
@@ -24,7 +24,7 @@ router.get('/predictions', async (req, res) => {
       JOIN Candidates c ON o.candidate_id = c.id
       JOIN Parties p ON c.party_id = p.id
       JOIN Constituencies con ON o.constituency_id = con.id
-      GROUP BY o.constituency_id, con.name_english, p.id, p.abbreviation, p.name_english
+      GROUP BY o.constituency_id, con.name_english, p.id, p.short_code, p.name_english
       ORDER BY o.constituency_id, votes DESC
     `);
 
