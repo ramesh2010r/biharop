@@ -287,6 +287,47 @@ export default function ConfirmationPage() {
     }
   }
 
+  // Share only text + link (no image) using Web Share API or fallbacks
+  const handleShareTextOnly = async () => {
+    if (!voteData) return
+    const shareUrl = 'https://opinionpoll.co.in'
+    const shareText = `मैंने बिहार चुनाव ओपिनियन पोल में अपना मत ${voteData.constituency_name}, ${voteData.district_name} से दिया। आप भी अपनी राय दें!`
+    const fullText = `${shareText}\n\n${shareUrl}`
+
+    // Try Web Share API first
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'बिहार चुनाव ओपिनियन पोल',
+          text: fullText,
+          url: shareUrl,
+        })
+        return
+      } catch (err) {
+        if ((err as Error).name === 'AbortError') return
+        // continue to fallback
+      }
+    }
+
+    // Fallback 1: WhatsApp deep link (most reliable to deliver text)
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`
+    const opened = window.open(waUrl, '_blank', 'noopener')
+    if (opened) return
+
+    // Fallback 2: Telegram deep link
+    const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`
+    const openedTg = window.open(tgUrl, '_blank', 'noopener')
+    if (openedTg) return
+
+    // Final fallback: copy to clipboard and notify
+    try {
+      await navigator.clipboard.writeText(fullText)
+      alert('टेक्स्ट कॉपी हो गया है। कृपया अपने मैसेज ऐप में जाकर पेस्ट करें।')
+    } catch {
+      alert(fullText)
+    }
+  }
+
   // Generate and download share image with certificate design
   const generateShareImage = async () => {
     if (!canvasRef.current || !voteData) return
@@ -563,6 +604,17 @@ export default function ConfirmationPage() {
                   <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
+                </button>
+              </div>
+
+              {/* Text-only share helper */}
+              <div className="mt-4 flex justify-center">
+                <button
+                  onClick={handleShareTextOnly}
+                  className="px-4 py-2 rounded-lg border border-blue-600 text-blue-700 hover:bg-blue-50 font-semibold hindi-text transition-colors"
+                  title="सिर्फ टेक्स्ट और लिंक शेयर करें"
+                >
+                  सिर्फ टेक्स्ट शेयर करें
                 </button>
               </div>
             </div>
