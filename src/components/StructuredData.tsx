@@ -233,6 +233,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
           '@id': 'https://opinionpoll.co.in/#faq',
+          name: 'Bihar Opinion Poll 2025 - Frequently Asked Questions',
+          description: 'Common questions about Bihar Assembly Elections 2025 opinion poll - voting process, privacy, results, and election information.',
           mainEntity: data?.questions || [
             {
               '@type': 'Question',
