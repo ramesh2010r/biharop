@@ -96,38 +96,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
               },
               description: 'Cast your opinion poll vote for Bihar Assembly Elections 2025'
             }
-          ],
-          about: {
-            '@type': 'Event',
-            name: 'Bihar Assembly Elections 2025',
-            description: '243 constituency assembly elections in Bihar',
-            startDate: '2025-11-01T00:00:00+05:30',
-            endDate: '2025-11-30T23:59:59+05:30',
-            eventStatus: 'https://schema.org/EventScheduled',
-            location: {
-              '@type': 'State',
-              name: 'Bihar',
-              addressCountry: 'IN',
-              address: {
-                '@type': 'PostalAddress',
-                addressRegion: 'Bihar',
-                addressCountry: 'IN'
-              }
-            },
-            image: 'https://opinionpoll.co.in/images/Logo_OP.webp',
-            organizer: {
-              '@id': 'https://opinionpoll.co.in/#organization'
-            },
-            eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
-            isAccessibleForFree: true,
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'INR',
-              availability: 'https://schema.org/InStock',
-              url: 'https://opinionpoll.co.in/vote'
-            }
-          }
+          ]
         }
 
       case 'dataset':
