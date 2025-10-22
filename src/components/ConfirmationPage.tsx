@@ -256,63 +256,27 @@ export default function ConfirmationPage() {
       const shareUrl = 'https://opinionpoll.co.in'
       const fullText = `${shareText}\n\n${shareUrl}`
 
-      // Detect if Android
-      const isAndroid = /Android/i.test(navigator.userAgent)
-
       // Check if Web Share API is supported
       if (navigator.share) {
         try {
-          // For Android: Copy text to clipboard first, then show instructions
-          if (isAndroid) {
-            try {
-              await navigator.clipboard.writeText(fullText)
-              
-              // Show instructions to user BEFORE sharing
-              const proceed = confirm(
-                '✅ संदेश कॉपी हो गया!\n\n' +
-                'अब इमेज शेयर करें:\n' +
-                '1. OK दबाएं\n' +
-                '2. WhatsApp/Telegram चुनें\n' +
-                '3. इमेज भेजें\n' +
-                '4. फिर मैसेज बॉक्स में लॉन्ग प्रेस करके "Paste" करें\n\n' +
-                '---\n\n' +
-                '✅ Message copied!\n\n' +
-                'Now share image:\n' +
-                '1. Press OK\n' +
-                '2. Choose WhatsApp/Telegram\n' +
-                '3. Send image\n' +
-                '4. Long press in message box and "Paste"'
-              )
-              
-              if (!proceed) return
-            } catch (clipErr) {
-              console.log('Clipboard failed:', clipErr)
-            }
-          }
-
-          // Share the image
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल',
-              text: isAndroid ? '' : fullText, // Don't include text on Android as it's ignored
-              files: [file],
-            })
-          } else {
-            // Fallback: Just share text without image
-            await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल',
-              text: fullText,
-            })
-          }
+          // Try sharing with title, text AND files together (as per Web Share API spec)
+          await navigator.share({
+            title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
+            text: fullText,
+            files: [file],
+          })
+          console.log('Content shared successfully')
         } catch (shareErr) {
           console.error('Share error:', shareErr)
-          // If share fails, offer download
-          const link = document.createElement('a')
-          link.download = fileName
-          link.href = URL.createObjectURL(blob)
-          link.click()
-          URL.revokeObjectURL(link.href)
-          alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
+          // If share was cancelled or failed, offer download
+          if ((shareErr as Error).name !== 'AbortError') {
+            const link = document.createElement('a')
+            link.download = fileName
+            link.href = URL.createObjectURL(blob)
+            link.click()
+            URL.revokeObjectURL(link.href)
+            alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
+          }
         }
       } else {
         alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें और मैन्युअली शेयर करें।')
