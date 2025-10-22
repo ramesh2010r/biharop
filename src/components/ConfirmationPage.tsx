@@ -23,6 +23,7 @@ export default function ConfirmationPage() {
   const [voteData, setVoteData] = useState<VoteData | null>(null)
   const [showShareMenu, setShowShareMenu] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -43,6 +44,11 @@ export default function ConfirmationPage() {
         console.error('Error parsing vote data:', err)
       }
     }
+
+    // Detect iOS
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    setIsIOS(iOS)
   }, [])
 
   // Polyfill for roundRect if not available
@@ -256,30 +262,49 @@ export default function ConfirmationPage() {
       const shareUrl = 'https://opinionpoll.co.in'
       const fullText = `${shareText}\n\n${shareUrl}`
 
-      // Check if Web Share API is supported
-      if (navigator.share) {
-        try {
-          // Try sharing with title, text AND files together (as per Web Share API spec)
-          await navigator.share({
-            title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
-            text: fullText,
-            files: [file],
-          })
-          console.log('Content shared successfully')
-        } catch (shareErr) {
-          console.error('Share error:', shareErr)
-          // If share was cancelled or failed, offer download
-          if ((shareErr as Error).name !== 'AbortError') {
-            const link = document.createElement('a')
-            link.download = fileName
-            link.href = URL.createObjectURL(blob)
-            link.click()
-            URL.revokeObjectURL(link.href)
-            alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
+      // Platform-specific sharing behavior
+      if (isIOS) {
+        // iOS: Share image with text (works well on iOS)
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
+              text: fullText,
+              files: [file],
+            })
+            console.log('Content shared successfully on iOS')
+          } catch (shareErr) {
+            console.error('Share error:', shareErr)
+            if ((shareErr as Error).name !== 'AbortError') {
+              const link = document.createElement('a')
+              link.download = fileName
+              link.href = URL.createObjectURL(blob)
+              link.click()
+              URL.revokeObjectURL(link.href)
+              alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
+            }
           }
         }
       } else {
-        alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें और मैन्युअली शेयर करें।')
+        // Android: Share text only, download button will appear separately
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल',
+              text: fullText,
+            })
+            console.log('Text shared successfully on Android')
+          } catch (shareErr) {
+            console.error('Share error:', shareErr)
+            if ((shareErr as Error).name !== 'AbortError') {
+              const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`
+              window.open(whatsappUrl, '_blank')
+            }
+          }
+        } else {
+          const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`
+          window.open(whatsappUrl, '_blank')
+        }
       }
     } catch (err) {
       console.error('Error sharing:', err)
@@ -607,16 +632,21 @@ export default function ConfirmationPage() {
                 </button>
               </div>
 
-              {/* Text-only share helper */}
-              <div className="mt-4 flex justify-center">
-                <button
-                  onClick={handleShareTextOnly}
-                  className="px-4 py-2 rounded-lg border border-blue-600 text-blue-700 hover:bg-blue-50 font-semibold hindi-text transition-colors"
-                  title="सिर्फ टेक्स्ट और लिंक शेयर करें"
-                >
-                  सिर्फ टेक्स्ट शेयर करें
-                </button>
-              </div>
+              {/* Android: Download Certificate Button */}
+              {!isIOS && (
+                <div className="mt-4 flex justify-center">
+                  <button
+                    onClick={generateShareImage}
+                    className="px-6 py-3 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold hindi-text transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2"
+                    title="सर्टिफिकेट डाउनलोड करें"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    सर्टिफिकेट डाउनलोड करें
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Vote Details Section (if available) */}
