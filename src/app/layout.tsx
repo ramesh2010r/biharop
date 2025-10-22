@@ -66,6 +66,28 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
+  // AI-friendly metadata
+  other: {
+    'google-site-verification': 'your-google-verification-code',
+    'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    'googlebot': 'index, follow',
+    'bingbot': 'index, follow',
+    'language': 'Hindi, English',
+    'coverage': 'Bihar, India',
+    'distribution': 'global',
+    'rating': 'general',
+    'revisit-after': '1 day',
+    'author': 'Bihar Opinion Poll Team',
+    'geo.region': 'IN-BR',
+    'geo.placename': 'Bihar',
+    'geo.position': '25.0961;85.3131',
+    'ICBM': '25.0961, 85.3131',
+    // AI crawlers specific
+    'ai-content-declaration': 'ai-assisted',
+    'content-type': 'political-survey-data',
+    'data-freshness': 'real-time',
+    'update-frequency': 'continuous',
+  },
 }
 
 export default function RootLayout({

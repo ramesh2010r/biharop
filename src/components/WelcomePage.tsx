@@ -14,6 +14,18 @@ export default function WelcomePage() {
       <StructuredData type="organization" />
       <StructuredData type="website" />
       <StructuredData type="faqpage" />
+      <StructuredData type="dataset" />
+      <StructuredData 
+        type="article" 
+        data={{
+          headline: 'Bihar Assembly Elections 2025 - Live Opinion Poll Results',
+          description: 'Real-time opinion poll results from 243 constituencies across Bihar. Anonymous voting, transparent results, comprehensive election analysis.',
+          url: 'https://opinionpoll.co.in',
+          keywords: 'bihar election 2025, opinion poll, assembly election, live results, constituency wise results',
+          datePublished: '2025-01-01',
+          dateModified: new Date().toISOString()
+        }}
+      />
       
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
         <Header />
