@@ -260,20 +260,15 @@ export default function ConfirmationPage() {
       if (navigator.share) {
         try {
           // Try sharing with both text and files
-          if (navigator.canShare && navigator.canShare({ files: [file], text: fullText })) {
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            // Android requires title and text to be shown with image
             await navigator.share({
-              text: fullText,
-              files: [file],
-            })
-          } else if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            // Android fallback: some apps will show text from title
-            await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल',
-              text: fullText,
+              title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
+              text: `${shareText}\n\n🔗 ${shareUrl}\n\nआप भी अपनी राय दें और बिहार के भविष्य में भागीदार बनें!`,
               files: [file],
             })
           } else {
-            // Just share text without image
+            // Fallback: Just share text without image
             await navigator.share({
               title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
               text: fullText,
