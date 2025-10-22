@@ -22,38 +22,90 @@ export default function WelcomePage() {
       <DisclaimerBanner />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        {/* Hero CTA Section - Simplified */}
-        <div className="max-w-3xl mx-auto mb-12">
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-8 text-center text-white">
-            <div className="mb-6">
-              <svg className="w-16 h-16 mx-auto text-white/90 mb-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-              </svg>
-              <h2 className="text-4xl font-bold hindi-text mb-3">
-                अपनी राय दें
-              </h2>
-              <p className="text-xl text-white/90 hindi-text">
-                बिहार विधानसभा चुनाव 2025
-              </p>
+      <main className="container mx-auto px-4 py-6 md:py-8">
+        {/* Hero CTA Section - Enhanced & Attractive */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden">
+            {/* Decorative background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-full h-full" style={{
+                backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                backgroundSize: '40px 40px'
+              }}></div>
             </div>
             
-            <Link 
-              href="/vote" 
-              className="inline-flex items-center space-x-2 bg-white text-orange-600 px-8 py-3 rounded-lg text-lg font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              <span className="hindi-text">अभी मतदान करें</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-            
-            <div className="flex justify-center items-center mt-6 space-x-4 text-sm text-white/80">
-              <span className="hindi-text">✓ गुमनाम</span>
-              <span>•</span>
-              <span className="hindi-text">✓ सुरक्षित</span>
-              <span>•</span>
-              <span className="hindi-text">✓ निष्पक्ष</span>
+            {/* Content */}
+            <div className="relative p-8 md:p-12 lg:p-16 text-center text-white">
+              {/* Icon with animation */}
+              <div className="mb-6 md:mb-8 animate-bounce">
+                <div className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-sm rounded-full mb-4 shadow-xl">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Main heading */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold hindi-text mb-3 md:mb-4 drop-shadow-lg">
+                अपनी राय दें
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl text-white/95 hindi-text mb-8 md:mb-10 font-medium">
+                बिहार विधानसभा चुनाव 2025
+              </p>
+              
+              {/* Prominent CTA Button */}
+              <div className="mb-8 md:mb-10">
+                <Link 
+                  href="/vote" 
+                  className="group inline-flex items-center justify-center space-x-3 bg-white text-orange-600 px-8 py-4 md:px-12 md:py-5 rounded-full text-lg md:text-xl lg:text-2xl font-bold shadow-2xl hover:shadow-3xl hover:scale-110 transition-all duration-300 transform hover:-translate-y-1 border-4 border-white/50"
+                >
+                  <span className="hindi-text">अभी मतदान करें</span>
+                  <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
+              </div>
+              
+              {/* Trust badges with icons */}
+              <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-sm md:text-base text-white/90">
+                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clipRule="evenodd" />
+                    <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                  </svg>
+                  <span className="hindi-text font-semibold">गुमनाम</span>
+                </div>
+                
+                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="hindi-text font-semibold">सुरक्षित</span>
+                </div>
+                
+                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="hindi-text font-semibold">निष्पक्ष</span>
+                </div>
+              </div>
+              
+              {/* Quick stats */}
+              <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-6 md:gap-8 text-white/90">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold">243</div>
+                  <div className="text-xs md:text-sm hindi-text">सीटें</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold">38</div>
+                  <div className="text-xs md:text-sm hindi-text">जिले</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold">7.5 करोड़+</div>
+                  <div className="text-xs md:text-sm hindi-text">मतदाता</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
