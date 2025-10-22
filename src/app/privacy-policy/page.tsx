@@ -240,7 +240,7 @@ export default function PrivacyPolicyPage() {
               <div className="space-y-3">
                 <div>
                   <p className="text-gray-700">
-                    <strong>Email:</strong> privacy@opinionpoll.co.in
+                    <strong>Email:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
                 <div>
@@ -250,7 +250,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <div>
                   <p className="text-gray-700 hindi-text">
-                    <strong>संपर्क:</strong> privacy@opinionpoll.co.in
+                    <strong>संपर्क:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
               </div>

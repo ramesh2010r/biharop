@@ -267,7 +267,7 @@ export default function TermsOfServicePage() {
               <div className="space-y-3">
                 <div>
                   <p className="text-gray-700">
-                    <strong>Email:</strong> legal@opinionpoll.co.in
+                    <strong>Email:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
                 <div>

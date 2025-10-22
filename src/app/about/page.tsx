@@ -215,12 +215,12 @@ export default function AboutPage() {
               <div className="space-y-3">
                 <div>
                   <p className="text-gray-700">
-                    <strong>General Inquiries:</strong> info@opinionpoll.co.in
+                    <strong>General Inquiries:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-700">
-                    <strong>Technical Support:</strong> support@opinionpoll.co.in
+                    <strong>Technical Support:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
                 <div>
@@ -230,7 +230,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="text-gray-700 hindi-text">
-                    <strong>संपर्क:</strong> info@opinionpoll.co.in
+                    <strong>संपर्क:</strong> opinionpoll25@gmail.com
                   </p>
                 </div>
               </div>

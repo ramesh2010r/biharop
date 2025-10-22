@@ -163,7 +163,7 @@ export default function DisclaimerPage() {
                 If you have any questions or concerns, please contact us.
               </p>
               <div className="text-blue-600 font-medium">
-                📧 Email: info@biharopinionpoll.in<br/>
+                📧 Email: opinionpoll25@gmail.com<br/>
                 📞 Support: Available during polling hours
               </div>
             </div>

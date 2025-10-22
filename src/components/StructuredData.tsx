@@ -39,13 +39,13 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             {
               '@type': 'ContactPoint',
               contactType: 'Customer Service',
-              email: 'info@opinionpoll.co.in',
+              email: 'opinionpoll25@gmail.com',
               availableLanguage: ['Hindi', 'English']
             },
             {
               '@type': 'ContactPoint',
               contactType: 'Technical Support',
-              email: 'support@opinionpoll.co.in',
+              email: 'opinionpoll25@gmail.com',
               availableLanguage: ['Hindi', 'English']
             }
           ],

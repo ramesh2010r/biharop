@@ -43,7 +43,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-semibold text-gray-900">General Inquiries</h3>
               </div>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> info@opinionpoll.co.in
+                <strong>Email:</strong> opinionpoll25@gmail.com
               </p>
               <p className="text-gray-600 text-sm">
                 For general questions about the opinion poll, how to participate, or understanding results.
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Technical Support</h3>
               </div>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> support@opinionpoll.co.in
+                <strong>Email:</strong> opinionpoll25@gmail.com
               </p>
               <p className="text-gray-600 text-sm">
                 For technical issues, bugs, website problems, or voting difficulties.
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Privacy & Legal</h3>
               </div>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> legal@opinionpoll.co.in
+                <strong>Email:</strong> opinionpoll25@gmail.com
               </p>
               <p className="text-gray-600 text-sm">
                 For privacy concerns, data requests, legal inquiries, or terms of service questions.
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 <h3 className="text-lg font-semibold text-gray-900">Feedback & Suggestions</h3>
               </div>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> feedback@opinionpoll.co.in
+                <strong>Email:</strong> opinionpoll25@gmail.com
               </p>
               <p className="text-gray-600 text-sm">
                 Share your suggestions, feature requests, or feedback to help us improve.
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   I&apos;m having technical issues. What should I do?
                 </summary>
                 <p className="text-gray-700 mt-3 leading-relaxed">
-                  Please email us at support@opinionpoll.co.in with details about the issue you&apos;re facing, 
+                  Please email us at opinionpoll25@gmail.com with details about the issue you&apos;re facing, 
                   including your browser type, device, and screenshots if possible. We&apos;ll respond within 24 hours.
                 </p>
               </details>
