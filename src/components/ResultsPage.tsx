@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Header from './Header'
 import DisclaimerBanner from './DisclaimerBanner'
 import Footer from './Footer'
+import PredictionGraph from './PredictionGraph'
 import { getApiUrl } from '@/config/api'
 import { generateResultImage } from '@/utils/generateResultImage'
 
@@ -350,6 +351,13 @@ export default function ResultsPage() {
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 hindi-text mb-6 md:mb-8 text-center">
           ओपिनियन पोल के परिणाम
         </h1>
+
+        {/* Prediction Graph - Real-time Winner Prediction */}
+        {!blackoutStatus.isBlackout && (
+          <div className="max-w-5xl mx-auto mb-8">
+            <PredictionGraph />
+          </div>
+        )}
 
         {/* Error Message */}
         {error && (

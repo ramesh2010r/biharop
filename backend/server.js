@@ -49,6 +49,7 @@ const complianceRoutes = require('./routes/compliance');
 const adminRoutes = require('./routes/admin');
 const uploadRoutes = require('./routes/upload');
 const settingsRoutes = require('./routes/settings');
+const predictionsRoutes = require('./routes/predictions');
 
 // API Routes
 app.use('/api/districts', districtRoutes);
@@ -56,6 +57,7 @@ app.use('/api/constituencies', constituencyRoutes);
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/vote', voteRoutes);
 app.use('/api/results', resultsRoutes);
+app.use('/api/results', predictionsRoutes);
 app.use('/api/blackout-status', complianceRoutes);
 app.use('/api/settings', settingsRoutes); // Public settings
 app.use('/api/admin', adminRoutes);
