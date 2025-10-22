@@ -19,12 +19,14 @@ DB_CONFIG = {
 }
 
 # Alliance hierarchy weights (higher = more votes)
+# Define vote ranges for each alliance
+# NDA gets more votes to lead
 ALLIANCE_WEIGHTS = {
-    'NDA': (7, 12),      # NDA candidates get 7-12 votes (HIGHEST)
-    'INDIA': (4, 7),     # INDIA candidates get 4-7 votes
-    'Jan Suraj': (2, 5), # Jan Suraj candidates get 2-5 votes
-    'AAP': (1, 3),       # AAP candidates get 1-3 votes
-    'Other': (1, 2)      # Other candidates get 1-2 votes
+    'NDA': (6, 10),      # NDA: 6-10 votes per candidate (LEADING)
+    'INDIA': (3, 6),     # INDIA: 3-6 votes per candidate
+    'Jan Suraj': (2, 4), # Jan Suraj: 2-4 votes per candidate
+    'AAP': (1, 2),       # AAP: 1-2 votes per candidate
+    'Other': (1, 2)      # Others: 1-2 votes per candidate
 }
 
 # Party to Alliance mapping
