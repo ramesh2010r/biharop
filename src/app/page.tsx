@@ -4,6 +4,28 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'बिहार विधानसभा चुनाव 2025 ओपिनियन पोल | स्वतंत्र राय सर्वेक्षण',
   description: 'बिहार विधानसभा चुनाव 2025 के लिए भारत का सबसे विश्वसनीय ओपिनियन पोल। 243 सीटों के लिए वास्तविक समय परिणाम। गुमनाम, सुरक्षित और निष्पक्ष। अभी अपनी राय दें और देखें कौन आगे है।',
+  openGraph: {
+    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
+    description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी नीचे दिए गए लिंक पर क्लिक करके दर्ज करें।',
+    url: 'https://opinionpoll.co.in',
+    siteName: 'Bihar Opinion Poll',
+    images: [
+      {
+        url: '/api/og-image',
+        width: 1200,
+        height: 630,
+        alt: 'Bihar Election Opinion Poll 2025 - Cast Your Vote',
+      },
+    ],
+    locale: 'hi_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
+    description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी अपनी राय दें।',
+    images: ['/api/og-image'],
+  },
   keywords: [
     // High-volume primary keywords
     'bihar election 2025',
@@ -75,17 +97,6 @@ export const metadata: Metadata = {
     'bihar assembly election tracker',
     'bihar election live updates poll'
   ],
-  openGraph: {
-    title: 'बिहार विधानसभा चुनाव 2025 - स्वतंत्र ओपिनियन पोल',
-    description: '243 विधानसभा सीटों के लिए वास्तविक समय परिणाम। गुमनाम और सुरक्षित मतदान। अभी भाग लें!',
-    type: 'website',
-    locale: 'hi_IN',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'बिहार विधानसभा चुनाव 2025 ओपिनियन पोल',
-    description: '243 सीटों के लिए वास्तविक समय परिणाम। गुमनाम, सुरक्षित, निष्पक्ष।',
-  },
   alternates: {
     canonical: 'https://opinionpoll.co.in',
   },
