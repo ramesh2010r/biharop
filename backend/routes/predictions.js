@@ -2,96 +2,149 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
 
-// Get prediction data grouped by party alliances
+// Updated Party alliance mappings based on Bihar Election 2025
+const INDIA_ALLIANCE = ['INC', 'RJD', 'CPIM', 'CPI', 'CPI(ML)', 'CONG', 'RLD'];
+const NDA_ALLIANCE = ['BJP', 'JDU', 'LJP', 'LJPRV', 'HAM', 'RLJP'];
+const JAN_SURAJ = ['JSKP', 'JSP']; // Jan Suraaj Party (Prashant Kishor)
+const AAP_ALLIANCE = ['AAP']; // Aam Aadmi Party
+
+// Simple prediction: Count which party is leading (most votes) in each constituency
 router.get('/predictions', async (req, res) => {
   try {
-    // Get vote counts by party
-    const [votesByParty] = await db.query(`
-      SELECT 
-        p.party_id,
-        p.name_hindi as party_name,
-        p.abbreviation,
-        COUNT(DISTINCT o.constituency_id) as leading_constituencies,
-        COUNT(o.opinion_id) as total_votes,
-        (COUNT(o.opinion_id) * 100.0 / (SELECT COUNT(*) FROM opinions)) as vote_percentage
-      FROM opinions o
-      JOIN candidates c ON o.candidate_id = c.candidate_id
-      JOIN parties p ON c.party_id = p.party_id
-      GROUP BY p.party_id, p.name_hindi, p.abbreviation
-      ORDER BY total_votes DESC
-    `);
-
-    // Get leading party per constituency
-    const [leadingByConstituency] = await db.query(`
+    // Step 1: Get the leading party in each constituency (simple: whoever has most votes wins)
+    const [constituencies] = await db.query(`
       SELECT 
         o.constituency_id,
-        p.party_id,
-        p.abbreviation,
+        con.name_english as constituency_name,
+        p.abbreviation as party_abbreviation,
+        p.name_english as party_name,
         COUNT(o.opinion_id) as votes,
-        ROW_NUMBER() OVER (PARTITION BY o.constituency_id ORDER BY COUNT(o.opinion_id) DESC) as rank
+        ROUND(COUNT(o.opinion_id) * 100.0 / SUM(COUNT(o.opinion_id)) OVER (PARTITION BY o.constituency_id), 2) as vote_percentage
       FROM opinions o
       JOIN candidates c ON o.candidate_id = c.candidate_id
       JOIN parties p ON c.party_id = p.party_id
-      GROUP BY o.constituency_id, p.party_id, p.abbreviation
+      JOIN constituencies con ON o.constituency_id = con.constituency_id
+      GROUP BY o.constituency_id, con.name_english, p.party_id, p.abbreviation, p.name_english
+      ORDER BY o.constituency_id, votes DESC
     `);
 
-    // Filter only leading parties (rank 1)
-    const leadingParties = leadingByConstituency.filter(l => l.rank === 1);
+    if (constituencies.length === 0) {
+      return res.json({
+        success: true,
+        predictions: [],
+        totalSeats: 243,
+        majorityMark: 122,
+        message: 'No voting data available yet'
+      });
+    }
 
-    // Count leading constituencies per party
-    const leadingCount = {};
-    leadingParties.forEach(l => {
-      leadingCount[l.party_id] = (leadingCount[l.party_id] || 0) + 1;
+    // Step 2: For each constituency, find the winner (party with most votes)
+    const constituencyWinners = {};
+    const partyVoteData = {};
+    
+    constituencies.forEach(row => {
+      const constId = row.constituency_id;
+      const party = row.party_abbreviation;
+      
+      // Track winner per constituency
+      if (!constituencyWinners[constId] || row.votes > constituencyWinners[constId].votes) {
+        constituencyWinners[constId] = {
+          party: party,
+          votes: row.votes,
+          percentage: row.vote_percentage,
+          name: row.constituency_name
+        };
+      }
+      
+      // Track total votes per party across all constituencies
+      if (!partyVoteData[party]) {
+        partyVoteData[party] = {
+          name: row.party_name,
+          totalVotes: 0,
+          seatsWon: 0
+        };
+      }
+      partyVoteData[party].totalVotes += parseInt(row.votes);
     });
 
-    // Party alliance groupings
-    const INDIA_ALLIANCE = ['INC', 'RJD', 'CPIM', 'CPI', 'CONG', 'RLD'];
-    const NDA_ALLIANCE = ['BJP', 'JDU', 'LJP', 'LJPRV'];
+    // Step 3: Count seats won by each party
+    Object.values(constituencyWinners).forEach(winner => {
+      if (partyVoteData[winner.party]) {
+        partyVoteData[winner.party].seatsWon += 1;
+      }
+    });
 
-    // Group parties by alliance
-    const indiaParties = votesByParty.filter(p => 
-      INDIA_ALLIANCE.includes(p.abbreviation?.toUpperCase())
-    );
-    const ndaParties = votesByParty.filter(p => 
-      NDA_ALLIANCE.includes(p.abbreviation?.toUpperCase())
-    );
-    const otherParties = votesByParty.filter(p => 
-      !INDIA_ALLIANCE.includes(p.abbreviation?.toUpperCase()) && 
-      !NDA_ALLIANCE.includes(p.abbreviation?.toUpperCase())
-    );
+    // Step 4: Calculate total votes for percentage
+    const totalVotesOverall = Object.values(partyVoteData).reduce((sum, p) => sum + p.totalVotes, 0);
+    Object.keys(partyVoteData).forEach(party => {
+      partyVoteData[party].percentage = ((partyVoteData[party].totalVotes / totalVotesOverall) * 100).toFixed(2);
+    });
 
-    // Calculate alliance totals
-    const calculateAllianceData = (parties, name, color) => {
-      const totalVotes = parties.reduce((sum, p) => sum + parseInt(p.total_votes), 0);
-      const votePercentage = parties.reduce((sum, p) => sum + parseFloat(p.vote_percentage || 0), 0);
-      const leadingIn = parties.reduce((sum, p) => sum + (leadingCount[p.party_id] || 0), 0);
-      
-      // Project seats based on vote share with slight adjustment for leading constituencies
-      const projectedSeats = Math.round((votePercentage / 100) * 243 * 1.1) + Math.floor(leadingIn * 0.3);
-      
+    // Step 5: Group by alliance
+    const calculateAllianceData = (allianceName, partyAbbreviations, color) => {
+      let totalSeats = 0;
+      let totalVotes = 0;
+      const parties = [];
+
+      partyAbbreviations.forEach(abbr => {
+        if (partyVoteData[abbr]) {
+          totalSeats += partyVoteData[abbr].seatsWon;
+          totalVotes += partyVoteData[abbr].totalVotes;
+          
+          if (partyVoteData[abbr].seatsWon > 0) {
+            parties.push({
+              abbreviation: abbr,
+              name: partyVoteData[abbr].name,
+              seats: partyVoteData[abbr].seatsWon,
+              votes: partyVoteData[abbr].totalVotes,
+              percentage: partyVoteData[abbr].percentage
+            });
+          }
+        }
+      });
+
+      const percentage = totalVotesOverall > 0 ? ((totalVotes / totalVotesOverall) * 100).toFixed(2) : 0;
+
       return {
-        groupName: name,
+        groupName: allianceName,
         groupColor: color,
-        totalSeats: 243,
-        projectedSeats: Math.min(projectedSeats, 243),
-        percentage: votePercentage,
-        leadingIn: leadingIn,
-        parties: parties.map(p => p.abbreviation || p.party_name)
+        projectedSeats: totalSeats,
+        percentage: parseFloat(percentage),
+        leadingIn: totalSeats,
+        parties
       };
     };
 
-    const predictions = [
-      calculateAllianceData(ndaParties, 'NDA Alliance', '#ff6b35'),
-      calculateAllianceData(indiaParties, 'INDIA Alliance', '#0077b6'),
-      calculateAllianceData(otherParties, 'Other Parties', '#6c757d')
-    ].filter(p => p.projectedSeats > 0)
-     .sort((a, b) => b.projectedSeats - a.projectedSeats);
+    // Calculate for all alliances
+    const allPredictions = [
+      calculateAllianceData('NDA', NDA_ALLIANCE, '#FF6B00'),
+      calculateAllianceData('INDIA', INDIA_ALLIANCE, '#FF9933'),
+      calculateAllianceData('Jan Suraaj', JAN_SURAJ, '#00A86B'),
+      calculateAllianceData('AAP', AAP_ALLIANCE, '#0066CC')
+    ];
+
+    // Add Others (parties not in any major alliance)
+    const knownParties = [...INDIA_ALLIANCE, ...NDA_ALLIANCE, ...JAN_SURAJ, ...AAP_ALLIANCE];
+    const otherParties = Object.keys(partyVoteData).filter(abbr => !knownParties.includes(abbr));
+    
+    if (otherParties.length > 0) {
+      const othersData = calculateAllianceData('Others', otherParties, '#808080');
+      if (othersData.projectedSeats > 0) {
+        allPredictions.push(othersData);
+      }
+    }
+
+    // Filter and sort
+    const predictions = allPredictions
+      .filter(alliance => alliance.projectedSeats > 0)
+      .sort((a, b) => b.projectedSeats - a.projectedSeats);
 
     res.json({
       success: true,
       predictions,
       totalSeats: 243,
       majorityMark: 122,
+      constituenciesReported: Object.keys(constituencyWinners).length,
       lastUpdated: new Date().toISOString()
     });
 
@@ -100,7 +153,8 @@ router.get('/predictions', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch prediction data',
-      predictions: []
+      predictions: [],
+      message: error.message
     });
   }
 });
