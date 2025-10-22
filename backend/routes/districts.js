@@ -8,6 +8,13 @@ const db = require('../config/database');
  */
 router.get('/', async (req, res) => {
   try {
+    // Set aggressive cache headers (districts rarely change)
+    res.set({
+      'Cache-Control': 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000',
+      'ETag': `districts-v1`,
+      'Last-Modified': new Date('2025-01-01').toUTCString()
+    });
+    
     const [districts] = await db.query(`
       SELECT id, name_hindi, name_english 
       FROM Districts 

@@ -9,6 +9,13 @@ const { authenticateAdmin, requireSuperAdmin } = require('../middleware/auth');
  */
 router.get('/public', async (req, res) => {
   try {
+    // Set cache headers (settings change infrequently)
+    res.set({
+      'Cache-Control': 'public, max-age=1800, s-maxage=3600, stale-while-revalidate=86400',
+      'ETag': `settings-v1`,
+      'Last-Modified': new Date('2025-01-01').toUTCString()
+    });
+    
     const [settings] = await db.query('SELECT setting_key, setting_value FROM System_Settings WHERE setting_key IN (?, ?, ?)', 
       ['blackout_enforcement', 'duplicate_vote_prevention', 'anonymous_voting']
     );

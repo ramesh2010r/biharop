@@ -154,6 +154,12 @@ router.get('/predictions', async (req, res) => {
       .filter(alliance => alliance.projectedSeats > 0)
       .sort((a, b) => b.projectedSeats - a.projectedSeats);
 
+    // Set cache headers (predictions change as votes come in, but can be cached briefly)
+    res.set({
+      'Cache-Control': 'public, max-age=300, s-maxage=600, stale-while-revalidate=3600',
+      'ETag': `predictions-${Object.keys(constituencyWinners).length}-v1`
+    });
+
     res.json({
       success: true,
       predictions,
