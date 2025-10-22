@@ -179,7 +179,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           publisher: {
             '@id': 'https://opinionpoll.co.in/#organization'
           },
-          datePublished: data?.datePublished || '2025-01-01',
+          datePublished: data?.datePublished || '2025-01-01T00:00:00+05:30',
           dateModified: data?.dateModified || new Date().toISOString(),
           mainEntityOfPage: {
             '@type': 'WebPage',
