@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
+import { getApiUrl } from '@/config/api'
 
 interface VoteData {
   candidate_name: string
@@ -12,7 +13,9 @@ interface VoteData {
   party_name: string
   party_symbol: string
   constituency_name: string
+  constituency_id: number
   district_name: string
+  district_id: number
   voted_at: string
 }
 
@@ -27,7 +30,15 @@ export default function ConfirmationPage() {
     const storedVote = localStorage.getItem('lastVote')
     if (storedVote) {
       try {
-        setVoteData(JSON.parse(storedVote))
+        const parsedData = JSON.parse(storedVote)
+        console.log('Loaded vote data from localStorage:', parsedData)
+        
+        // Check if the data has the required IDs (backward compatibility)
+        if (!parsedData.district_id || !parsedData.constituency_id) {
+          console.warn('Vote data missing district_id or constituency_id. User needs to vote again.')
+        }
+        
+        setVoteData(parsedData)
       } catch (err) {
         console.error('Error parsing vote data:', err)
       }
@@ -75,85 +86,220 @@ export default function ConfirmationPage() {
     if (!canvasRef.current || !voteData) return
 
     try {
-      // First generate the image
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      // Load the background image
-      const backgroundImg = new Image()
-      backgroundImg.crossOrigin = 'anonymous'
-      backgroundImg.src = '/images/vote-background.jpg'
+      // Set canvas size for certificate design (landscape orientation)
+      canvas.width = 1600
+      canvas.height = 1200
+      
+      // Certificate background - cream/parchment color
+      ctx.fillStyle = '#fffef7'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Decorative border
+      ctx.strokeStyle = '#d97706' // orange-600
+      ctx.lineWidth = 8
+      ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80)
+      
+      // Inner border
+      ctx.strokeStyle = '#fbbf24' // yellow-400
+      ctx.lineWidth = 3
+      ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120)
+
+      // Decorative corners
+      const drawCornerDecoration = (x: number, y: number, rotation: number) => {
+        ctx.save()
+        ctx.translate(x, y)
+        ctx.rotate(rotation)
+        ctx.fillStyle = '#f59e0b' // orange-500
+        ctx.beginPath()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(60, 0)
+        ctx.lineTo(0, 60)
+        ctx.closePath()
+        ctx.fill()
+        ctx.restore()
+      }
+      
+      drawCornerDecoration(100, 100, 0)
+      drawCornerDecoration(canvas.width - 100, 100, Math.PI / 2)
+      drawCornerDecoration(canvas.width - 100, canvas.height - 100, Math.PI)
+      drawCornerDecoration(100, canvas.height - 100, -Math.PI / 2)
+
+      // Load and draw logo at top center
+      const logo = new Image()
+      logo.crossOrigin = 'anonymous'
+      logo.src = '/images/Logo_OP.webp'
       
       await new Promise((resolve, reject) => {
-        backgroundImg.onload = resolve
-        backgroundImg.onerror = reject
+        logo.onload = resolve
+        logo.onerror = () => {
+          console.error('Failed to load logo')
+          resolve(null)
+        }
       })
 
-      // Set canvas size and draw
-      canvas.width = 1080
-      canvas.height = 1080
-      ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
+      // Draw logo (maintaining aspect ratio 636x269)
+      const logoWidth = 400
+      const logoHeight = 400 * (269 / 636)
+      ctx.drawImage(logo, (canvas.width - logoWidth) / 2, 120, logoWidth, logoHeight)
 
-      // Add text overlay (same as download function)
-      const isNota = voteData.candidate_name === 'NOTA' || voteData.candidate_name === 'उपरोक्त में से कोई नहीं'
+      // Certificate title
+      let currentY = 120 + logoHeight + 60
+      ctx.fillStyle = '#1e40af' // blue-700
+      ctx.font = 'bold 56px serif'
       ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
+      ctx.fillText('मतदान प्रमाणपत्र', canvas.width / 2, currentY)
+      ctx.font = '32px serif'
+      ctx.fillText('Voting Certificate', canvas.width / 2, currentY + 45)
 
-      if (isNota) {
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 48px Arial, sans-serif'
-        ctx.fillText('NOTA', canvas.width / 2, 300)
-        ctx.font = '28px Arial, sans-serif'
-        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 355)
-        ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
-      } else {
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 42px Arial, sans-serif'
-        ctx.fillText(voteData.candidate_name, canvas.width / 2, 290)
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = '26px Arial, sans-serif'
-        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 345)
-        ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
-      }
+      // Decorative line
+      currentY += 90
+      ctx.strokeStyle = '#fbbf24'
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.moveTo(400, currentY)
+      ctx.lineTo(canvas.width - 400, currentY)
+      ctx.stroke()
 
-      // Convert canvas to blob
+      // Certificate text
+      currentY += 60
+      ctx.fillStyle = '#374151' // gray-700
+      ctx.font = '32px serif'
+      ctx.fillText('यह प्रमाणित किया जाता है कि', canvas.width / 2, currentY)
+
+    // Voter details
+    currentY += 90
+    const isNota = voteData.candidate_name.includes('NOTA') || voteData.candidate_name.includes('उपरोक्त में से कोई नहीं')
+    
+    if (isNota) {
+      ctx.fillStyle = '#dc2626' // red-600
+      ctx.font = 'bold 68px serif'
+      ctx.fillText('NOTA', canvas.width / 2, currentY)
+      currentY += 65
+      ctx.fillStyle = '#4b5563' // gray-600
+      ctx.font = 'italic 38px serif'
+      ctx.fillText('(उपरोक्त में से कोई नहीं)', canvas.width / 2, currentY)
+    } else {
+      ctx.fillStyle = '#1f2937' // gray-800
+      ctx.font = 'bold 68px serif'
+      ctx.fillText(voteData.candidate_name, canvas.width / 2, currentY)
+      currentY += 65
+      ctx.fillStyle = '#4b5563' // gray-600
+      ctx.font = 'italic 40px serif'
+      ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, currentY)
+    }
+
+    // Location details
+    currentY += 80
+    ctx.fillStyle = '#374151'
+    ctx.font = 'bold 38px serif'
+    ctx.fillText('को ओपिनियन पोल में अपनी राय दी', canvas.width / 2, currentY)
+
+    // Constituency box
+    currentY += 80
+    ctx.fillStyle = '#fef3c7' // orange-50
+    ctx.fillRect(250, currentY - 50, canvas.width - 500, 120)
+    ctx.strokeStyle = '#f59e0b'
+    ctx.lineWidth = 3
+    ctx.strokeRect(250, currentY - 50, canvas.width - 500, 120)
+    
+    ctx.fillStyle = '#1e40af' // blue-700
+    ctx.font = 'bold 48px serif'
+    ctx.fillText(voteData.constituency_name, canvas.width / 2, currentY)
+    ctx.font = 'bold 42px serif'
+    ctx.fillText(voteData.district_name, canvas.width / 2, currentY + 55)
+
+    // Disclaimer - small text
+    currentY += 105
+    ctx.fillStyle = '#9ca3af' // gray-400
+    ctx.font = '22px serif'
+    ctx.fillText('यह वास्तविक मतदान नहीं है | यह केवल एक ओपिनियन पोल है', canvas.width / 2, currentY)
+
+    // Call to action
+    currentY += 55
+    ctx.fillStyle = '#059669' // green-600
+    ctx.font = 'bold 38px serif'
+    ctx.fillText('🗳️ आप भी अपनी राय दें!', canvas.width / 2, currentY)      // Footer section
+      currentY += 60
+      ctx.fillStyle = '#6b7280' // gray-500
+      ctx.font = '22px serif'
+      ctx.fillText('बिहार विधानसभा चुनाव 2025 - ओपिनियन पोल', canvas.width / 2, currentY)
+
+      // Website URL at bottom
+      currentY += 50
+      ctx.fillStyle = '#1e3a8a' // blue-900
+      ctx.font = 'bold 32px serif'
+      ctx.fillText('www.opinionpoll.co.in', canvas.width / 2, currentY)
+
+      // Seal/stamp effect
+      ctx.save()
+      ctx.globalAlpha = 0.1
+      ctx.fillStyle = '#f59e0b'
+      ctx.beginPath()
+      ctx.arc(canvas.width - 250, canvas.height - 200, 100, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.restore()
+
+      // Convert canvas to blob (JPG format)
       const blob = await new Promise<Blob>((resolve) => {
-        canvas.toBlob((b) => resolve(b!), 'image/jpeg', 0.85)
+        canvas.toBlob((b) => resolve(b!), 'image/jpeg', 0.92)
       })
 
       // Create file from blob
-      const file = new File([blob], `bihar-opinion-poll-${voteData.constituency_name}.jpg`, { type: 'image/jpeg' })
+      const fileName = `bihar-voting-certificate-${Date.now()}.jpg`
+      const file = new File([blob], fileName, { type: 'image/jpeg' })
+
+      const shareText = `मैंने बिहार चुनाव ओपिनियन पोल में अपना मत ${voteData.constituency_name}, ${voteData.district_name} से दिया। आप भी अपनी राय दें!`
+      const shareUrl = 'https://opinionpoll.co.in'
+      const fullText = `${shareText}\n\n${shareUrl}`
 
       // Check if Web Share API with files is supported
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: 'बिहार चुनाव ओपिनियन पोल',
-          text: `${shareText}\n\n${shareUrl}`,
-          files: [file],
-        })
-      } else {
-        // Fallback: just share URL
-        if (navigator.share) {
-          await navigator.share({
-            title: 'बिहार चुनाव ओपिनियन पोल',
-            text: shareText,
-            url: shareUrl,
-          })
-        } else {
-          alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें और मैन्युअली शेयर करें।')
+      if (navigator.share) {
+        try {
+          // Try sharing with both text and files
+          if (navigator.canShare && navigator.canShare({ files: [file], text: fullText })) {
+            await navigator.share({
+              text: fullText,
+              files: [file],
+            })
+          } else if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            // Android fallback: some apps will show text from title
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल',
+              text: fullText,
+              files: [file],
+            })
+          } else {
+            // Just share text without image
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल - मतदान प्रमाणपत्र',
+              text: fullText,
+              url: shareUrl,
+            })
+          }
+        } catch (shareErr) {
+          console.error('Share error:', shareErr)
+          // If share fails, offer download
+          const link = document.createElement('a')
+          link.download = fileName
+          link.href = URL.createObjectURL(blob)
+          link.click()
+          URL.revokeObjectURL(link.href)
+          alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
         }
+      } else {
+        alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें और मैन्युअली शेयर करें।')
       }
     } catch (err) {
       console.error('Error sharing:', err)
+      alert('शेयर करने में त्रुटि हुई। कृपया पुनः प्रयास करें।')
     }
   }
 
-  // Generate and download share image using background
+  // Generate and download share image with certificate design
   const generateShareImage = async () => {
     if (!canvasRef.current || !voteData) return
 
@@ -161,75 +307,172 @@ export default function ConfirmationPage() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Load the background image
-    const backgroundImg = new Image()
-    backgroundImg.crossOrigin = 'anonymous'
+    // Set canvas size for certificate design (landscape orientation)
+    canvas.width = 1600
+    canvas.height = 1200
     
-    // Use the background image from public folder
-    backgroundImg.src = '/images/vote-background.jpg'
+    // Certificate background - cream/parchment color
+    ctx.fillStyle = '#fffef7'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    // Decorative border
+    ctx.strokeStyle = '#d97706' // orange-600
+    ctx.lineWidth = 8
+    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80)
     
-    backgroundImg.onload = () => {
-      // Set canvas size to 1080x1080
-      canvas.width = 1080
-      canvas.height = 1080
+    // Inner border
+    ctx.strokeStyle = '#fbbf24' // yellow-400
+    ctx.lineWidth = 3
+    ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120)
 
-      // Draw the background image
-      ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height)
+    // Decorative corners
+    const drawCornerDecoration = (x: number, y: number, rotation: number) => {
+      ctx.save()
+      ctx.translate(x, y)
+      ctx.rotate(rotation)
+      ctx.fillStyle = '#f59e0b' // orange-500
+      ctx.beginPath()
+      ctx.moveTo(0, 0)
+      ctx.lineTo(60, 0)
+      ctx.lineTo(0, 60)
+      ctx.closePath()
+      ctx.fill()
+      ctx.restore()
+    }
+    
+    drawCornerDecoration(100, 100, 0)
+    drawCornerDecoration(canvas.width - 100, 100, Math.PI / 2)
+    drawCornerDecoration(canvas.width - 100, canvas.height - 100, Math.PI)
+    drawCornerDecoration(100, canvas.height - 100, -Math.PI / 2)
 
-      // Now overlay the dynamic text on specific positions
-      // Based on template measurements: 1080x1080px
-      // Blue box: top=211.19px, height=329.01px (bottom ~540px)
-      // Text line visible at ~282px from top
-      
-      const isNota = voteData.candidate_name === 'NOTA' || voteData.candidate_name === 'उपरोक्त में से कोई नहीं'
-      
-      // Set text properties
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      
-      if (isNota) {
-        // For NOTA - three lines centered in blue box
-        // Blue box center is around Y=375 (211 + 329/2)
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 48px Arial, sans-serif'
-        ctx.fillText('NOTA', canvas.width / 2, 300)
-        
-        ctx.font = '28px Arial, sans-serif'
-        ctx.fillText('उपरोक्त में से कोई नहीं', canvas.width / 2, 355)
-        
-        // Constituency in yellow - positioned lower
-        ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
-      } else {
-        // For regular candidate - three lines in blue box
-        // Line 1: Candidate name (white)
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 42px Arial, sans-serif'
-        ctx.fillText(voteData.candidate_name, canvas.width / 2, 290)
-        
-        // Line 2: Party name (white, smaller)
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = '26px Arial, sans-serif'
-        ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, 345)
-        
-        // Line 3: Constituency and District (yellow) - positioned lower
-        ctx.fillStyle = '#FFD700'
-        ctx.font = 'bold 26px Arial, sans-serif'
-        ctx.fillText(`${voteData.constituency_name}, ${voteData.district_name}`, canvas.width / 2, 410)
+    // Load and draw logo at top center
+    const logo = new Image()
+    logo.crossOrigin = 'anonymous'
+    logo.src = '/images/Logo_OP.webp'
+    
+    await new Promise((resolve) => {
+      logo.onload = resolve
+      logo.onerror = () => {
+        console.error('Failed to load logo')
+        resolve(null)
       }
+    })
 
-      // Download the image as optimized JPG
-      const link = document.createElement('a')
-      link.download = `bihar-opinion-poll-${voteData.constituency_name}.jpg`
-      link.href = canvas.toDataURL('image/jpeg', 0.85)
-      link.click()
+    // Draw logo (maintaining aspect ratio 636x269)
+    const logoWidth = 400
+    const logoHeight = 400 * (269 / 636)
+    ctx.drawImage(logo, (canvas.width - logoWidth) / 2, 120, logoWidth, logoHeight)
+
+    // Certificate title
+    let currentY = 120 + logoHeight + 50
+    ctx.fillStyle = '#1e40af' // blue-700
+    ctx.font = 'bold 72px serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('ओपिनियन पोल प्रमाणपत्र', canvas.width / 2, currentY)
+
+    // Decorative line
+    currentY += 80
+    ctx.strokeStyle = '#fbbf24'
+    ctx.lineWidth = 3
+    ctx.beginPath()
+    ctx.moveTo(350, currentY)
+    ctx.lineTo(canvas.width - 350, currentY)
+    ctx.stroke()
+
+    // Certificate text
+    currentY += 70
+    ctx.fillStyle = '#374151' // gray-700
+    ctx.font = 'bold 42px serif'
+    ctx.fillText('यह प्रमाणित किया जाता है कि', canvas.width / 2, currentY)
+
+    // Voter details
+    currentY += 90
+    const isNota = voteData.candidate_name.includes('NOTA') || voteData.candidate_name.includes('उपरोक्त में से कोई नहीं')
+    
+    if (isNota) {
+      ctx.fillStyle = '#dc2626' // red-600
+      ctx.font = 'bold 52px serif'
+      ctx.fillText('NOTA', canvas.width / 2, currentY)
+      currentY += 55
+      ctx.fillStyle = '#4b5563' // gray-600
+      ctx.font = 'italic 30px serif'
+      ctx.fillText('(उपरोक्त में से कोई नहीं)', canvas.width / 2, currentY)
+    } else {
+      ctx.fillStyle = '#1f2937' // gray-800
+      ctx.font = 'bold 52px serif'
+      ctx.fillText(voteData.candidate_name, canvas.width / 2, currentY)
+      currentY += 55
+      ctx.fillStyle = '#4b5563' // gray-600
+      ctx.font = 'italic 32px serif'
+      ctx.fillText(`(${voteData.party_name})`, canvas.width / 2, currentY)
     }
 
-    backgroundImg.onerror = () => {
-      console.error('Failed to load background image')
-      alert('बैकग्राउंड इमेज लोड नहीं हो सकी। कृपया पुनः प्रयास करें।')
-    }
+    // Location details
+    currentY += 70
+    ctx.fillStyle = '#374151'
+    ctx.font = '30px serif'
+    ctx.fillText('को बिहार विधानसभा चुनाव ओपिनियन पोल में मत दिया', canvas.width / 2, currentY)
+
+    // Constituency box
+    currentY += 70
+    ctx.fillStyle = '#fef3c7' // orange-50
+    ctx.fillRect(300, currentY - 40, canvas.width - 600, 100)
+    ctx.strokeStyle = '#f59e0b'
+    ctx.lineWidth = 2
+    ctx.strokeRect(300, currentY - 40, canvas.width - 600, 100)
+    
+    ctx.fillStyle = '#1e40af' // blue-700
+    ctx.font = 'bold 38px serif'
+    ctx.fillText(voteData.constituency_name, canvas.width / 2, currentY)
+    ctx.font = 'bold 32px serif'
+    ctx.fillText(voteData.district_name, canvas.width / 2, currentY + 45)
+
+    // Disclaimer - small text
+    currentY += 100
+    ctx.fillStyle = '#9ca3af' // gray-400
+    ctx.font = '22px serif'
+    ctx.fillText('यह वास्तविक मतदान नहीं है | यह केवल एक ओपिनियन पोल है', canvas.width / 2, currentY)
+
+    // Call to action
+    currentY += 50
+    ctx.fillStyle = '#059669' // green-600
+    ctx.font = 'bold 32px serif'
+    ctx.fillText('🗳️ आप भी अपना मत दें और अपनी राय साझा करें!', canvas.width / 2, currentY)
+
+    // Footer section
+    currentY += 60
+    ctx.fillStyle = '#6b7280' // gray-500
+    ctx.font = '22px serif'
+    ctx.fillText('बिहार विधानसभा चुनाव 2025 - ओपिनियन पोल', canvas.width / 2, currentY)
+
+    // Website URL at bottom
+    currentY += 50
+    ctx.fillStyle = '#1e3a8a' // blue-900
+    ctx.font = 'bold 32px serif'
+    ctx.fillText('www.opinionpoll.co.in', canvas.width / 2, currentY)
+
+    // Seal/stamp effect
+    ctx.save()
+    ctx.globalAlpha = 0.1
+    ctx.fillStyle = '#f59e0b'
+    ctx.beginPath()
+    ctx.arc(canvas.width - 250, canvas.height - 200, 100, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+
+    // Download the image (JPG format)
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = `bihar-voting-certificate-${Date.now()}.jpg`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      }
+    }, 'image/jpeg', 0.92)
   }
 
   return (
@@ -253,16 +496,6 @@ export default function ConfirmationPage() {
               </p>
             </div>
 
-            {/* CTA Section */}
-            <div className="py-8 px-6 text-center border-b-2 border-gray-100">
-              <Link 
-                href="/results" 
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base md:text-lg font-bold px-6 md:px-12 py-4 md:py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all whitespace-nowrap"
-              >
-                <span className="hindi-text">परिणाम देखें</span>
-              </Link>
-            </div>
-
             {/* Share Section */}
             <div className="py-8 px-6 bg-gradient-to-br from-orange-50 to-amber-50">
               <h2 className="text-2xl font-bold text-gray-800 hindi-text text-center mb-2">
@@ -271,58 +504,6 @@ export default function ConfirmationPage() {
               <p className="text-gray-600 hindi-text text-center mb-6">
                 अधिक लोगों को ओपिनियन पोल में भाग लेने के लिए प्रोत्साहित करें
               </p>
-              
-              {/* Primary Share Buttons - More compact */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                {/* Share with Image Button */}
-                {voteData && (
-                  <button
-                    onClick={handleNativeShare}
-                    className="flex flex-col items-center gap-2 p-5 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                  >
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                    </svg>
-                    <span className="hindi-text text-sm text-center">इमेज के साथ<br />शेयर करें</span>
-                  </button>
-                )}
-
-                {/* Copy Link Button */}
-                <button
-                  onClick={handleCopyLink}
-                  className="flex flex-col items-center gap-2 p-5 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                >
-                  {copied ? (
-                    <>
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span className="hindi-text text-sm">कॉपी हो गया!</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                      </svg>
-                      <span className="hindi-text text-sm text-center">लिंक<br />कॉपी करें</span>
-                    </>
-                  )}
-                </button>
-
-                {/* Download Image Button */}
-                {voteData && (
-                  <button
-                    onClick={generateShareImage}
-                    className="flex flex-col items-center gap-2 p-5 bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                  >
-                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    <span className="hindi-text text-sm text-center">इमेज<br />डाउनलोड करें</span>
-                  </button>
-                )}
-              </div>
 
               {/* Divider with Text */}
               <div className="relative my-6">
@@ -424,6 +605,16 @@ export default function ConfirmationPage() {
                 </div>
               </div>
             )}
+
+            {/* View Results Button */}
+            <div className="text-center py-6 px-6 border-t-2 border-gray-100">
+              <Link 
+                href={voteData && voteData.district_id && voteData.constituency_id ? `/results?district=${voteData.district_id}&constituency=${voteData.constituency_id}` : '/results'}
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-base md:text-lg font-bold px-6 md:px-12 py-4 md:py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all whitespace-nowrap mb-4"
+              >
+                <span className="hindi-text">परिणाम देखें</span>
+              </Link>
+            </div>
 
             {/* Back to Home */}
             <div className="text-center py-6 px-6 border-t-2 border-gray-100">

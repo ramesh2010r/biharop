@@ -16,8 +16,8 @@ export default function Header({ showResultsButton = true }: HeaderProps) {
               <Image
                 src="/images/Logo_OP.webp"
                 alt="Bihar Opinion Poll Logo"
-                width={384}
-                height={384}
+                width={636}
+                height={269}
                 className="object-contain w-full h-auto"
                 priority
               />

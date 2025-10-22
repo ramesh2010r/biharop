@@ -1,11 +1,13 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Header from './Header'
 import DisclaimerBanner from './DisclaimerBanner'
 import Footer from './Footer'
 import { getApiUrl } from '@/config/api'
+import { generateResultImage } from '@/utils/generateResultImage'
 
 interface District {
   id: number
@@ -25,7 +27,11 @@ interface Constituency {
 
 interface ResultData {
   candidate_name: string
+  candidate_name_hindi?: string
+  candidate_name_english?: string
   party_name: string
+  party_name_hindi?: string
+  party_name_english?: string
   party_abbreviation: string
   total_votes: number
   percentage: number
@@ -38,6 +44,7 @@ interface BlackoutStatus {
 }
 
 export default function ResultsPage() {
+  const searchParams = useSearchParams()
   const [districts, setDistricts] = useState<District[]>([])
   const [constituencies, setConstituencies] = useState<Constituency[]>([])
   const [results, setResults] = useState<ResultData[]>([])
@@ -55,6 +62,27 @@ export default function ResultsPage() {
     checkBlackoutStatus()
     fetchDistricts()
   }, [])
+
+  // Handle URL parameters for direct constituency navigation
+  useEffect(() => {
+    const districtParam = searchParams?.get('district')
+    const constituencyParam = searchParams?.get('constituency')
+    
+    if (districtParam && constituencyParam && districts.length > 0) {
+      const districtId = parseInt(districtParam)
+      const constituencyId = parseInt(constituencyParam)
+      
+      if (!isNaN(districtId) && !isNaN(constituencyId)) {
+        setSelectedDistrict(districtId)
+        // Fetch constituencies for this district first
+        fetchConstituencies(districtId).then(() => {
+          // Then set the constituency and fetch results
+          setSelectedConstituency(constituencyId)
+          fetchResults(constituencyId)
+        })
+      }
+    }
+  }, [searchParams, districts])
 
   const checkBlackoutStatus = async () => {
     try {
@@ -110,7 +138,13 @@ export default function ResultsPage() {
           })
           setResults([])
         } else {
-          setResults(data)
+          // Map the API response to match our interface
+          const mappedResults = data.map((item: any) => ({
+            ...item,
+            candidate_name: item.candidate_name_hindi || item.candidate_name_english || item.candidate_name || 'नाम उपलब्ध नहीं',
+            party_name: item.party_name_hindi || item.party_name_english || item.party_name || 'पार्टी उपलब्ध नहीं'
+          }))
+          setResults(mappedResults)
         }
       } else {
         setError('परिणाम लोड नहीं हो सके')
@@ -157,177 +191,103 @@ export default function ResultsPage() {
   }
 
   const handleNativeShare = async () => {
-    if (!canvasRef.current || results.length === 0) return
+    if (results.length === 0 || !selectedConstituency || !selectedDistrict) return
 
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    // Set canvas size
-    canvas.width = 1080
-    canvas.height = 1080
-
-    // Load background image
-    const background = new Image()
-    background.crossOrigin = 'anonymous'
-    background.src = '/images/vote-background.jpg'
-    
-    background.onload = async () => {
-      // Draw background
-      ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
-      
+    try {
       // Get constituency and district names
-      const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
-      const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
+      const constituencyObj = constituencies.find(c => c.id === selectedConstituency)
+      const districtObj = districts.find(d => d.id === selectedDistrict)
       
-      // Get top result
-      const topResult = results[0]
-      
-      // Configure text rendering
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      
-      // Draw top candidate info - White text
-      if (topResult) {
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 48px Arial, sans-serif'
-        ctx.fillText(topResult.candidate_name || 'N/A', canvas.width / 2, 290)
-        
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 40px Arial, sans-serif'
-        ctx.fillText(topResult.party_name || topResult.party_abbreviation || '', canvas.width / 2, 345)
-        
-        // Percentage
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 52px Arial, sans-serif'
-        ctx.fillText(`${topResult.percentage.toFixed(1)}%`, canvas.width / 2, 410)
+      if (!constituencyObj || !districtObj) return
+
+      // Generate image using the utility
+      const imageDataUrl = await generateResultImage({
+        constituencyName: constituencyObj.name_hindi,
+        districtName: districtObj.name_hindi,
+        results: results.slice(0, 5), // Top 5 candidates
+        totalVotes: results.reduce((sum, r) => sum + r.total_votes, 0)
+      })
+
+      if (!imageDataUrl) {
+        alert('इमेज जेनरेट करने में त्रुटि हुई')
+        return
       }
+
+      // Convert data URL to blob
+      const response = await fetch(imageDataUrl)
+      const blob = await response.blob()
       
-      // Draw location in yellow
-      ctx.fillStyle = '#FFD700'
-      ctx.font = 'bold 36px Arial, sans-serif'
-      ctx.fillText(`${constituencyName}`, canvas.width / 2, 920)
+      // Create file from blob
+      const file = new File([blob], `bihar-poll-results-${constituencyObj.name_hindi}.jpg`, { 
+        type: 'image/jpeg' 
+      })
       
-      ctx.fillStyle = '#FFD700'
-      ctx.font = 'bold 32px Arial, sans-serif'
-      ctx.fillText(`${districtName}`, canvas.width / 2, 970)
+      const shareText = `${constituencyObj.name_hindi}, ${districtObj.name_hindi} का ओपिनियन पोल परिणाम देखें! शीर्ष उम्मीदवार: ${results[0]?.candidate_name || 'N/A'} (${results[0]?.percentage.toFixed(1)}%)`
+      const shareUrl = 'https://opinionpoll.co.in/results'
+      const fullText = `${shareText}\n\n${shareUrl}`
       
-      // Convert to blob
-      canvas.toBlob(async (blob) => {
-        if (!blob) return
-        
+      // Check if Web Share API with files is supported
+      if (navigator.share) {
         try {
-          const file = new File([blob], `bihar-poll-results-${constituencyName}.jpg`, { 
-            type: 'image/jpeg' 
-          })
-          
-          // Check if Web Share API with files is supported
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          // Try sharing with both text and files
+          if (navigator.canShare && navigator.canShare({ files: [file], text: fullText })) {
             await navigator.share({
+              text: fullText,
               files: [file],
-              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
-              text: `${getShareText()}\n\n${shareUrl}`
             })
-          } else if (navigator.share) {
-            // Fallback to sharing URL only
+          } else if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            // Android fallback: some apps will show text from title
             await navigator.share({
               title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
-              text: getShareText(),
-              url: shareUrl
+              text: fullText,
+              files: [file],
             })
           } else {
-            // Download as fallback
-            const link = document.createElement('a')
-            link.download = `bihar-poll-results-${constituencyName}.jpg`
-            link.href = URL.createObjectURL(blob)
-            link.click()
-            URL.revokeObjectURL(link.href)
+            // Just share text without image
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
+              text: fullText,
+              url: shareUrl,
+            })
           }
-        } catch (err) {
-          if ((err as Error).name !== 'AbortError') {
-            console.error('Share failed:', err)
-          }
-        }
-      }, 'image/jpeg', 0.85)
-    }
-    
-    background.onerror = () => {
-      console.error('Failed to load background image')
-      alert('इमेज लोड करने में त्रुटि। कृपया पुनः प्रयास करें।')
-    }
-  }
-
-  const generateResultImage = () => {
-    if (!canvasRef.current || results.length === 0) return
-
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    // Set canvas size to match confirmation page (1080x1080)
-    canvas.width = 1080
-    canvas.height = 1080
-
-    // Load background image
-    const background = new Image()
-    background.crossOrigin = 'anonymous'
-    background.src = '/images/vote-background.jpg'
-    
-    background.onload = () => {
-      // Draw background
-      ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
-      
-      // Get constituency and district names
-      const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
-      const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
-      
-      // Get top 3 results
-      const topResults = results.slice(0, 3)
-      
-      // Configure text rendering
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      
-      // Draw top candidate (Position 1) - White text
-      if (topResults[0]) {
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 48px Arial, sans-serif'
-        ctx.fillText(topResults[0].candidate_name || 'N/A', canvas.width / 2, 290)
-        
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 40px Arial, sans-serif'
-        ctx.fillText(topResults[0].party_name || topResults[0].party_abbreviation || '', canvas.width / 2, 345)
-        
-        // Percentage in larger font
-        ctx.fillStyle = '#FFFFFF'
-        ctx.font = 'bold 52px Arial, sans-serif'
-        ctx.fillText(`${topResults[0].percentage.toFixed(1)}%`, canvas.width / 2, 410)
-      }
-      
-      // Draw location in yellow at bottom
-      ctx.fillStyle = '#FFD700'
-      ctx.font = 'bold 36px Arial, sans-serif'
-      ctx.fillText(`${constituencyName}`, canvas.width / 2, 920)
-      
-      ctx.fillStyle = '#FFD700'
-      ctx.font = 'bold 32px Arial, sans-serif'
-      ctx.fillText(`${districtName}`, canvas.width / 2, 970)
-      
-      // Convert canvas to blob and download as optimized JPG
-      canvas.toBlob((blob) => {
-        if (blob) {
+        } catch (shareErr) {
+          console.error('Share error:', shareErr)
+          // If share fails, offer download
           const link = document.createElement('a')
-          link.download = `bihar-poll-results-${constituencyName}.jpg`
+          link.download = `bihar-poll-results-${constituencyObj.name_hindi}.jpg`
           link.href = URL.createObjectURL(blob)
           link.click()
           URL.revokeObjectURL(link.href)
+          alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
         }
-      }, 'image/jpeg', 0.85)
+      } else {
+        alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें।')
+      }
+    } catch (err) {
+      console.error('Error sharing:', err)
+      alert('शेयर करने में त्रुटि हुई। कृपया पुनः प्रयास करें।')
     }
-    
-    background.onerror = () => {
-      console.error('Failed to load background image')
-      alert('इमेज लोड करने में त्रुटि। कृपया पुनः प्रयास करें।')
+  }
+
+  const handleDownloadImage = async () => {
+    if (results.length === 0 || !selectedConstituency || !selectedDistrict) return
+
+    const constituencyName = constituencies.find(c => c.id === selectedConstituency)?.name_hindi || ''
+    const districtName = districts.find(d => d.id === selectedDistrict)?.name_hindi || ''
+    const totalVotes = results.reduce((sum, r) => sum + r.total_votes, 0)
+
+    const imageDataUrl = await generateResultImage({
+      constituencyName,
+      districtName,
+      results: results.slice(0, 5), // Top 5 candidates
+      totalVotes
+    })
+
+    if (imageDataUrl) {
+      const link = document.createElement('a')
+      link.download = `bihar-poll-results-${constituencyName}.png`
+      link.href = imageDataUrl
+      link.click()
     }
   }
 
@@ -511,33 +471,8 @@ export default function ResultsPage() {
                   इन परिणामों को अपने मित्रों के साथ साझा करें
                 </p>
 
-                {/* Share Buttons - Responsive and Compact */}
-                <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-4">
-                  {/* Share with Image (Web Share API) */}
-                  <button
-                    onClick={handleNativeShare}
-                    className="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-semibold transition-colors shadow-md text-sm md:text-base whitespace-nowrap"
-                  >
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                    </svg>
-                    <span className="hindi-text">शेयर करें</span>
-                  </button>
-
-                  {/* Download Image */}
-                  <button
-                    onClick={generateResultImage}
-                    className="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-lg font-semibold transition-colors shadow-md text-sm md:text-base whitespace-nowrap"
-                  >
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    <span className="hindi-text">डाउनलोड करें</span>
-                  </button>
-                </div>
-
                 {/* Social Media Share - Compact Grid */}
-                <div className="pt-4 border-t border-gray-200">
+                <div className="pt-2">
                   <p className="text-xs md:text-sm text-gray-600 mb-3 hindi-text text-center">सोशल मीडिया पर शेयर करें:</p>
                   <div className="grid grid-cols-5 gap-2 md:gap-3 max-w-sm mx-auto">
                     {/* WhatsApp */}
@@ -587,7 +522,7 @@ export default function ResultsPage() {
                     {/* Instagram */}
                     <button
                       onClick={() => {
-                        generateResultImage()
+                        handleDownloadImage()
                         alert('इमेज डाउनलोड हो गई है! अब Instagram app खोलें और Story/Post में यह इमेज अपलोड करें।')
                       }}
                       className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white rounded-full flex items-center justify-center transition-colors shadow-md"

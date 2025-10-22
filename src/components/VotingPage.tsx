@@ -215,6 +215,13 @@ export default function VotingPage() {
         const constituency = constituencies.find(c => c.id === selectedConstituency)
         const district = districts.find(d => d.id === selectedDistrict)
         
+        console.log('Saving vote data with:', {
+          selectedConstituency,
+          selectedDistrict,
+          constituency,
+          district
+        })
+        
         if (candidateId === -1) {
           // NOTA vote
           const voteData = {
@@ -224,9 +231,12 @@ export default function VotingPage() {
             party_name: 'NOTA',
             party_symbol: '',
             constituency_name: constituency?.name_hindi || '',
+            constituency_id: selectedConstituency || 0,
             district_name: district?.name_hindi || '',
+            district_id: selectedDistrict || 0,
             voted_at: new Date().toISOString()
           }
+          console.log('Saving NOTA vote data:', voteData)
           localStorage.setItem('lastVote', JSON.stringify(voteData))
         } else {
           const candidate = candidates.find(c => c.candidate_id === candidateId)
@@ -238,9 +248,12 @@ export default function VotingPage() {
               party_name: candidate.party?.name_hindi || 'निर्दलीय',
               party_symbol: candidate.party?.symbol_url || '',
               constituency_name: constituency?.name_hindi || '',
+              constituency_id: selectedConstituency || 0,
               district_name: district?.name_hindi || '',
+              district_id: selectedDistrict || 0,
               voted_at: new Date().toISOString()
             }
+            console.log('Saving candidate vote data:', voteData)
             localStorage.setItem('lastVote', JSON.stringify(voteData))
           }
         }
