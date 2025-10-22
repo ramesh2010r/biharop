@@ -158,7 +158,7 @@ export default function PredictionGraph() {
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 z-10">
                     <div className="bg-white px-4 py-2 rounded-full shadow-lg border-2" style={{ borderColor: group.groupColor }}>
                       <span className="font-bold text-sm" style={{ color: group.groupColor }}>
-                        Leading in {group.leadingIn} seats
+                        {group.leadingIn} सीटों में आगे
                       </span>
                     </div>
                   </div>
