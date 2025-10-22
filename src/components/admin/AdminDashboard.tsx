@@ -158,10 +158,43 @@ interface District {
     duplicate_vote_prevention: true,
     anonymous_voting: true
   })
+  
+  // Bulk candidate upload state
+  const [showBulkCandidateModal, setShowBulkCandidateModal] = useState(false)
+  const [bulkCandidates, setBulkCandidates] = useState([
+    { name_hindi: '', party_id: '', constituency_id: '', photo_url: '' }
+  ])
   const [candidatesPage, setCandidatesPage] = useState(1)
   const [candidatesPerPage] = useState(100)
   const [constituencyPage, setConstituencyPage] = useState(1)
   const [constituenciesPerPage] = useState(100)
+
+  // Helper function to sort parties by alliance
+  const sortPartiesByAlliance = (parties: Party[]) => {
+    const INDIA_PARTIES = ['INC', 'RJD', 'CPIM', 'CPI', 'CONG', 'RLD']
+    const NDA_PARTIES = ['BJP', 'JDU', 'LJP', 'LJPRV']
+    
+    return [...parties].sort((a, b) => {
+      const codeA = (a.abbreviation || a.short_code || '').toUpperCase()
+      const codeB = (b.abbreviation || b.short_code || '').toUpperCase()
+      
+      const isIndiaA = INDIA_PARTIES.includes(codeA)
+      const isIndiaB = INDIA_PARTIES.includes(codeB)
+      const isNdaA = NDA_PARTIES.includes(codeA)
+      const isNdaB = NDA_PARTIES.includes(codeB)
+      
+      // INDIA alliance first
+      if (isIndiaA && !isIndiaB) return -1
+      if (!isIndiaA && isIndiaB) return 1
+      
+      // NDA alliance second
+      if (isNdaA && !isNdaB) return -1
+      if (!isNdaA && isNdaB) return 1
+      
+      // Within same group or others, sort alphabetically
+      return codeA.localeCompare(codeB)
+    })
+  }
 
   useEffect(() => {
     // Check if admin is logged in
@@ -595,6 +628,87 @@ interface District {
     setShowAddCandidateModal(false)
     setEditingCandidate(null)
     setCandidateForm({ name_hindi: '', party_id: '', constituency_id: '', photo_url: '' })
+  }
+
+  // ==================== BULK CANDIDATE MANAGEMENT ====================
+  
+  const handleAddBulkCandidateRow = () => {
+    setBulkCandidates([...bulkCandidates, { name_hindi: '', party_id: '', constituency_id: '', photo_url: '' }])
+  }
+
+  const handleRemoveBulkCandidateRow = (index: number) => {
+    if (bulkCandidates.length > 1) {
+      setBulkCandidates(bulkCandidates.filter((_, i) => i !== index))
+    }
+  }
+
+  const handleBulkCandidateChange = (index: number, field: string, value: string) => {
+    const updated = [...bulkCandidates]
+    updated[index] = { ...updated[index], [field]: value }
+    setBulkCandidates(updated)
+  }
+
+  const handleSubmitBulkCandidates = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const token = localStorage.getItem('adminToken')
+    if (!token) return
+
+    // Validate all candidates
+    const invalidCandidates = bulkCandidates.filter(
+      c => !c.name_hindi || !c.party_id || !c.constituency_id
+    )
+    
+    if (invalidCandidates.length > 0) {
+      alert(`Please fill all required fields for all candidates (${invalidCandidates.length} incomplete)`)
+      return
+    }
+
+    setActionLoading(true)
+    let successCount = 0
+    let failCount = 0
+
+    try {
+      for (const candidate of bulkCandidates) {
+        try {
+          const response = await fetch(getApiUrl('/api/admin/candidates'), {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name_hindi: candidate.name_hindi,
+              party_id: parseInt(candidate.party_id),
+              constituency_id: parseInt(candidate.constituency_id),
+              photo_url: candidate.photo_url || null
+            })
+          })
+
+          if (response.ok) {
+            successCount++
+          } else {
+            failCount++
+          }
+        } catch (error) {
+          failCount++
+        }
+      }
+
+      await loadDashboardData(token)
+      setShowBulkCandidateModal(false)
+      setBulkCandidates([{ name_hindi: '', party_id: '', constituency_id: '', photo_url: '' }])
+      alert(`Added ${successCount} candidates successfully!${failCount > 0 ? ` ${failCount} failed.` : ''}`)
+    } catch (error) {
+      console.error('Failed to add bulk candidates:', error)
+      alert('Network error. Please try again.')
+    } finally {
+      setActionLoading(false)
+    }
+  }
+
+  const closeBulkCandidateModal = () => {
+    setShowBulkCandidateModal(false)
+    setBulkCandidates([{ name_hindi: '', party_id: '', constituency_id: '', photo_url: '' }])
   }
 
   // ==================== PARTY MANAGEMENT ====================
@@ -1502,15 +1616,26 @@ interface District {
                     <h3 className="text-lg font-bold text-gray-900">Candidate Management</h3>
                     <p className="text-sm text-gray-500 mt-1">Manage Bihar Assembly Election candidates</p>
                   </div>
-                  <button 
-                    onClick={() => setShowAddCandidateModal(true)}
-                    className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium flex items-center gap-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                    </svg>
-                    Add New Candidate
-                  </button>
+                  <div className="flex gap-3">
+                    <button 
+                      onClick={() => setShowBulkCandidateModal(true)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                      </svg>
+                      Add Multiple Candidates
+                    </button>
+                    <button 
+                      onClick={() => setShowAddCandidateModal(true)}
+                      className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Add New Candidate
+                    </button>
+                  </div>
                 </div>
 
                 {/* Search and Filter */}
@@ -2733,11 +2858,37 @@ interface District {
                     required
                   >
                     <option value="">Select Party</option>
-                    {parties.map(party => (
-                      <option key={party.id || party.party_id} value={party.id || party.party_id}>
-                        {party.abbreviation || party.short_code} - {party.name_hindi}
-                      </option>
-                    ))}
+                    {(() => {
+                      const sorted = sortPartiesByAlliance(parties)
+                      const INDIA_PARTIES = ['INC', 'RJD', 'CPIM', 'CPI', 'CONG', 'RLD']
+                      const NDA_PARTIES = ['BJP', 'JDU', 'LJP', 'LJPRV']
+                      
+                      let lastGroup = ''
+                      return sorted.map((party, index) => {
+                        const code = (party.abbreviation || party.short_code || '').toUpperCase()
+                        let currentGroup = ''
+                        
+                        if (INDIA_PARTIES.includes(code)) currentGroup = 'INDIA'
+                        else if (NDA_PARTIES.includes(code)) currentGroup = 'NDA'
+                        else currentGroup = 'OTHER'
+                        
+                        const showGroupHeader = currentGroup !== lastGroup
+                        lastGroup = currentGroup
+                        
+                        return (
+                          <>
+                            {showGroupHeader && (
+                              <option disabled className="font-bold bg-gray-100">
+                                ━━━ {currentGroup === 'INDIA' ? 'INDIA Alliance' : currentGroup === 'NDA' ? 'NDA Alliance' : 'Other Parties'} ━━━
+                              </option>
+                            )}
+                            <option key={party.id || party.party_id} value={party.id || party.party_id}>
+                              {party.abbreviation || party.short_code} - {party.name_hindi}
+                            </option>
+                          </>
+                        )
+                      })
+                    })()}
                   </select>
                   <p className="text-xs text-gray-500 mt-1">Choose political party</p>
                 </div>
@@ -3181,6 +3332,180 @@ interface District {
           </div>
         </div>
       )}
+
+      {/* Bulk Add Candidates Modal */}
+      {showBulkCandidateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto py-8">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl mx-4">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white rounded-t-xl z-10">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Add Multiple Candidates</h2>
+                <p className="text-sm text-gray-500 mt-1">Add multiple candidates in one go</p>
+              </div>
+              <button
+                onClick={closeBulkCandidateModal}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitBulkCandidates} className="p-6 space-y-6">
+              {/* Bulk Candidates List */}
+              <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                {bulkCandidates.map((candidate, index) => (
+                  <div key={index} className="border border-gray-300 rounded-lg p-4 bg-gray-50 relative">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-semibold text-gray-900">Candidate #{index + 1}</h3>
+                      {bulkCandidates.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveBulkCandidateRow(index)}
+                          className="text-red-600 hover:text-red-700 p-1 hover:bg-red-50 rounded transition-colors"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Candidate Name (Hindi) <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          value={candidate.name_hindi}
+                          onChange={(e) => handleBulkCandidateChange(index, 'name_hindi', e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent hindi-text"
+                          placeholder="उम्मीदवार का नाम हिंदी में"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Party <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                          value={candidate.party_id}
+                          onChange={(e) => handleBulkCandidateChange(index, 'party_id', e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          required
+                        >
+                          <option value="">Select Party</option>
+                          {(() => {
+                            const sorted = sortPartiesByAlliance(parties)
+                            const INDIA_PARTIES = ['INC', 'RJD', 'CPIM', 'CPI', 'CONG', 'RLD']
+                            const NDA_PARTIES = ['BJP', 'JDU', 'LJP', 'LJPRV']
+                            
+                            let lastGroup = ''
+                            return sorted.map((party, partyIndex) => {
+                              const code = (party.abbreviation || party.short_code || '').toUpperCase()
+                              let currentGroup = ''
+                              
+                              if (INDIA_PARTIES.includes(code)) currentGroup = 'INDIA'
+                              else if (NDA_PARTIES.includes(code)) currentGroup = 'NDA'
+                              else currentGroup = 'OTHER'
+                              
+                              const showGroupHeader = currentGroup !== lastGroup
+                              lastGroup = currentGroup
+                              
+                              return (
+                                <>
+                                  {showGroupHeader && (
+                                    <option disabled className="font-bold bg-gray-100">
+                                      ━━━ {currentGroup === 'INDIA' ? 'INDIA Alliance' : currentGroup === 'NDA' ? 'NDA Alliance' : 'Other Parties'} ━━━
+                                    </option>
+                                  )}
+                                  <option key={party.id || party.party_id} value={party.id || party.party_id}>
+                                    {party.abbreviation || party.short_code} - {party.name_hindi}
+                                  </option>
+                                </>
+                              )
+                            })
+                          })()}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Constituency <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                          value={candidate.constituency_id}
+                          onChange={(e) => handleBulkCandidateChange(index, 'constituency_id', e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          required
+                        >
+                          <option value="">Select Constituency</option>
+                          {constituencies.map(constituency => (
+                            <option key={constituency.id} value={constituency.id}>
+                              #{constituency.seat_no} - {constituency.name_hindi}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Add More Button */}
+              <button
+                type="button"
+                onClick={handleAddBulkCandidateRow}
+                className="w-full py-3 border-2 border-dashed border-blue-300 rounded-lg text-blue-600 hover:bg-blue-50 hover:border-blue-400 transition-colors flex items-center justify-center gap-2 font-medium"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Add Another Candidate
+              </button>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={closeBulkCandidateModal}
+                  className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                  disabled={actionLoading}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  disabled={actionLoading}
+                >
+                  {actionLoading ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Adding {bulkCandidates.length} Candidates...
+                    </span>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Add All {bulkCandidates.length} Candidates
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
+
