@@ -32,11 +32,11 @@ export default function TermsOfServicePage() {
           {/* Introduction */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">1. Acceptance of Terms</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               By accessing and using opinionpoll.co.in (&quot;the Website&quot;), you accept and agree to be bound by 
               these Terms of Service. If you do not agree to these terms, please do not use our website.
             </p>
-            <p className="text-gray-700 leading-relaxed text-justify hindi-text">
+            <p className="text-gray-700 leading-relaxed  hindi-text">
               इस वेबसाइट का उपयोग करके, आप इन सेवा की शर्तों को स्वीकार करते हैं। यदि आप सहमत नहीं हैं, 
               तो कृपया इस वेबसाइट का उपयोग न करें।
             </p>
@@ -45,7 +45,7 @@ export default function TermsOfServicePage() {
           {/* Purpose */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">2. Purpose of the Website</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               Bihar Opinion Poll is an independent platform designed to gather public opinion regarding the 
               Bihar Assembly Elections 2025. This is NOT an official electoral process and has no legal binding.
             </p>
@@ -130,7 +130,7 @@ export default function TermsOfServicePage() {
           {/* Intellectual Property */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">5. Intellectual Property</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               All content on this website, including but not limited to text, graphics, logos, images, and software, 
               is the property of Bihar Opinion Poll or its content suppliers and is protected by copyright and 
               intellectual property laws.
@@ -140,7 +140,7 @@ export default function TermsOfServicePage() {
           {/* Data Usage */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">6. Data and Privacy</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               Your use of this website is also governed by our{' '}
               <Link href="/privacy-policy" className="text-orange-600 hover:text-orange-700 underline font-medium">
                 Privacy Policy
@@ -154,7 +154,7 @@ export default function TermsOfServicePage() {
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">7. Disclaimer of Warranties</h3>
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-              <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+              <p className="text-gray-700 mb-4 leading-relaxed ">
                 THE WEBSITE IS PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS. WE MAKE NO WARRANTIES, 
                 EXPRESS OR IMPLIED, REGARDING:
               </p>
@@ -182,7 +182,7 @@ export default function TermsOfServicePage() {
           {/* Limitation of Liability */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">8. Limitation of Liability</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               Bihar Opinion Poll and its operators shall not be liable for any direct, indirect, incidental, 
               special, or consequential damages arising from:
             </p>
@@ -209,7 +209,7 @@ export default function TermsOfServicePage() {
           {/* ECI Compliance */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">9. Election Commission Compliance</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               We comply with Election Commission of India (ECI) guidelines regarding opinion polls:
             </p>
             <ul className="list-none space-y-2 ml-0">
@@ -231,7 +231,7 @@ export default function TermsOfServicePage() {
           {/* Modifications */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">10. Modifications to Terms</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               We reserve the right to modify these Terms of Service at any time. Changes will be effective 
               immediately upon posting on this page. Your continued use of the website after any changes 
               constitutes acceptance of the new terms.
@@ -241,7 +241,7 @@ export default function TermsOfServicePage() {
           {/* Termination */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">11. Termination</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               We reserve the right to terminate or suspend access to our website immediately, without prior 
               notice, for any reason, including breach of these Terms of Service.
             </p>
@@ -250,7 +250,7 @@ export default function TermsOfServicePage() {
           {/* Governing Law */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">12. Governing Law</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               These Terms of Service shall be governed by and construed in accordance with the laws of India. 
               Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the 
               courts in Patna, Bihar.
@@ -260,18 +260,22 @@ export default function TermsOfServicePage() {
           {/* Contact */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">13. Contact Information</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed">
               For questions about these Terms of Service, please contact us:
             </p>
             <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
-              <p className="text-gray-700 mb-3 flex items-start">
-                <strong className="min-w-[80px]">Email:</strong>
-                <span>legal@opinionpoll.co.in</span>
-              </p>
-              <p className="text-gray-700 flex items-start">
-                <strong className="min-w-[80px]">Website:</strong>
-                <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
-              </p>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-gray-700">
+                    <strong>Email:</strong> legal@opinionpoll.co.in
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-700">
+                    <strong>Website:</strong> <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
         </article>

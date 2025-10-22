@@ -32,12 +32,12 @@ export default function PrivacyPolicyPage() {
           {/* Introduction */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Introduction</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               Welcome to Bihar Opinion Poll (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your privacy 
               and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, 
               disclose, and safeguard your information when you visit our website opinionpoll.co.in.
             </p>
-            <p className="text-gray-700 leading-relaxed text-justify hindi-text">
+            <p className="text-gray-700 leading-relaxed  hindi-text">
               बिहार ओपिनियन पोल में आपका स्वागत है। हम आपकी गोपनीयता की रक्षा के लिए प्रतिबद्ध हैं और आपकी व्यक्तिगत 
               जानकारी की सुरक्षा सुनिश्चित करते हैं।
             </p>
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
 
             <div>
               <h4 className="text-xl font-semibold text-gray-800 mb-3">1.3 Google Analytics</h4>
-              <p className="text-gray-700 leading-relaxed text-justify">
+              <p className="text-gray-700 leading-relaxed ">
                 We use Google Analytics to analyze website traffic and user behavior. Google Analytics collects 
                 information anonymously and reports website trends without identifying individual visitors.
               </p>
@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
           {/* Data Security */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">3. Data Security</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               We implement appropriate technical and organizational security measures to protect your personal 
               information against unauthorized access, alteration, disclosure, or destruction. However, no method 
               of transmission over the Internet or electronic storage is 100% secure.
@@ -148,7 +148,7 @@ export default function PrivacyPolicyPage() {
           {/* Cookies */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">4. Cookies and Tracking Technologies</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               We use cookies and similar tracking technologies to enhance your experience on our website. 
               You can control cookie settings through your browser preferences. However, disabling cookies 
               may affect the functionality of our website.
@@ -158,7 +158,7 @@ export default function PrivacyPolicyPage() {
           {/* Third-Party Services */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">5. Third-Party Services</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed ">
               Our website may contain advertisements served by Google AdSense and use Google Analytics for 
               website analytics. These third-party services have their own privacy policies and we encourage 
               you to review them:
@@ -214,7 +214,7 @@ export default function PrivacyPolicyPage() {
           {/* Children's Privacy */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">7. Children&apos;s Privacy</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               Our website is intended for users who are 18 years of age or older. We do not knowingly collect 
               personal information from children under 18. If you believe we have collected information from 
               a child under 18, please contact us immediately.
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
           {/* Changes to Policy */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">8. Changes to This Privacy Policy</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed ">
               We may update this Privacy Policy from time to time. We will notify you of any changes by posting 
               the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
             </p>
@@ -233,29 +233,34 @@ export default function PrivacyPolicyPage() {
           {/* Contact */}
           <section className="mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">9. Contact Us</h3>
-            <p className="text-gray-700 mb-4 leading-relaxed text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed">
               If you have any questions about this Privacy Policy, please contact us:
             </p>
             <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
-              <p className="text-gray-700 mb-3 flex items-start">
-                <strong className="min-w-[80px]">Email:</strong> 
-                <span>privacy@opinionpoll.co.in</span>
-              </p>
-              <p className="text-gray-700 mb-3 flex items-start">
-                <strong className="min-w-[80px]">Website:</strong> 
-                <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
-              </p>
-              <p className="text-gray-700 hindi-text flex items-start">
-                <strong className="min-w-[80px]">संपर्क:</strong> 
-                <span>privacy@opinionpoll.co.in</span>
-              </p>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-gray-700">
+                    <strong>Email:</strong> privacy@opinionpoll.co.in
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-700">
+                    <strong>Website:</strong> <a href="https://opinionpoll.co.in" className="text-orange-600 hover:text-orange-700 underline">opinionpoll.co.in</a>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-700 hindi-text">
+                    <strong>संपर्क:</strong> privacy@opinionpoll.co.in
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* GDPR Compliance */}
           <section className="mb-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">GDPR & Data Protection Compliance</h3>
-            <p className="text-gray-700 leading-relaxed text-justify">
+            <p className="text-gray-700 leading-relaxed">
               We comply with applicable data protection laws including GDPR principles. Your data is processed 
               lawfully, fairly, and transparently. We only collect data necessary for our services and retain 
               it only as long as needed.
