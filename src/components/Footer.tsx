@@ -12,26 +12,40 @@ export default function Footer() {
         </div>
         
         {/* Footer Links */}
-        <div className="flex justify-center items-center space-x-6 text-sm border-t border-gray-700 pt-4">
+        <div className="flex flex-wrap justify-center items-center gap-3 text-sm border-t border-gray-700 pt-4">
+          <Link 
+            href="/about" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            About Us
+          </Link>
+          <span className="text-gray-600">|</span>
+          <Link 
+            href="/privacy-policy" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          <span className="text-gray-600">|</span>
+          <Link 
+            href="/terms-of-service" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Terms of Service
+          </Link>
+          <span className="text-gray-600">|</span>
+          <Link 
+            href="/contact" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Contact Us
+          </Link>
+          <span className="text-gray-600">|</span>
           <Link 
             href="/disclaimer" 
             className="text-gray-300 hover:text-white transition-colors"
           >
             Disclaimer
-          </Link>
-          <span className="text-gray-600">|</span>
-          <Link 
-            href="/disclaimer#privacy" 
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            Privacy
-          </Link>
-          <span className="text-gray-600">|</span>
-          <Link 
-            href="/disclaimer#contact" 
-            className="text-gray-300 hover:text-white transition-colors"
-          >
-            Contact
           </Link>
         </div>
       </div>
