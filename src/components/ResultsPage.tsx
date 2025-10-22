@@ -53,6 +53,7 @@ export default function ResultsPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
   
   const [selectedDistrict, setSelectedDistrict] = useState<number | null>(null)
   const [selectedConstituency, setSelectedConstituency] = useState<number | null>(null)
@@ -62,6 +63,11 @@ export default function ResultsPage() {
   useEffect(() => {
     checkBlackoutStatus()
     fetchDistricts()
+    
+    // Detect iOS
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    setIsIOS(iOS)
   }, [])
 
   // Handle URL parameters for direct constituency navigation
@@ -223,46 +229,64 @@ export default function ResultsPage() {
         type: 'image/jpeg' 
       })
       
-      const shareText = `${constituencyObj.name_hindi}, ${districtObj.name_hindi} का ओपिनियन पोल परिणाम देखें! शीर्ष उम्मीदवार: ${results[0]?.candidate_name || 'N/A'} (${results[0]?.percentage.toFixed(1)}%)`
-      const shareUrl = 'https://opinionpoll.co.in/results'
-      const fullText = `${shareText}\n\n${shareUrl}`
+      // WhatsApp formatted text with bold and line breaks
+      const topCandidate = results[0]
+      const shareText = `🗳️ *बिहार चुनाव ओपिनियन पोल - परिणाम*
+
+📊 ${constituencyObj.name_hindi}, ${districtObj.name_hindi}
+
+🥇 *शीर्ष उम्मीदवार:*
+${topCandidate?.candidate_name || 'N/A'} (${topCandidate?.party_abbreviation})
+${topCandidate?.percentage.toFixed(1)}% वोट
+
+✅ पूर्ण परिणाम देखें और अपना मत दर्ज करें!`
       
-      // Check if Web Share API with files is supported
-      if (navigator.share) {
-        try {
-          // Try sharing with both text and files
-          if (navigator.canShare && navigator.canShare({ files: [file], text: fullText })) {
+      const shareUrl = 'https://opinionpoll.co.in/results'
+      const fullText = `${shareText}\n\n🔗 ${shareUrl}`
+
+      // Platform-specific sharing behavior
+      if (isIOS) {
+        // iOS: Share image with text (works well on iOS)
+        if (navigator.share) {
+          try {
             await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल - परिणाम',
               text: fullText,
               files: [file],
             })
-          } else if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            // Android fallback: some apps will show text from title
-            await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
-              text: fullText,
-              files: [file],
-            })
-          } else {
-            // Just share text without image
-            await navigator.share({
-              title: 'बिहार चुनाव ओपिनियन पोल परिणाम',
-              text: fullText,
-              url: shareUrl,
-            })
+            console.log('Content shared successfully on iOS')
+          } catch (shareErr) {
+            console.error('Share error:', shareErr)
+            if ((shareErr as Error).name !== 'AbortError') {
+              const link = document.createElement('a')
+              link.download = `bihar-poll-results-${constituencyObj.name_hindi}.jpg`
+              link.href = URL.createObjectURL(blob)
+              link.click()
+              URL.revokeObjectURL(link.href)
+              alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
+            }
           }
-        } catch (shareErr) {
-          console.error('Share error:', shareErr)
-          // If share fails, offer download
-          const link = document.createElement('a')
-          link.download = `bihar-poll-results-${constituencyObj.name_hindi}.jpg`
-          link.href = URL.createObjectURL(blob)
-          link.click()
-          URL.revokeObjectURL(link.href)
-          alert('इमेज डाउनलोड हो गई है! अब आप इसे मैन्युअली शेयर कर सकते हैं।')
         }
       } else {
-        alert('आपका ब्राउज़र शेयरिंग का समर्थन नहीं करता। कृपया इमेज डाउनलोड करें।')
+        // Android: Share text only, download button will appear separately
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'बिहार चुनाव ओपिनियन पोल - परिणाम',
+              text: fullText,
+            })
+            console.log('Text shared successfully on Android')
+          } catch (shareErr) {
+            console.error('Share error:', shareErr)
+            if ((shareErr as Error).name !== 'AbortError') {
+              const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`
+              window.open(whatsappUrl, '_blank')
+            }
+          }
+        } else {
+          const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText)}`
+          window.open(whatsappUrl, '_blank')
+        }
       }
     } catch (err) {
       console.error('Error sharing:', err)
@@ -538,12 +562,28 @@ export default function ResultsPage() {
                     >
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                      </svg>
+                                            </svg>
                     </button>
                   </div>
+                  
+                  {/* Android: Download Results Button */}
+                  {!isIOS && (
+                    <div className="mt-4 flex justify-center">
+                      <button
+                        onClick={handleDownloadImage}
+                        className="px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold hindi-text transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 text-sm"
+                        title="परिणाम डाउनलोड करें"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        परिणाम डाउनलोड करें
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
-                </>
+            </>
               )}
 
               {/* Prompt message when no constituency selected */}
