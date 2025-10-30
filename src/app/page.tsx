@@ -1,12 +1,13 @@
 import WelcomePage from '@/components/WelcomePage'
+import StructuredData from '@/components/StructuredData'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'बिहार विधानसभा चुनाव 2025 ओपिनियन पोल | स्वतंत्र राय सर्वेक्षण',
-  description: 'बिहार विधानसभा चुनाव 2025 के लिए भारत का सबसे विश्वसनीय ओपिनियन पोल। 243 सीटों के लिए वास्तविक समय परिणाम। गुमनाम, सुरक्षित और निष्पक्ष। अभी अपनी राय दें और देखें कौन आगे है।',
+  title: 'Bihar Opinion Poll 2025 | Live Election Survey Results | 243 Seats | बिहार चुनाव ओपिनियन पोल',
+  description: 'Bihar Opinion Poll 2025 🗳️ Live election survey results for 243 seats. Real-time constituency analysis, party predictions, and voting trends. Cast your vote now! बिहार चुनाव सर्वेक्षण - Vote करें और तुरंत परिणाम देखें।',
   openGraph: {
-    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
-    description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी नीचे दिए गए लिंक पर क्लिक करके दर्ज करें।',
+    title: 'Bihar Opinion Poll 2025 | Live Election Survey | 243 Seats Real-Time Results',
+    description: '🗳️ Cast your vote in Bihar Opinion Poll 2025! Real-time results, 243 constituencies, accurate predictions. Join thousands already voting. बिहार चुनाव में अपनी राय दें।',
     url: 'https://opinionpoll.co.in',
     siteName: 'Bihar Opinion Poll',
     images: [
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
-    description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी अपनी राय दें।',
+    title: 'Bihar Opinion Poll 2025 | Real-Time Election Survey | 243 Seats',
+    description: '🗳️ Live Bihar election opinion poll results! Cast your vote for 243 constituencies. See instant predictions. Anonymous & secure. Vote now!',
     images: ['https://opinionpoll.co.in/images/og-share-image.jpg'],
   },
   keywords: [
@@ -103,5 +104,12 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <WelcomePage />
+  return (
+    <>
+      <StructuredData type="organization" />
+      <StructuredData type="website" />
+      <StructuredData type="faqpage" />
+      <WelcomePage />
+    </>
+  )
 }
