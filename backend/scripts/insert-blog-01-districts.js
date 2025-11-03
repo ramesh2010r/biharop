@@ -68,14 +68,14 @@ async function insertBlog01() {
 
     // Verify insertion
     const [rows] = await connection.execute(
-      'SELECT id, title, slug, status, published_at FROM Blog_Posts WHERE slug = ?',
+      'SELECT id, title_hindi, slug, status, published_at FROM Blog_Posts WHERE slug = ?',
       [blogData.slug]
     );
 
     if (rows.length > 0) {
       console.log('\n✅ Verification successful:');
       console.log('   ID:', rows[0].id);
-      console.log('   Title:', rows[0].title);
+      console.log('   Title:', rows[0].title_hindi);
       console.log('   Status:', rows[0].status);
       console.log('   Published:', rows[0].published_at);
     }
