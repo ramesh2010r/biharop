@@ -28,7 +28,7 @@ async function convertBlogSchema(inputFile, outputFile) {
       featured_image_url: originalData.featured_image,
       author_id: originalData.author_id,
       category: originalData.category,
-      tags: originalData.tags,
+      tags: Array.isArray(originalData.tags) ? originalData.tags.join(', ') : originalData.tags, // Convert array to comma-separated string
       status: originalData.status,
       meta_title: originalData.title, // Use title as meta_title
       meta_description: originalData.meta_description,
