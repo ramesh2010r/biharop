@@ -3,9 +3,8 @@
 // Publish Date: November 1, 2025 at 10:00 AM IST
 
 const mysql = require('mysql2/promise');
-require('dotenv').config();
-
-const blogData = require('../data/blog-01-bihar-38-districts.json');
+const fs = require('fs');
+const path = require('path');
 
 async function insertBlog01() {
   let connection;
@@ -16,8 +15,13 @@ async function insertBlog01() {
       fs.readFileSync(path.join(__dirname, '../data/blog-01-bihar-38-districts-converted.json'), 'utf8')
     );
     
-    // Get database connection
-    connection = await pool.getConnection();
+    // Create database connection
+    connection = await mysql.createConnection({
+      host: '15.206.160.149',
+      user: 'opinion_poll_user',
+      password: 'BiharPoll2025Secure',
+      database: 'bihar_opinion_poll'
+    });
     console.log('✅ Database connected successfully');
     
     // Insert blog with bilingual schema
