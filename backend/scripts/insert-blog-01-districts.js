@@ -11,50 +11,43 @@ async function insertBlog01() {
   let connection;
   
   try {
-    // Create database connection
-    connection = await mysql.createConnection({
-      host: '15.206.160.149',
-      user: 'opinion_poll_user',
-      password: 'BiharPoll2025Secure',
-      database: 'bihar_opinion_poll'
-    });
-
+    // Read blog data (converted schema)
+    const blogData = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '../data/blog-01-bihar-38-districts-converted.json'), 'utf8')
+    );
+    
+    // Get database connection
+    connection = await pool.getConnection();
     console.log('✅ Database connected successfully');
-
-    // Prepare the SQL query
+    
+    // Insert blog with bilingual schema
     const query = `
       INSERT INTO Blog_Posts (
-        title,
-        slug,
-        excerpt,
-        content,
-        featured_image,
-        author_id,
-        category,
-        tags,
-        meta_description,
-        meta_keywords,
-        read_time,
-        status,
-        published_at,
-        created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+        title_hindi, title_english, slug, 
+        content_hindi, content_english,
+        excerpt_hindi, excerpt_english, 
+        featured_image_url, author_id,
+        status, category, tags, meta_title, 
+        meta_description, meta_keywords, published_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-
-    // Prepare values
+    
     const values = [
-      blogData.title,
+      blogData.title_hindi,
+      blogData.title_english,
       blogData.slug,
-      blogData.excerpt,
-      blogData.content,
-      blogData.featured_image,
-      blogData.author_id, // NULL
+      blogData.content_hindi,
+      blogData.content_english,
+      blogData.excerpt_hindi,
+      blogData.excerpt_english,
+      blogData.featured_image_url,
+      blogData.author_id,
+      blogData.status,
       blogData.category,
-      JSON.stringify(blogData.tags),
+      blogData.tags,
+      blogData.meta_title,
       blogData.meta_description,
       blogData.meta_keywords,
-      blogData.read_time,
-      blogData.status,
       blogData.published_at
     ];
 

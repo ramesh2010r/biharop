@@ -16,43 +16,49 @@ async function insertBlog() {
 
     console.log('✅ Connected to database');
 
-    // Read blog data from JSON file
-    const blogDataPath = path.join(__dirname, '../data/blog-02-243-seats.json');
+    // Read blog data from JSON file (converted schema)
+    const blogDataPath = path.join(__dirname, '../data/blog-02-243-seats-converted.json');
     const blogData = JSON.parse(await fs.readFile(blogDataPath, 'utf8'));
 
-    console.log(`📝 Inserting blog: ${blogData.title}`);
+    console.log(`📝 Inserting blog: ${blogData.title_hindi}`);
 
-    // Insert blog into Blog_Posts table
+    // Insert blog into Blog_Posts table with bilingual schema
     const insertQuery = `
       INSERT INTO Blog_Posts (
-        title,
+        title_hindi,
+        title_english,
         slug,
-        excerpt,
-        content,
-        featured_image,
+        content_hindi,
+        content_english,
+        excerpt_hindi,
+        excerpt_english,
+        featured_image_url,
         author_id,
         category,
         tags,
+        meta_title,
         meta_description,
         meta_keywords,
-        read_time,
         status,
         published_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const values = [
-      blogData.title,
+      blogData.title_hindi,
+      blogData.title_english,
       blogData.slug,
-      blogData.excerpt,
-      blogData.content,
-      blogData.featured_image,
+      blogData.content_hindi,
+      blogData.content_english,
+      blogData.excerpt_hindi,
+      blogData.excerpt_english,
+      blogData.featured_image_url,
       blogData.author_id,
       blogData.category,
       blogData.tags,
+      blogData.meta_title,
       blogData.meta_description,
       blogData.meta_keywords,
-      blogData.read_time,
       blogData.status,
       blogData.published_at
     ];
@@ -63,14 +69,14 @@ async function insertBlog() {
 
     // Verify insertion
     const [rows] = await connection.execute(
-      'SELECT post_id, title, slug, status, published_at FROM Blog_Posts WHERE post_id = ?',
+      'SELECT post_id, title_hindi, slug, status, published_at FROM Blog_Posts WHERE post_id = ?',
       [result.insertId]
     );
 
     console.log('\n📊 Inserted Blog Details:');
     console.log('─'.repeat(80));
     console.log(`ID: ${rows[0].post_id}`);
-    console.log(`Title: ${rows[0].title}`);
+    console.log(`Title: ${rows[0].title_hindi}`);
     console.log(`Slug: ${rows[0].slug}`);
     console.log(`Status: ${rows[0].status}`);
     console.log(`Published: ${rows[0].published_at}`);
