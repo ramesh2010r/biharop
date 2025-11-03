@@ -33,7 +33,7 @@ async function convertBlogSchema(inputFile, outputFile) {
       meta_title: originalData.title, // Use title as meta_title
       meta_description: originalData.meta_description,
       meta_keywords: originalData.meta_keywords,
-      published_at: originalData.published_at
+      published_at: originalData.published_at ? originalData.published_at.replace(/T/, ' ').replace(/\+.*$/, '') : null // Convert ISO to MySQL datetime format
     };
     
     // Write converted data
