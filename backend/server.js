@@ -63,6 +63,7 @@ const adminRoutes = require('./routes/admin');
 const uploadRoutes = require('./routes/upload');
 const settingsRoutes = require('./routes/settings');
 const predictionsRoutes = require('./routes/predictions');
+const blogRoutes = require('./routes/blog');
 
 // API Routes
 app.use('/api/districts', districtRoutes);
@@ -76,6 +77,7 @@ app.use('/api/settings', settingsRoutes); // Public settings
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin', settingsRoutes); // Admin settings
 app.use('/api/upload', uploadRoutes);
+app.use('/api/blog', blogRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'About Us | हमारे बारे में',
   description: 'Learn about Bihar Opinion Poll - an independent platform for gathering public opinion on Bihar Assembly Elections 2025.',
   alternates: {
-    canonical: '/about',
+    canonical: 'https://opinionpoll.co.in/about',
   },
 }
 

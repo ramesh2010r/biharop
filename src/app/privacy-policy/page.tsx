@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | गोपनीयता नीति',
   description: 'Privacy Policy for Bihar Opinion Poll website. Learn how we collect, use, and protect your information.',
   alternates: {
-    canonical: '/privacy-policy',
+    canonical: 'https://opinionpoll.co.in/privacy-policy',
   },
 }
 

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service | सेवा की शर्तें',
   description: 'Terms of Service for using Bihar Opinion Poll website. Read our usage terms and conditions.',
   alternates: {
-    canonical: '/terms-of-service',
+    canonical: 'https://opinionpoll.co.in/terms-of-service',
   },
 }
 

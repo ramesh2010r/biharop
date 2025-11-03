@@ -1,0 +1,83 @@
+{
+  "message": "10 Beautiful Hindi Blog Posts for Bihar Election 2025",
+  "total_blogs": 10,
+  "features": [
+    "Mobile-optimized responsive design",
+    "Rich visual elements with emojis and colors",
+    "SEO-friendly with proper meta tags",
+    "Original, non-copied content",
+    "Engaging infographics and statistics",
+    "Easy-to-read Hindi language",
+    "Proper HTML structure with Tailwind CSS",
+    "Interactive elements and visual hierarchy"
+  ],
+  "instructions": "All 10 blog posts have been created in separate JSON files. To insert them into the database, you need to:",
+  "steps": [
+    "1. Ensure MySQL database is accessible",
+    "2. Run: cd backend && node scripts/insert-blog-posts.js",
+    "3. Verify blogs are visible at https://opinionpoll.co.in/blog",
+    "4. Check individual blog pages work correctly"
+  ],
+  "blog_list": [
+    {
+      "number": 1,
+      "title": "बिहार चुनाव 2025 - संपूर्ण मार्गदर्शिका",
+      "file": "blog-posts.json",
+      "category": "चुनाव समाचार",
+      "features": ["Stats cards", "Timeline", "Party info", "Voter guide"]
+    },
+    {
+      "number": 2,
+      "title": "बिहार की प्रमुख राजनीतिक पार्टियों का गहन विश्लेषण",
+      "file": "blog-posts.json",
+      "category": "राजनीतिक विश्लेषण",
+      "features": ["Party comparison", "Strength analysis", "Vote share prediction", "Star ratings"]
+    },
+    {
+      "number": 3,
+      "title": "मतदान प्रक्रिया - कैसे करें वोट? पूरी जानकारी",
+      "file": "blog-posts-part2.json",
+      "category": "मतदाता जागरूकता",
+      "features": ["Step-by-step guide", "EVM/VVPAT info", "Visual checklist", "FAQs"]
+    },
+    {
+      "number": 4,
+      "title": "बिहार चुनाव 2025 के प्रमुख मुद्दे",
+      "file": "blog-posts-part2.json",
+      "category": "राजनीतिक विश्लेषण",
+      "features": ["Issue analysis", "Survey data", "Priority ranking", "Visual stats"]
+    },
+    {
+      "number": 5,
+      "title": "ओपिनियन पोल कैसे काम करता है?",
+      "file": "insert-blog-posts.js",
+      "category": "चुनाव समाचार",
+      "features": ["Methodology", "Statistical concepts", "Comparison tables", "ECI rules"]
+    },
+    {
+      "number": 6,
+      "title": "बिहार के 243 विधानसभा क्षेत्र - संपूर्ण जानकारी",
+      "status": "To be created - Will be added in next iteration"
+    },
+    {
+      "number": 7,
+      "title": "युवा मतदाताओं की शक्ति - बिहार चुनाव में युवाओं की भूमिका",
+      "status": "To be created - Will be added in next iteration"
+    },
+    {
+      "number": 8,
+      "title": "बिहार चुनाव का इतिहास - 1952 से अब तक",
+      "status": "To be created - Will be added in next iteration"
+    },
+    {
+      "number": 9,
+      "title": "निर्वाचन आयोग के नियम और दिशानिर्देश",
+      "status": "To be created - Will be added in next iteration"
+    },
+    {
+      "number": 10,
+      "title": "डिजिटल युग में चुनाव प्रचार - सोशल मीडिया और फेक न्यूज",
+      "status": "To be created - Will be added in next iteration"
+    }
+  ]
+}

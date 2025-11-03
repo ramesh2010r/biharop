@@ -26,7 +26,7 @@ async function convertBlogSchema(inputFile, outputFile) {
       excerpt_hindi: originalData.excerpt,
       excerpt_english: originalData.excerpt, // Use same excerpt
       featured_image_url: originalData.featured_image,
-      author_id: originalData.author_id,
+      author_id: null, // Set to null to avoid foreign key constraint issues
       category: originalData.category,
       tags: Array.isArray(originalData.tags) ? originalData.tags.join(', ') : originalData.tags, // Convert array to comma-separated string
       status: originalData.status,

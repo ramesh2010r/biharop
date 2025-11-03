@@ -21,6 +21,13 @@ export default function Footer() {
           </Link>
           <span className="text-gray-600">|</span>
           <Link 
+            href="/blog" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Blog
+          </Link>
+          <span className="text-gray-600">|</span>
+          <Link 
             href="/privacy-policy" 
             className="text-gray-300 hover:text-white transition-colors"
           >

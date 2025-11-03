@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Contact Us | संपर्क करें',
   description: 'Get in touch with Bihar Opinion Poll team. We are here to help with your questions and concerns.',
   alternates: {
-    canonical: '/contact',
+    canonical: 'https://opinionpoll.co.in/contact',
   },
 }
 

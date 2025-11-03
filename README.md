@@ -3,6 +3,9 @@
 
 A compliance-first web application for conducting anonymous opinion polls for the Bihar Assembly Election 2025, with automatic adherence to ECI (Election Commission of India) regulations.
 
+**🌐 Live Website:** https://opinionpoll.co.in  
+**📚 Complete Deployment Guide:** [COMPLETE_DEPLOYMENT_GUIDE.md](./COMPLETE_DEPLOYMENT_GUIDE.md)
+
 ## 🎯 Project Overview
 
 This platform allows citizens to anonymously express their opinion for the November 2025 Bihar Assembly Election while ensuring 100% compliance with the Election Commission of India's Model Code of Conduct, specifically the 48-hour "silent period" (Section 126 of the R.P. Act, 1951).

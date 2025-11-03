@@ -1,7 +1,8 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import Script from 'next/script'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -10,12 +11,23 @@ const inter = Inter({
   variable: '--font-inter'
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f97316' },
+    { media: '(prefers-color-scheme: dark)', color: '#1f2937' }
+  ]
+}
+
 export const metadata: Metadata = {
   title: {
-    default: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
+    default: 'Bihar Election 2025 | बिहार चुनाव ओपिनियन पोल',
     template: '%s | Bihar Opinion Poll'
   },
-  description: 'Independent opinion poll for Bihar Assembly Election 2025. Express your opinion anonymously and view real-time constituency-wise results. बिहार विधानसभा चुनाव 2025 के लिए स्वतंत्र ओपिनियन पोल।',
+  description: 'बिहार विधानसभा चुनाव 2025 के लिए स्वतंत्र ओपिनियन पोल। अपनी राय दें और वास्तविक समय परिणाम देखें।',
   keywords: ['Bihar Election', 'Opinion Poll', 'Assembly Election 2025', 'Voting', 'बिहार चुनाव', 'ओपिनियन पोल', 'विधानसभा चुनाव', 'Constituency Results', 'Political Survey'],
   authors: [{ name: 'Opinion Poll Bihar Team' }],
   creator: 'Opinion Poll Bihar',
@@ -25,15 +37,30 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/images/Opinion-Poll-Fevicon.png', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/images/Opinion-Poll-Fevicon.png' }
+    ],
+    shortcut: ['/favicon.ico']
+  },
   metadataBase: new URL('https://opinionpoll.co.in'),
   alternates: {
     canonical: '/',
+    languages: {
+      'hi-IN': '/hi',
+      'en-IN': '/en',
+      'x-default': '/'
+    }
   },
   openGraph: {
     type: 'website',
     locale: 'hi_IN',
     url: 'https://opinionpoll.co.in',
-    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
+    title: 'Bihar Election 2025 | बिहार चुनाव ओपिनियन पोल',
     description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी नीचे दिए गए लिंक पर क्लिक करके दर्ज करें। I have successfully cast my vote. Click the link below to cast your vote.',
     siteName: 'Bihar Opinion Poll',
     images: [
@@ -47,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bihar Election Opinion Poll 2025 | बिहार चुनाव ओपिनियन पोल',
+    title: 'Bihar Election 2025 | बिहार चुनाव ओपिनियन पोल',
     description: 'मैंने अपना मत सफलतापूर्वक दर्ज कर दिया है। आप भी अपनी राय दें।',
     images: ['https://opinionpoll.co.in/images/og-share-image.jpg'],
     creator: '@BiharOpinionPoll',
@@ -104,6 +131,19 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} font-hindi`}>
+        <Script
+          id="clarity-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "tvjdc5irj7");
+            `,
+          }}
+        />
         <GoogleAnalytics />
         <div className="min-h-screen bg-gray-50">
           {children}
